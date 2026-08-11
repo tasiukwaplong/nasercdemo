@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us | Nasarawa State Electricity Regulatory Commission (NASERC)</title>
-  <meta name="description" content="Learn about NASERC's statutory mandate, vision, mission, governance structure, and leadership team regulating electricity in Nasarawa State.">
+  <title>About NASERC | Nasarawa State Electricity Regulatory Commission</title>
+  <meta name="description" content="Learn about NASERC mandate, statutory powers under Nasarawa State Electricity Law 2024, vision, mission, and leadership.">
 
   <!-- Favicon -->
   <link rel="icon" href="https://naserc.na.gov.ng/logo.png" type="image/png">
@@ -21,21 +21,21 @@
   <link rel="stylesheet" href="css/styles.css">
   
   <style>
-    /* Specific Styling for About Page Org Chart & Leadership */
-    .org-tree {
+    /* Org Flowchart Tree Styling */
+    .org-chart-wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2rem;
-      margin-top: 2rem;
+      margin-top: 2.5rem;
     }
     .org-node {
       background: var(--white);
       border: 2px solid var(--primary-navy);
-      border-radius: var(--radius-lg);
+      border-radius: var(--radius-md);
       padding: 1.25rem 2rem;
       text-align: center;
       box-shadow: var(--shadow-md);
+      position: relative;
       min-width: 260px;
     }
     .org-node.root {
@@ -43,61 +43,22 @@
       color: var(--white);
       border-color: var(--accent-gold);
     }
-    .org-node.root h4 { color: var(--accent-gold); }
-    .org-level-2 {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      width: 100%;
+    .org-node.level-2 {
+      background: var(--primary-green);
+      color: var(--white);
+      border-color: var(--primary-green-dark);
     }
-    .org-node.child {
-      border-top: 4px solid var(--primary-green);
-      flex: 1;
-      min-width: 220px;
-      max-width: 280px;
+    .org-line-vertical {
+      width: 2px;
+      height: 35px;
+      background: var(--slate-300);
     }
-    .leadership-grid {
+    .org-level-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 2.5rem;
-    }
-    .leader-card {
-      background: var(--white);
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      border: 1px solid var(--slate-200);
-      box-shadow: var(--shadow-md);
-      transition: all var(--transition-normal);
-      text-align: center;
-      padding: 2rem 1.5rem;
-    }
-    .leader-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-xl);
-      border-color: var(--primary-green);
-    }
-    .leader-img {
-      width: 140px;
-      height: 140px;
-      border-radius: var(--radius-full);
-      object-fit: cover;
-      margin: 0 auto 1.25rem auto;
-      border: 4px solid var(--slate-100);
-    }
-    .leader-name {
-      font-family: var(--font-heading);
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--primary-navy);
-      margin-bottom: 0.25rem;
-    }
-    .leader-title {
-      font-size: 0.875rem;
-      font-weight: 700;
-      color: var(--primary-green);
-      margin-bottom: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
+      margin-top: 1rem;
     }
   </style>
 </head>
@@ -140,8 +101,8 @@
       <div class="brand-wrapper">
         <a href="index.html" class="brand-logo-link">
           <div class="logo-badge-container">
-            <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="logo-img" onerror="this.src='https://naserc.na.gov.ng/nasarawa.jpg'; this.onerror=null;">
-            <img src="https://naserc.na.gov.ng/nasarawa.jpg" alt="Nasarawa Coat of Arms" class="state-coat-img">
+            <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="logo-img">
+            <img src="https://naserc.na.gov.ng/nasarawa.jpg" alt="Nasarawa Coat of Arms" class="state-coat-img" title="Official Nasarawa State Seal">
           </div>
           <div class="brand-text">
             <span class="brand-acronym">NASERC</span>
@@ -156,7 +117,7 @@
           <li class="nav-item active">
             <a href="about.html" class="nav-link">About Us <i class="fas fa-chevron-down arrow"></i></a>
             <ul class="dropdown-menu">
-              <li><a href="#mandate" class="dropdown-item"><i class="fas fa-balance-scale"></i> Statutory Mandate</a></li>
+              <li><a href="#mandate" class="dropdown-item"><i class="fas fa-gavel"></i> Statutory Mandate</a></li>
               <li><a href="#vision" class="dropdown-item"><i class="fas fa-eye"></i> Vision & Mission</a></li>
               <li><a href="#governance" class="dropdown-item"><i class="fas fa-sitemap"></i> Governance & Leadership</a></li>
             </ul>
@@ -164,13 +125,19 @@
           <li class="nav-item">
             <a href="regulations.html" class="nav-link">Regulatory Instruments <i class="fas fa-chevron-down arrow"></i></a>
             <ul class="dropdown-menu">
-              <li><a href="regulations.html?category=regulations" class="dropdown-item"><i class="fas fa-gavel"></i> Electricity Regulations</a></li>
+              <li><a href="regulations.html?category=regulations" class="dropdown-item"><i class="fas fa-file-contract"></i> Electricity Regulations</a></li>
               <li><a href="regulations.html?category=licenses" class="dropdown-item"><i class="fas fa-certificate"></i> Licenses & Permits</a></li>
-              <li><a href="regulations.html?category=tariff" class="dropdown-item"><i class="fas fa-chart-line"></i> Tariff Orders (MYTO)</a></li>
+              <li><a href="regulations.html?category=guidelines" class="dropdown-item"><i class="fas fa-book-open"></i> Codes & Frameworks</a></li>
             </ul>
           </li>
           <li class="nav-item"><a href="activities.html" class="nav-link">Activities</a></li>
-          <li class="nav-item"><a href="forms.html" class="nav-link">Forms</a></li>
+          <li class="nav-item">
+            <a href="forms.html" class="nav-link">Forms <i class="fas fa-chevron-down arrow"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="forms.html?tab=complaint" class="dropdown-item"><i class="fas fa-exclamation-circle"></i> Customer Complaint Form</a></li>
+              <li><a href="forms.html?tab=license" class="dropdown-item"><i class="fas fa-calculator"></i> License Estimator & Application</a></li>
+            </ul>
+          </li>
           <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
         </ul>
       </nav>
@@ -182,12 +149,12 @@
     </div>
   </header>
 
-  <!-- Page Header Banner -->
+  <!-- Page Banner -->
   <section style="background: linear-gradient(135deg, var(--primary-navy-dark) 0%, var(--primary-navy) 100%); color: var(--white); padding: 4rem 0 3rem 0;">
     <div class="container text-center">
       <span class="section-badge gold"><i class="fas fa-landmark"></i> State Authority</span>
-      <h1 style="font-family: var(--font-heading); font-size: 2.75rem; font-weight: 800; margin-top: 0.5rem;">About NASERC</h1>
-      <p style="color: var(--slate-300); max-width: 650px; margin: 0.75rem auto 0 auto;">Establishing statutory regulatory standards for power generation, distribution, mini-grids, and consumer rights in Nasarawa State.</p>
+      <h1 style="font-family: var(--font-heading); font-size: 2.75rem; font-weight: 800; margin-top: 0.5rem;">About the Commission</h1>
+      <p style="color: var(--slate-300); max-width: 700px; margin: 0.75rem auto 0 auto;">Establishing a sustainable, competitive, and consumer-centric electricity market in Nasarawa State.</p>
     </div>
   </section>
 
@@ -195,34 +162,34 @@
   <section class="section-padding" id="mandate" style="background: var(--white);">
     <div class="container">
       <div class="section-header text-center">
-        <span class="section-badge"><i class="fas fa-balance-scale"></i> Statutory Framework</span>
-        <h2 class="section-title">Our Mandate & Legal Powers</h2>
-        <p class="section-subtitle">Established under the Nasarawa State Electricity Law 2024 to regulate the state's intrastate electricity market.</p>
+        <span class="section-badge"><i class="fas fa-gavel"></i> Statutory Establishment</span>
+        <h2 class="section-title">Our Statutory Mandate</h2>
+        <p class="section-subtitle">Enacted under the Nasarawa State Electricity Law 2024 to regulate the state's intrastate power sector market.</p>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-        <div style="background: var(--slate-50); border-radius: var(--radius-lg); padding: 2rem; border-left: 5px solid var(--primary-green); box-shadow: var(--shadow-sm);">
-          <div style="font-size: 1.75rem; color: var(--primary-green); margin-bottom: 1rem;"><i class="fas fa-certificate"></i></div>
-          <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--primary-navy); margin-bottom: 0.75rem;">Licensing & Permitting</h3>
-          <p style="color: var(--slate-600); font-size: 0.95rem; line-height: 1.6;">Granting, renewing, and enforcing operational licenses for Mini-Grids, Independent Power Producers (IPPs), Embedded Generators, and Electricity Distribution Licensees across Nasarawa State.</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon-box"><i class="fas fa-certificate"></i></div>
+          <h3 class="service-title">Licensing & Permits</h3>
+          <p class="service-desc">Granting, renewing, and supervising licenses for power generation, distribution, mini-grid operators, and meter asset providers across Nasarawa State. Systems >100 kW require full statutory licensing.</p>
         </div>
 
-        <div style="background: var(--slate-50); border-radius: var(--radius-lg); padding: 2rem; border-left: 5px solid var(--accent-gold); box-shadow: var(--shadow-sm);">
-          <div style="font-size: 1.75rem; color: var(--accent-gold); margin-bottom: 1rem;"><i class="fas fa-calculator"></i></div>
-          <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--primary-navy); margin-bottom: 0.75rem;">Tariff Determination</h3>
-          <p style="color: var(--slate-600); font-size: 0.95rem; line-height: 1.6;">Formulating equitable Multi-Year Tariff Orders (MYTO) to guarantee cost-reflective returns for infrastructure investors while protecting consumers against arbitrary rate hikes.</p>
+        <div class="service-card">
+          <div class="service-icon-box"><i class="fas fa-network-wired"></i></div>
+          <h3 class="service-title">Grid Standards Oversight</h3>
+          <p class="service-desc">Enforcing safety protocols, technical performance benchmarks, power quality standards, and sub-station interconnectivity guidelines.</p>
         </div>
 
-        <div style="background: var(--slate-50); border-radius: var(--radius-lg); padding: 2rem; border-left: 5px solid var(--primary-navy); box-shadow: var(--shadow-sm);">
-          <div style="font-size: 1.75rem; color: var(--primary-navy); margin-bottom: 1rem;"><i class="fas fa-user-shield"></i></div>
-          <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--primary-navy); margin-bottom: 0.75rem;">Consumer Advocacy</h3>
-          <p style="color: var(--slate-600); font-size: 0.95rem; line-height: 1.6;">Establishing binding Customer Service Standards, managing fast-track dispute resolution mechanisms, and enforcing mandatory smart metering schedules for all DisCos.</p>
+        <div class="service-card">
+          <div class="service-icon-box"><i class="fas fa-user-shield"></i></div>
+          <h3 class="service-title">Consumer Protection</h3>
+          <p class="service-desc">Resolving billing disputes, safeguarding consumers against wrongful service disconnections, and investigating meter installation complaints.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Vision & Mission Section -->
+  <!-- Vision, Mission & Values -->
   <section class="section-padding" id="vision" style="background: var(--slate-100);">
     <div class="container">
       <div class="section-header text-center">
@@ -230,126 +197,59 @@
         <h2 class="section-title">Vision, Mission & Core Values</h2>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; margin-bottom: 3rem;">
-        <!-- Vision -->
-        <div style="background: var(--white); border-radius: var(--radius-xl); padding: 2.5rem; border: 1px solid var(--slate-200); box-shadow: var(--shadow-md);">
-          <div style="width: 56px; height: 56px; background: rgba(0, 104, 55, 0.1); color: var(--primary-green); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.25rem;">
-            <i class="fas fa-eye"></i>
-          </div>
-          <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 1rem;">Our Vision</h3>
-          <p style="color: var(--slate-600); font-size: 1.05rem; line-height: 1.7;">
-            To transform Nasarawa State into Nigeria's benchmark sub-national energy market—characterized by 100% universal electricity access, clean renewable energy integration, and world-class regulatory efficiency.
-          </p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+        <div style="background: var(--primary-navy); color: var(--white); border-radius: var(--radius-xl); padding: 2.5rem;">
+          <i class="fas fa-eye" style="font-size: 2.5rem; color: var(--accent-gold); margin-bottom: 1rem;"></i>
+          <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; color: var(--white);">Our Vision</h3>
+          <p style="color: var(--slate-300); font-size: 0.95rem; line-height: 1.6;">To transform Nasarawa State into a premier hub for sustainable off-grid renewable energy and reliable power distribution across Nigeria.</p>
         </div>
 
-        <!-- Mission -->
-        <div style="background: var(--white); border-radius: var(--radius-xl); padding: 2.5rem; border: 1px solid var(--slate-200); box-shadow: var(--shadow-md);">
-          <div style="width: 56px; height: 56px; background: rgba(245, 158, 11, 0.1); color: var(--accent-gold); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.25rem;">
-            <i class="fas fa-bullseye"></i>
-          </div>
-          <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 1rem;">Our Mission</h3>
-          <p style="color: var(--slate-600); font-size: 1.05rem; line-height: 1.7;">
-            To create an enabling regulatory environment through fair rate-setting, robust licensing standards, rigorous grid compliance, and proactive consumer protection across all 13 Local Government Areas.
-          </p>
-        </div>
-      </div>
-
-      <!-- Core Values Pills -->
-      <div style="background: var(--white); border-radius: var(--radius-xl); padding: 2.5rem; border: 1px solid var(--slate-200); text-align: center;">
-        <h3 style="font-family: var(--font-heading); font-size: 1.25rem; color: var(--primary-navy); margin-bottom: 1.5rem;">Core Institutional Values</h3>
-        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-          <span style="background: var(--slate-100); color: var(--primary-navy); padding: 0.75rem 1.5rem; border-radius: var(--radius-full); font-weight: 700; border: 1px solid var(--slate-300);"><i class="fas fa-shield-alt" style="color: var(--primary-green);"></i> Integrity</span>
-          <span style="background: var(--slate-100); color: var(--primary-navy); padding: 0.75rem 1.5rem; border-radius: var(--radius-full); font-weight: 700; border: 1px solid var(--slate-300);"><i class="fas fa-search" style="color: var(--accent-gold);"></i> Transparency</span>
-          <span style="background: var(--slate-100); color: var(--primary-navy); padding: 0.75rem 1.5rem; border-radius: var(--radius-full); font-weight: 700; border: 1px solid var(--slate-300);"><i class="fas fa-balance-scale" style="color: var(--primary-green);"></i> Equity & Fairness</span>
-          <span style="background: var(--slate-100); color: var(--primary-navy); padding: 0.75rem 1.5rem; border-radius: var(--radius-full); font-weight: 700; border: 1px solid var(--slate-300);"><i class="fas fa-lightbulb" style="color: var(--accent-gold);"></i> Innovation</span>
-          <span style="background: var(--slate-100); color: var(--primary-navy); padding: 0.75rem 1.5rem; border-radius: var(--radius-full); font-weight: 700; border: 1px solid var(--slate-300);"><i class="fas fa-leaf" style="color: var(--primary-green);"></i> Sustainability</span>
+        <div style="background: var(--primary-green); color: var(--white); border-radius: var(--radius-xl); padding: 2.5rem;">
+          <i class="fas fa-bullseye" style="font-size: 2.5rem; color: var(--accent-gold); margin-bottom: 1rem;"></i>
+          <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; color: var(--white);">Our Mission</h3>
+          <p style="color: var(--slate-100); font-size: 0.95rem; line-height: 1.6;">To formulate clear regulatory frameworks, encourage private sector mini-grid investments, and guarantee equitable service delivery for all consumers.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Governance & Organizational Structure Section -->
+  <!-- Governance & Flowchart Section -->
   <section class="section-padding" id="governance" style="background: var(--white);">
     <div class="container">
       <div class="section-header text-center">
-        <span class="section-badge"><i class="fas fa-sitemap"></i> Governance Structure</span>
-        <h2 class="section-title">Organizational Structure & Leadership</h2>
-        <p class="section-subtitle">A multi-disciplinary Commission led by experienced engineers, legal experts, financial analysts, and consumer rights advocates.</p>
+        <span class="section-badge"><i class="fas fa-sitemap"></i> Structure</span>
+        <h2 class="section-title">Governance & Leadership Structure</h2>
+        <p class="section-subtitle">Commission Board of Commissioners and Departmental Divisions.</p>
       </div>
 
-      <!-- Organizational Chart Flowchart -->
-      <div style="background: var(--slate-50); border-radius: var(--radius-xl); padding: 3rem 2rem; border: 1px solid var(--slate-200); margin-bottom: 4rem;">
-        <h3 style="font-family: var(--font-heading); text-align: center; color: var(--primary-navy); margin-bottom: 2rem; font-size: 1.35rem;">NASERC Organizational Chart</h3>
-        <div class="org-tree">
-          <div class="org-node root">
-            <h4 style="font-size: 1.15rem; margin-bottom: 0.25rem;">Board of Commissioners</h4>
-            <p style="font-size: 0.85rem; color: var(--slate-200);">Chaired by Executive Chairman</p>
+      <!-- Flowchart -->
+      <div class="org-chart-wrapper">
+        <div class="org-node root">
+          <strong style="font-size: 1.1rem; display: block;">Executive Chairman / CEO</strong>
+          <span style="font-size: 0.8rem; color: var(--accent-gold);">Engr. Dr. Ibrahim A. Abdullahi</span>
+        </div>
+
+        <div class="org-line-vertical"></div>
+
+        <div class="org-node level-2">
+          <strong>Board of Executive Commissioners</strong>
+        </div>
+
+        <div class="org-line-vertical"></div>
+
+        <div class="org-level-grid">
+          <div class="org-node">
+            <strong style="color: var(--primary-navy); display: block;">Technical Regulations</strong>
+            <span style="font-size: 0.8rem; color: var(--slate-600);">Engr. Solomon K. Moses</span>
           </div>
-
-          <div style="width: 2px; height: 30px; background: var(--primary-navy);"></div>
-
-          <div class="org-level-2">
-            <div class="org-node child">
-              <h5 style="font-family: var(--font-heading); color: var(--primary-navy); margin-bottom: 0.25rem;">Engineering & Technical</h5>
-              <p style="font-size: 0.8rem; color: var(--slate-600);">Grid Standards, IPP Inspections & Mini-Grid Audit</p>
-            </div>
-
-            <div class="org-node child">
-              <h5 style="font-family: var(--font-heading); color: var(--primary-navy); margin-bottom: 0.25rem;">Legal & Licensing</h5>
-              <p style="font-size: 0.8rem; color: var(--slate-600);">Permits, Regulations & Contract Compliance</p>
-            </div>
-
-            <div class="org-node child">
-              <h5 style="font-family: var(--font-heading); color: var(--primary-navy); margin-bottom: 0.25rem;">Consumer Affairs</h5>
-              <p style="font-size: 0.8rem; color: var(--slate-600);">Dispute Resolution, Metering & Rights Advocacy</p>
-            </div>
-
-            <div class="org-node child">
-              <h5 style="font-family: var(--font-heading); color: var(--primary-navy); margin-bottom: 0.25rem;">Finance & Administration</h5>
-              <p style="font-size: 0.8rem; color: var(--slate-600);">Tariff Modeling, MYTO Audits & Corporate Ops</p>
-            </div>
+          <div class="org-node">
+            <strong style="color: var(--primary-navy); display: block;">Legal & Enforcement</strong>
+            <span style="font-size: 0.8rem; color: var(--slate-600);">Barr. Fatima Umar</span>
           </div>
-        </div>
-      </div>
-
-      <!-- Leadership Team Cards -->
-      <h3 style="font-family: var(--font-heading); font-size: 1.75rem; font-weight: 800; color: var(--primary-navy); text-align: center; margin-bottom: 1rem;">Board of Commissioners</h3>
-      
-      <div class="leadership-grid">
-        <!-- Leader 1 -->
-        <div class="leader-card">
-          <img src="assets/images/chairman.png" alt="Executive Chairman" class="leader-img">
-          <h4 class="leader-name">Engr. Dr. Ibrahim A. Abdullahi</h4>
-          <div class="leader-title">Executive Chairman / CEO</div>
-          <p style="font-size: 0.875rem; color: var(--slate-600); line-height: 1.6; margin-bottom: 1.25rem;">Over 25 years of experience in power engineering, renewable energy policy, and public utility regulation in Nigeria.</p>
-          <button class="btn btn-sm btn-outline" onclick="showToast('Engr. Dr. Ibrahim A. Abdullahi profile loaded', 'info')"><i class="fas fa-user-tie"></i> View Bio</button>
-        </div>
-
-        <!-- Leader 2 -->
-        <div class="leader-card">
-          <img src="assets/images/executive.png" alt="Commissioner Technical Services" class="leader-img" onerror="this.src='assets/images/chairman.png';">
-          <h4 class="leader-name">Engr. Maryam K. Usman</h4>
-          <div class="leader-title">Commissioner, Engineering & Technical Services</div>
-          <p style="font-size: 0.875rem; color: var(--slate-600); line-height: 1.6; margin-bottom: 1.25rem;">Specialist in high-voltage grid stability, solar PV microgrids, and sub-station safety compliance.</p>
-          <button class="btn btn-sm btn-outline" onclick="showToast('Engr. Maryam K. Usman profile loaded', 'info')"><i class="fas fa-user-tie"></i> View Bio</button>
-        </div>
-
-        <!-- Leader 3 -->
-        <div class="leader-card">
-          <img src="assets/images/executive.png" alt="Commissioner Legal" class="leader-img" onerror="this.src='assets/images/chairman.png';">
-          <h4 class="leader-name">Barr. Tanko S. Al-Hassan</h4>
-          <div class="leader-title">Commissioner, Legal, Licensing & Enforcement</div>
-          <p style="font-size: 0.875rem; color: var(--slate-600); line-height: 1.6; margin-bottom: 1.25rem;">Expert in energy jurisprudence, state utility statutory frameworks, and PPA contract drafting.</p>
-          <button class="btn btn-sm btn-outline" onclick="showToast('Barr. Tanko S. Al-Hassan profile loaded', 'info')"><i class="fas fa-user-tie"></i> View Bio</button>
-        </div>
-
-        <!-- Leader 4 -->
-        <div class="leader-card">
-          <img src="assets/images/executive.png" alt="Commissioner Consumer Affairs" class="leader-img" onerror="this.src='assets/images/chairman.png';">
-          <h4 class="leader-name">Hajia Aisha M. Abubakar</h4>
-          <div class="leader-title">Commissioner, Consumer Affairs & Stakeholder Relations</div>
-          <p style="font-size: 0.875rem; color: var(--slate-600); line-height: 1.6; margin-bottom: 1.25rem;">Dedicated advocate for consumer protection, billing transparency, and public hearing consultations.</p>
-          <button class="btn btn-sm btn-outline" onclick="showToast('Hajia Aisha M. Abubakar profile loaded', 'info')"><i class="fas fa-user-tie"></i> View Bio</button>
+          <div class="org-node">
+            <strong style="color: var(--primary-navy); display: block;">Consumer Affairs</strong>
+            <span style="font-size: 0.8rem; color: var(--slate-600);">Dr. Emmanuel Garba</span>
+          </div>
         </div>
       </div>
     </div>
@@ -362,7 +262,7 @@
         <div class="footer-grid">
           <div class="footer-brand-col">
             <div class="footer-logo-row">
-              <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="footer-logo" onerror="this.src='https://naserc.na.gov.ng/nasarawa.jpg'; this.onerror=null;">
+              <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="footer-logo">
               <span style="font-family: var(--font-heading); font-weight: 800; font-size: 1.35rem; color: var(--white);">NASERC</span>
             </div>
             <p class="footer-desc">
@@ -373,7 +273,7 @@
             <h4 class="footer-heading">Quick Links</h4>
             <ul class="footer-links">
               <li><a href="index.html" class="footer-link"><i class="fas fa-chevron-right"></i> Home</a></li>
-              <li><a href="about.html" class="footer-link"><i class="fas fa-chevron-right"></i> Statutory Mandate</a></li>
+              <li><a href="about.html" class="footer-link"><i class="fas fa-chevron-right"></i> Mandate</a></li>
               <li><a href="regulations.html" class="footer-link"><i class="fas fa-chevron-right"></i> Regulations</a></li>
               <li><a href="contact.html" class="footer-link"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
             </ul>
@@ -381,7 +281,7 @@
           <div>
             <h4 class="footer-heading">Forms & Services</h4>
             <ul class="footer-links">
-              <li><a href="forms.html?tab=complaint" class="footer-link"><i class="fas fa-chevron-right"></i> File Customer Complaint</a></li>
+              <li><a href="forms.html?tab=complaint" class="footer-link"><i class="fas fa-chevron-right"></i> File Complaint</a></li>
               <li><a href="forms.html?tab=license" class="footer-link"><i class="fas fa-chevron-right"></i> Apply for License</a></li>
             </ul>
           </div>
@@ -390,7 +290,6 @@
             <ul class="footer-links">
               <li style="color: var(--slate-400); font-size: 0.9rem;"><i class="fas fa-map-marker-alt" style="color: var(--accent-gold); margin-right: 0.5rem;"></i> Lafia Headquarters, Nasarawa State.</li>
               <li style="color: var(--slate-400); font-size: 0.9rem;"><i class="fas fa-phone" style="color: var(--accent-gold); margin-right: 0.5rem;"></i> Hotline: 0800-NASERC-HOT</li>
-              <li style="color: var(--slate-400); font-size: 0.9rem;"><i class="fas fa-envelope" style="color: var(--accent-gold); margin-right: 0.5rem;"></i> info@naserc.na.gov.ng</li>
             </ul>
           </div>
         </div>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Regulatory Instruments | Nasarawa State Electricity Regulatory Commission (NASERC)</title>
-  <meta name="description" content="Search and download statutory electricity regulations, licenses, tariff orders (MYTO), grid codes, and operational guidelines issued by NASERC.">
+  <meta name="description" content="Search and download statutory electricity regulations, licenses, grid codes, and operational guidelines issued by NASERC.">
 
   <!-- Favicon -->
   <link rel="icon" href="https://naserc.na.gov.ng/logo.png" type="image/png">
@@ -59,8 +59,7 @@
       <div class="brand-wrapper">
         <a href="index.html" class="brand-logo-link">
           <div class="logo-badge-container">
-            <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="logo-img" onerror="this.src='https://naserc.na.gov.ng/nasarawa.jpg'; this.onerror=null;">
-            <img src="https://naserc.na.gov.ng/nasarawa.jpg" alt="Nasarawa Coat of Arms" class="state-coat-img">
+            <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="logo-img">
           </div>
           <div class="brand-text">
             <span class="brand-acronym">NASERC</span>
@@ -75,22 +74,27 @@
           <li class="nav-item">
             <a href="about.html" class="nav-link">About Us <i class="fas fa-chevron-down arrow"></i></a>
             <ul class="dropdown-menu">
-              <li><a href="about.html#mandate" class="dropdown-item">Statutory Mandate</a></li>
-              <li><a href="about.html#vision" class="dropdown-item">Vision & Mission</a></li>
-              <li><a href="about.html#governance" class="dropdown-item">Governance & Leadership</a></li>
+              <li><a href="about.html#mandate" class="dropdown-item"><i class="fas fa-gavel"></i> Statutory Mandate</a></li>
+              <li><a href="about.html#vision" class="dropdown-item"><i class="fas fa-eye"></i> Vision & Mission</a></li>
+              <li><a href="about.html#governance" class="dropdown-item"><i class="fas fa-sitemap"></i> Governance & Leadership</a></li>
             </ul>
           </li>
           <li class="nav-item active">
             <a href="regulations.html" class="nav-link">Regulatory Instruments <i class="fas fa-chevron-down arrow"></i></a>
             <ul class="dropdown-menu">
-              <li><a href="regulations.html?category=regulations" class="dropdown-item">Electricity Regulations</a></li>
-              <li><a href="regulations.html?category=licenses" class="dropdown-item">Licenses & Permits</a></li>
-              <li><a href="regulations.html?category=tariff" class="dropdown-item">Tariff Orders (MYTO)</a></li>
-              <li><a href="regulations.html?category=guidelines" class="dropdown-item">Codes & Frameworks</a></li>
+              <li><a href="regulations.html?category=regulations" class="dropdown-item"><i class="fas fa-file-contract"></i> Electricity Regulations</a></li>
+              <li><a href="regulations.html?category=licenses" class="dropdown-item"><i class="fas fa-certificate"></i> Licenses & Permits</a></li>
+              <li><a href="regulations.html?category=guidelines" class="dropdown-item"><i class="fas fa-book-open"></i> Codes & Frameworks</a></li>
             </ul>
           </li>
           <li class="nav-item"><a href="activities.html" class="nav-link">Activities</a></li>
-          <li class="nav-item"><a href="forms.html" class="nav-link">Forms</a></li>
+          <li class="nav-item">
+            <a href="forms.html" class="nav-link">Forms <i class="fas fa-chevron-down arrow"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="forms.html?tab=complaint" class="dropdown-item"><i class="fas fa-exclamation-circle"></i> Customer Complaint Form</a></li>
+              <li><a href="forms.html?tab=license" class="dropdown-item"><i class="fas fa-calculator"></i> License Estimator & Application</a></li>
+            </ul>
+          </li>
           <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
         </ul>
       </nav>
@@ -107,7 +111,21 @@
     <div class="container text-center">
       <span class="section-badge gold"><i class="fas fa-gavel"></i> Legal Repository</span>
       <h1 style="font-family: var(--font-heading); font-size: 2.75rem; font-weight: 800; margin-top: 0.5rem;">Regulatory Instruments & Codes</h1>
-      <p style="color: var(--slate-300); max-width: 700px; margin: 0.75rem auto 0 auto;">Official collection of electricity regulations, licensing procedures, tariff orders (MYTO), technical grid codes, and consumer rights mandates in Nasarawa State.</p>
+      <p style="color: var(--slate-300); max-width: 700px; margin: 0.75rem auto 0 auto;">Official collection of electricity regulations, licensing procedures, technical grid codes, and consumer rights mandates in Nasarawa State.</p>
+    </div>
+  </section>
+
+  <!-- Quick Banner for License Threshold & Calculator -->
+  <section style="background: var(--primary-green); color: var(--white); padding: 1.5rem 0;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <i class="fas fa-calculator" style="font-size: 2rem; color: var(--accent-gold);"></i>
+        <div>
+          <h4 style="font-family: var(--font-heading); font-size: 1.15rem; color: var(--white);">Statutory Licensing Threshold Notice</h4>
+          <p style="font-size: 0.875rem; color: var(--slate-100); margin: 0;">Systems <strong>up to 100 kW</strong> require a Permit. Systems <strong>above 100 kW</strong> require a Full Regulatory License.</p>
+        </div>
+      </div>
+      <a href="forms.html?tab=license" class="btn btn-accent"><i class="fas fa-calculator"></i> Launch Fee Calculator</a>
     </div>
   </section>
 
@@ -120,7 +138,7 @@
         <div class="filter-top-row">
           <div class="search-input-group">
             <i class="fas fa-search"></i>
-            <input type="text" id="regSearchInput" placeholder="Search by title, keyword, or document reference (e.g., Grid Code, Tariff 2026)...">
+            <input type="text" id="regSearchInput" placeholder="Search by title, keyword, or document reference (e.g., Grid Code, MAP Rules)...">
           </div>
           <select class="filter-select" id="regYearSelect">
             <option value="all">All Release Years</option>
@@ -135,10 +153,9 @@
             <button class="category-pill active" data-category="all">All Documents</button>
             <button class="category-pill" data-category="regulations">Regulations & Codes</button>
             <button class="category-pill" data-category="licenses">Licenses & Permits</button>
-            <button class="category-pill" data-category="tariff">Tariff Orders (MYTO)</button>
             <button class="category-pill" data-category="guidelines">Guidelines & Frameworks</button>
           </div>
-          <div style="font-size: 0.875rem; font-weight: 700; color: var(--slate-600);" id="resultCount">Showing 8 Documents</div>
+          <div style="font-size: 0.875rem; font-weight: 700; color: var(--slate-600);" id="resultCount">Showing 7 Documents</div>
         </div>
       </div>
 
@@ -189,13 +206,13 @@
         </div>
 
         <!-- Doc 3 -->
-        <div class="doc-card doc-item-card" data-title="Mini-Grid & Off-Grid Licensing Framework 2026" data-code="NAS-LIC-04" data-category="licenses" data-year="2026">
+        <div class="doc-card doc-item-card" data-title="Mini-Grid & Off-Grid Licensing Framework 2026 (100 kW Threshold Rules)" data-code="NAS-LIC-04" data-category="licenses" data-year="2026">
           <div class="doc-header">
             <div class="doc-icon"><i class="fas fa-solar-panel"></i></div>
             <span class="doc-category-badge">Licenses & Permits</span>
           </div>
-          <h3 class="doc-title">Mini-Grid & Off-Grid Licensing Framework 2026</h3>
-          <p style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem;">Provides clear guidelines and application requirements for mini-grid developers operating capacities up to 10MW in Nasarawa State.</p>
+          <h3 class="doc-title">Mini-Grid & Off-Grid Licensing Framework 2026 (>100 kW Mandate)</h3>
+          <p style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem;">Provides clear guidelines: Permits for systems <= 100 kW and full Licenses for systems > 100 kW up to 10 MW in Nasarawa State.</p>
           <div class="doc-meta">
             <span><i class="far fa-calendar-alt"></i> Feb 2026</span>
             <span><i class="far fa-file-pdf"></i> 3.4 MB</span>
@@ -207,24 +224,6 @@
         </div>
 
         <!-- Doc 4 -->
-        <div class="doc-card doc-item-card" data-title="Multi-Year Tariff Order (MYTO 2026-2029)" data-code="NAS-MYTO-01" data-category="tariff" data-year="2026">
-          <div class="doc-header">
-            <div class="doc-icon"><i class="fas fa-chart-line"></i></div>
-            <span class="doc-category-badge">Tariff Orders</span>
-          </div>
-          <h3 class="doc-title">Multi-Year Tariff Order (MYTO 2026-2029)</h3>
-          <p style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem;">Approved state-wide tariff schedules across Band A, B, C, D, and E customer classifications and mini-grid baseline rates.</p>
-          <div class="doc-meta">
-            <span><i class="far fa-calendar-alt"></i> Jan 2026</span>
-            <span><i class="far fa-file-pdf"></i> 4.1 MB</span>
-          </div>
-          <div class="doc-footer">
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-green);">Ref: NAS-MYTO-01</span>
-            <button class="btn btn-sm btn-primary download-doc-btn" data-doc-title="Multi-Year Tariff Order (MYTO 2026-2029)"><i class="fas fa-download"></i> Download PDF</button>
-          </div>
-        </div>
-
-        <!-- Doc 5 -->
         <div class="doc-card doc-item-card" data-title="Smart Meter Asset Provider (MAP) Operating Guidelines" data-code="NAS-MAP-03" data-category="guidelines" data-year="2025">
           <div class="doc-header">
             <div class="doc-icon"><i class="fas fa-microchip"></i></div>
@@ -242,7 +241,7 @@
           </div>
         </div>
 
-        <!-- Doc 6 -->
+        <!-- Doc 5 -->
         <div class="doc-card doc-item-card" data-title="Embedded Generation & Renewable Power Regulations 2024" data-code="NAS-REG-03" data-category="regulations" data-year="2024">
           <div class="doc-header">
             <div class="doc-icon"><i class="fas fa-bolt"></i></div>
@@ -260,7 +259,7 @@
           </div>
         </div>
 
-        <!-- Doc 7 -->
+        <!-- Doc 6 -->
         <div class="doc-card doc-item-card" data-title="Distribution License Renewal & Quality of Service Performance Rules" data-code="NAS-LIC-02" data-category="licenses" data-year="2025">
           <div class="doc-header">
             <div class="doc-icon"><i class="fas fa-file-contract"></i></div>
@@ -278,7 +277,7 @@
           </div>
         </div>
 
-        <!-- Doc 8 -->
+        <!-- Doc 7 -->
         <div class="doc-card doc-item-card" data-title="Consumer Dispute Resolution Panel (CDRP) Rules 2025" data-code="NAS-GUI-01" data-category="guidelines" data-year="2025">
           <div class="doc-header">
             <div class="doc-icon"><i class="fas fa-gavel"></i></div>
@@ -307,7 +306,7 @@
         <div class="footer-grid">
           <div class="footer-brand-col">
             <div class="footer-logo-row">
-              <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="footer-logo" onerror="this.src='https://naserc.na.gov.ng/nasarawa.jpg'; this.onerror=null;">
+              <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="footer-logo">
               <span style="font-family: var(--font-heading); font-weight: 800; font-size: 1.35rem; color: var(--white);">NASERC</span>
             </div>
             <p class="footer-desc">

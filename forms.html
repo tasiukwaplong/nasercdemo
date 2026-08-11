@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Online Forms & Applications | Nasarawa State Electricity Regulatory Commission (NASERC)</title>
-  <meta name="description" content="Submit electricity consumer complaints, file mini-grid license applications, or track reference numbers online with NASERC.">
+  <meta name="description" content="Submit electricity consumer complaints, estimate license fees (>100kW mandate), or track reference numbers online with NASERC.">
 
   <!-- Favicon -->
   <link rel="icon" href="https://naserc.na.gov.ng/logo.png" type="image/png">
@@ -19,6 +19,32 @@
 
   <!-- Core Stylesheet -->
   <link rel="stylesheet" href="css/styles.css">
+  
+  <style>
+    /* License Calculator Specific Styling */
+    .calculator-widget-box {
+      background: linear-gradient(135deg, #ffffff 0%, var(--slate-50) 100%);
+      border: 2px solid var(--primary-green);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-xl);
+      margin-bottom: 3rem;
+    }
+    .calc-result-panel {
+      background: var(--primary-navy);
+      color: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-lg);
+    }
+    .calc-fee-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.95rem;
+    }
+  </style>
 </head>
 <body>
 
@@ -59,8 +85,7 @@
       <div class="brand-wrapper">
         <a href="index.html" class="brand-logo-link">
           <div class="logo-badge-container">
-            <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="logo-img" onerror="this.src='https://naserc.na.gov.ng/nasarawa.jpg'; this.onerror=null;">
-            <img src="https://naserc.na.gov.ng/nasarawa.jpg" alt="Nasarawa Coat of Arms" class="state-coat-img">
+            <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="logo-img">
           </div>
           <div class="brand-text">
             <span class="brand-acronym">NASERC</span>
@@ -75,25 +100,25 @@
           <li class="nav-item">
             <a href="about.html" class="nav-link">About Us <i class="fas fa-chevron-down arrow"></i></a>
             <ul class="dropdown-menu">
-              <li><a href="about.html#mandate" class="dropdown-item">Statutory Mandate</a></li>
-              <li><a href="about.html#vision" class="dropdown-item">Vision & Mission</a></li>
-              <li><a href="about.html#governance" class="dropdown-item">Governance & Leadership</a></li>
+              <li><a href="about.html#mandate" class="dropdown-item"><i class="fas fa-gavel"></i> Statutory Mandate</a></li>
+              <li><a href="about.html#vision" class="dropdown-item"><i class="fas fa-eye"></i> Vision & Mission</a></li>
+              <li><a href="about.html#governance" class="dropdown-item"><i class="fas fa-sitemap"></i> Governance & Leadership</a></li>
             </ul>
           </li>
           <li class="nav-item">
             <a href="regulations.html" class="nav-link">Regulatory Instruments <i class="fas fa-chevron-down arrow"></i></a>
             <ul class="dropdown-menu">
-              <li><a href="regulations.html?category=regulations" class="dropdown-item">Electricity Regulations</a></li>
-              <li><a href="regulations.html?category=licenses" class="dropdown-item">Licenses & Permits</a></li>
-              <li><a href="regulations.html?category=tariff" class="dropdown-item">Tariff Orders (MYTO)</a></li>
+              <li><a href="regulations.html?category=regulations" class="dropdown-item"><i class="fas fa-file-contract"></i> Electricity Regulations</a></li>
+              <li><a href="regulations.html?category=licenses" class="dropdown-item"><i class="fas fa-certificate"></i> Licenses & Permits</a></li>
+              <li><a href="regulations.html?category=guidelines" class="dropdown-item"><i class="fas fa-book-open"></i> Codes & Frameworks</a></li>
             </ul>
           </li>
           <li class="nav-item"><a href="activities.html" class="nav-link">Activities</a></li>
           <li class="nav-item active">
             <a href="forms.html" class="nav-link">Forms <i class="fas fa-chevron-down arrow"></i></a>
             <ul class="dropdown-menu">
-              <li><a href="forms.html?tab=complaint" class="dropdown-item">Customer Complaint Form</a></li>
-              <li><a href="forms.html?tab=license" class="dropdown-item">License Application Form</a></li>
+              <li><a href="forms.html?tab=complaint" class="dropdown-item"><i class="fas fa-exclamation-circle"></i> Customer Complaint Form</a></li>
+              <li><a href="forms.html?tab=license" class="dropdown-item"><i class="fas fa-calculator"></i> License Estimator & Application</a></li>
             </ul>
           </li>
           <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
@@ -112,7 +137,7 @@
     <div class="container text-center">
       <span class="section-badge gold"><i class="fas fa-laptop-code"></i> Digital Submissions</span>
       <h1 style="font-family: var(--font-heading); font-size: 2.75rem; font-weight: 800; margin-top: 0.5rem;">Online Forms & Licensing Desk</h1>
-      <p style="color: var(--slate-300); max-width: 700px; margin: 0.75rem auto 0 auto;">File consumer disputes or submit power generation/distribution license applications online.</p>
+      <p style="color: var(--slate-300); max-width: 700px; margin: 0.75rem auto 0 auto;">File consumer disputes, estimate license fees, or submit power generation/distribution permit applications online.</p>
     </div>
   </section>
 
@@ -123,7 +148,7 @@
       <!-- Form Selector Tabs -->
       <div class="form-tabs-container">
         <button class="tab-button active" data-tab="complaint"><i class="fas fa-exclamation-triangle"></i> Customer Complaint Form</button>
-        <button class="tab-button" data-tab="license"><i class="fas fa-file-contract"></i> License Application Form</button>
+        <button class="tab-button" data-tab="license"><i class="fas fa-calculator"></i> License Estimator & Application</button>
       </div>
 
       <!-- Tab 1: Customer Complaint Form -->
@@ -229,12 +254,105 @@
         </div>
       </div>
 
-      <!-- Tab 2: License Application Form -->
+      <!-- Tab 2: License Fee Estimator & Application Form -->
       <div class="form-tab-content" id="licenseTab" style="display: none;">
+
+        <!-- Interactive Fee & Requirement Calculator Component -->
+        <div class="calculator-widget-box" id="licenseCalcWidget">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--slate-200); padding-bottom: 1rem;">
+            <div>
+              <span class="section-badge gold" id="calcThresholdBadge"><i class="fas fa-calculator"></i> License Threshold & Fee Estimator</span>
+              <h2 style="font-family: var(--font-heading); font-size: 1.75rem; color: var(--primary-navy); font-weight: 800; margin-top: 0.25rem;">Statutory License & Fee Calculator</h2>
+              <p style="color: var(--slate-600); font-size: 0.9rem;">
+                Under Nasarawa State Electricity Law 2024: Systems <strong>up to 100 kW</strong> require a <strong>Permit</strong>; systems <strong>above 100 kW</strong> require a <strong>Full License</strong>.
+              </p>
+            </div>
+            <div style="background: rgba(0, 104, 55, 0.1); padding: 0.75rem 1.25rem; border-radius: var(--radius-md); border: 1px solid rgba(0, 104, 55, 0.3);">
+              <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-green); text-transform: uppercase;">Statutory Rule</span>
+              <div style="font-weight: 800; color: var(--primary-navy); font-size: 0.95rem;">> 100 kW = Full License Required</div>
+            </div>
+          </div>
+
+          <form id="licenseCalcForm" onsubmit="event.preventDefault();" style="margin-bottom: 2rem;">
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label class="form-label">Proposed Generating / Operational Capacity <span class="required">*</span></label>
+                <div style="display: flex; gap: 0.5rem;">
+                  <input type="number" id="calcCapacityInput" class="form-control" placeholder="e.g. 150" value="150" min="1" step="any" required>
+                  <select id="calcUnitSelect" class="form-control" style="width: 110px;">
+                    <option value="kW" selected>kW</option>
+                    <option value="MW">MW</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Category of Energy Operation <span class="required">*</span></label>
+                <select id="calcCategorySelect" class="form-control">
+                  <option value="minigrid">Off-Grid Mini-Grid Generation</option>
+                  <option value="embedded">Embedded Generation (DisCo Grid-tied)</option>
+                  <option value="distribution">Independent Distribution Network (IEDN)</option>
+                  <option value="map">Meter Asset Provider (MAP)</option>
+                  <option value="captive">Captive / Industrial Self-Generation</option>
+                </select>
+              </div>
+
+            </div>
+          </form>
+
+          <!-- Dynamic Result Display Box -->
+          <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;" class="contact-grid">
+            <div class="calc-result-panel">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                <h3 id="calcReqTitle" style="font-family: var(--font-heading); font-size: 1.35rem; color: var(--accent-gold); font-weight: 800;">Class A Electricity License (> 100 kW)</h3>
+                <span style="font-size: 0.8rem; background: rgba(255, 255, 255, 0.15); padding: 0.25rem 0.75rem; border-radius: var(--radius-full); font-weight: 700;" id="calcTimeline">21 - 30 Working Days</span>
+              </div>
+
+              <p id="calcReqDesc" style="color: var(--slate-300); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.5;">
+                Your proposed capacity exceeds 100 kW and requires a formal Class A NASERC Operational License.
+              </p>
+
+              <div style="margin-bottom: 1.5rem;">
+                <div class="calc-fee-row">
+                  <span style="color: var(--slate-300);">Application Filing & Processing Fee:</span>
+                  <strong style="color: var(--white);" id="calcFilingFee">₦150,000</strong>
+                </div>
+                <div class="calc-fee-row">
+                  <span style="color: var(--slate-300);">Technical Grid Inspection & Audit Fee:</span>
+                  <strong style="color: var(--white);" id="calcInspectionFee">₦350,000</strong>
+                </div>
+                <div class="calc-fee-row">
+                  <span style="color: var(--slate-300);">Initial Statutory Grant Fee:</span>
+                  <strong style="color: var(--white);" id="calcGrantFee">₦500,000</strong>
+                </div>
+                <div class="calc-fee-row" style="border-bottom: 2px solid var(--accent-gold); padding-top: 0.8rem;">
+                  <span style="font-size: 1.1rem; font-weight: 800; color: var(--accent-gold);">Total Estimated Regulatory Fee:</span>
+                  <strong style="font-size: 1.35rem; font-weight: 800; color: var(--white);" id="calcTotalFee">₦1,000,000</strong>
+                </div>
+              </div>
+
+              <button type="button" id="calcApplyBtn" class="btn btn-accent" style="width: 100%;"><i class="fas fa-check-circle"></i> Proceed to Apply with Calculated Capacity</button>
+            </div>
+
+            <!-- Required Document Checklist Panel -->
+            <div style="background: var(--white); border-radius: var(--radius-lg); padding: 1.75rem; border: 1px solid var(--slate-200); box-shadow: var(--shadow-sm);">
+              <h4 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 1rem;">
+                <i class="fas fa-list-check" style="color: var(--primary-green); margin-right: 0.5rem;"></i> Required Submission Checklist
+              </h4>
+              <ul id="calcDocChecklist" style="margin-bottom: 0;">
+                <!-- Dynamically populated by js/calculator.js -->
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- License Application Form -->
         <div class="form-card">
           <div style="margin-bottom: 2rem; border-bottom: 1px solid var(--slate-200); padding-bottom: 1rem;">
-            <h2 style="font-family: var(--font-heading); font-size: 1.75rem; color: var(--primary-navy); font-weight: 800;">Electricity License & Permit Application Form</h2>
-            <p style="color: var(--slate-600); font-size: 0.95rem; margin-top: 0.25rem;">For Power Generation, Distribution, Mini-Grid Operations, and Meter Asset Provider (MAP) licenses in Nasarawa State.</p>
+            <h2 style="font-family: var(--font-heading); font-size: 1.75rem; color: var(--primary-navy); font-weight: 800;">Official License & Permit Application</h2>
+            <p style="color: var(--slate-600); font-size: 0.95rem; margin-top: 0.25rem;">Complete your formal license or permit filing with NASERC Secretariat.</p>
           </div>
 
           <form id="licenseApplicationForm" novalidate>
@@ -266,11 +384,12 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">License Application Class <span class="required">*</span></label>
+                <label class="form-label">License / Permit Category <span class="required">*</span></label>
                 <select class="form-control" name="licenseType" required>
-                  <option value="">Select License Class...</option>
-                  <option value="Off-Grid Mini-Grid Generation (< 1MW)">Off-Grid Mini-Grid Generation (< 1MW)</option>
-                  <option value="Off-Grid Mini-Grid Generation (1MW - 10MW)">Off-Grid Mini-Grid Generation (1MW - 10MW)</option>
+                  <option value="">Select Application Class...</option>
+                  <option value="Permit: Off-Grid Generation (<= 100 kW)">Permit: Off-Grid Generation (<= 100 kW)</option>
+                  <option value="License Class A: Mini-Grid (101 kW - 1 MW)">License Class A: Mini-Grid (101 kW - 1 MW)</option>
+                  <option value="License Class B: Utility Mini-Grid (1 MW - 10 MW)">License Class B: Utility Mini-Grid (1 MW - 10 MW)</option>
                   <option value="Embedded Generation Permit">Embedded Generation Permit</option>
                   <option value="Independent Electricity Distribution Network (IEDN)">Independent Electricity Distribution Network (IEDN)</option>
                   <option value="Meter Asset Provider (MAP) License">Meter Asset Provider (MAP) License</option>
@@ -280,7 +399,7 @@
 
               <div class="form-group">
                 <label class="form-label">Proposed Generating Capacity (kW or MW) <span class="required">*</span></label>
-                <input type="text" class="form-control" name="capacity" placeholder="e.g. 500 kW Solar Hybrid" required>
+                <input type="text" class="form-control" name="capacity" placeholder="e.g. 150 kW Solar Hybrid" required>
               </div>
 
               <div class="form-group">
@@ -325,7 +444,7 @@
         <div class="footer-grid">
           <div class="footer-brand-col">
             <div class="footer-logo-row">
-              <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="footer-logo" onerror="this.src='https://naserc.na.gov.ng/nasarawa.jpg'; this.onerror=null;">
+              <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="footer-logo">
               <span style="font-family: var(--font-heading); font-weight: 800; font-size: 1.35rem; color: var(--white);">NASERC</span>
             </div>
             <p class="footer-desc">
@@ -366,6 +485,7 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/calculator.js"></script>
   <script src="js/forms.js"></script>
 </body>
 </html>

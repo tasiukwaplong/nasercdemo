@@ -62,8 +62,7 @@
       <div class="brand-wrapper">
         <a href="index.html" class="brand-logo-link">
           <div class="logo-badge-container">
-            <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="logo-img" onerror="this.src='https://naserc.na.gov.ng/nasarawa.jpg'; this.onerror=null;">
-            <img src="https://naserc.na.gov.ng/nasarawa.jpg" alt="Nasarawa Coat of Arms" class="state-coat-img">
+            <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="logo-img">
           </div>
           <div class="brand-text">
             <span class="brand-acronym">NASERC</span>
@@ -78,21 +77,27 @@
           <li class="nav-item">
             <a href="about.html" class="nav-link">About Us <i class="fas fa-chevron-down arrow"></i></a>
             <ul class="dropdown-menu">
-              <li><a href="about.html#mandate" class="dropdown-item">Statutory Mandate</a></li>
-              <li><a href="about.html#vision" class="dropdown-item">Vision & Mission</a></li>
-              <li><a href="about.html#governance" class="dropdown-item">Governance & Leadership</a></li>
+              <li><a href="about.html#mandate" class="dropdown-item"><i class="fas fa-gavel"></i> Statutory Mandate</a></li>
+              <li><a href="about.html#vision" class="dropdown-item"><i class="fas fa-eye"></i> Vision & Mission</a></li>
+              <li><a href="about.html#governance" class="dropdown-item"><i class="fas fa-sitemap"></i> Governance & Leadership</a></li>
             </ul>
           </li>
           <li class="nav-item">
             <a href="regulations.html" class="nav-link">Regulatory Instruments <i class="fas fa-chevron-down arrow"></i></a>
             <ul class="dropdown-menu">
-              <li><a href="regulations.html?category=regulations" class="dropdown-item">Electricity Regulations</a></li>
-              <li><a href="regulations.html?category=licenses" class="dropdown-item">Licenses & Permits</a></li>
-              <li><a href="regulations.html?category=tariff" class="dropdown-item">Tariff Orders (MYTO)</a></li>
+              <li><a href="regulations.html?category=regulations" class="dropdown-item"><i class="fas fa-file-contract"></i> Electricity Regulations</a></li>
+              <li><a href="regulations.html?category=licenses" class="dropdown-item"><i class="fas fa-certificate"></i> Licenses & Permits</a></li>
+              <li><a href="regulations.html?category=guidelines" class="dropdown-item"><i class="fas fa-book-open"></i> Codes & Frameworks</a></li>
             </ul>
           </li>
           <li class="nav-item"><a href="activities.html" class="nav-link">Activities</a></li>
-          <li class="nav-item"><a href="forms.html" class="nav-link">Forms</a></li>
+          <li class="nav-item">
+            <a href="forms.html" class="nav-link">Forms <i class="fas fa-chevron-down arrow"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="forms.html?tab=complaint" class="dropdown-item"><i class="fas fa-exclamation-circle"></i> Customer Complaint Form</a></li>
+              <li><a href="forms.html?tab=license" class="dropdown-item"><i class="fas fa-calculator"></i> License Estimator & Application</a></li>
+            </ul>
+          </li>
           <li class="nav-item active"><a href="contact.html" class="nav-link">Contact Us</a></li>
         </ul>
       </nav>
@@ -152,7 +157,7 @@
               <p style="color: var(--slate-300); font-size: 0.9rem;">
                 General: info@naserc.na.gov.ng<br>
                 Consumer Complaints: complaints@naserc.na.gov.ng<br>
-                Licensing & IPPs: licensing@naserc.na.gov.ng
+                Licensing Desk: licensing@naserc.na.gov.ng
               </p>
             </div>
           </div>
@@ -197,8 +202,8 @@
                 <select class="form-control" name="subject" required>
                   <option value="">Select Topic...</option>
                   <option value="General Inquiry">General Regulatory Inquiry</option>
-                  <option value="Licensing Guidance">Mini-Grid Licensing Guidance</option>
-                  <option value="Tariff Information">Tariff Schedule & MYTO</option>
+                  <option value="Licensing Guidance">Mini-Grid Licensing Guidance (>100kW Mandate)</option>
+                  <option value="Consumer Dispute">Consumer Rights & Disputes</option>
                   <option value="Media & Press Inquiry">Media & Press Inquiry</option>
                   <option value="Partnership Proposal">Investor / Dev Partnership</option>
                 </select>
@@ -273,7 +278,7 @@
         <div class="footer-grid">
           <div class="footer-brand-col">
             <div class="footer-logo-row">
-              <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="footer-logo" onerror="this.src='https://naserc.na.gov.ng/nasarawa.jpg'; this.onerror=null;">
+              <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="footer-logo">
               <span style="font-family: var(--font-heading); font-weight: 800; font-size: 1.35rem; color: var(--white);">NASERC</span>
             </div>
             <p class="footer-desc">
@@ -323,16 +328,13 @@
       const mapContainer = document.getElementById('map-container');
       if (!mapContainer) return;
 
-      // Coordinates for Lafia, Nasarawa State (approx: 8.4932° N, 8.5153° E)
       const map = L.map('map-container').setView([8.5000, 8.5200], 9);
 
-      // OpenStreetMap Tiles
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
         attribution: '&copy; OpenStreetMap contributors | NASERC Portal'
       }).addTo(map);
 
-      // Custom Pin Markers
       const locations = [
         { lat: 8.4932, lng: 8.5153, title: 'NASERC Headquarters (Lafia)', desc: 'Shendam Road, Lafia, Nasarawa State' },
         { lat: 8.9950, lng: 7.6685, title: 'Karu Zonal Operations Office', desc: 'Abuja-Keffi Expressway, Karu LGA' },
@@ -352,7 +354,6 @@
       });
     });
 
-    // Contact Form Submission Handler
     const contactForm = document.getElementById('contactInquiryForm');
     if (contactForm) {
       contactForm.addEventListener('submit', (e) => {

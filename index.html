@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nasarawa State Electricity Regulatory Commission (NASERC) | Official Web Portal</title>
-  <meta name="description" content="Official Portal of the Nasarawa State Electricity Regulatory Commission (NASERC). Regulating safe, reliable, and sustainable electricity across Nasarawa State.">
-  <meta name="keywords" content="NASERC, Nasarawa Electricity, Electricity Regulation, Mini-Grid Licenses, Tariffs, Consumer Protection, Lafia Energy">
+  <title>Nasarawa State Electricity Regulatory Commission (NASERC) | Official Civic Portal</title>
+  <meta name="description" content="Official website of the Nasarawa State Electricity Regulatory Commission. Regulating electricity generation, distribution, off-grid mini-grids, and consumer rights.">
 
   <!-- Favicon -->
   <link rel="icon" href="https://naserc.na.gov.ng/logo.png" type="image/png">
@@ -23,9 +22,7 @@
 </head>
 <body>
 
-  <!-- ==========================================================================
-       Global Top Bar
-       ========================================================================== -->
+  <!-- Top Bar -->
   <div class="top-bar">
     <div class="container top-bar-content">
       <div class="top-bar-info">
@@ -56,16 +53,13 @@
     </div>
   </div>
 
-  <!-- ==========================================================================
-       Main Header Navigation
-       ========================================================================== -->
+  <!-- Header Navigation -->
   <header class="main-header">
     <div class="container header-inner">
       <div class="brand-wrapper">
         <a href="index.html" class="brand-logo-link">
           <div class="logo-badge-container">
-            <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="logo-img" onerror="this.src='https://naserc.na.gov.ng/nasarawa.jpg'; this.onerror=null;">
-            <img src="https://naserc.na.gov.ng/nasarawa.jpg" alt="Nasarawa Coat of Arms" class="state-coat-img">
+            <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="logo-img">
           </div>
           <div class="brand-text">
             <span class="brand-acronym">NASERC</span>
@@ -74,579 +68,369 @@
         </a>
       </div>
 
-      <!-- Desktop Navigation -->
       <nav class="main-nav" aria-label="Main Navigation">
         <ul class="nav-list">
-          <li class="nav-item active">
-            <a href="index.html" class="nav-link">Home</a>
-          </li>
-
+          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
           <li class="nav-item">
             <a href="about.html" class="nav-link">About Us <i class="fas fa-chevron-down arrow"></i></a>
             <ul class="dropdown-menu">
-              <li><a href="about.html#mandate" class="dropdown-item"><i class="fas fa-balance-scale"></i> Statutory Mandate</a></li>
+              <li><a href="about.html#mandate" class="dropdown-item"><i class="fas fa-gavel"></i> Statutory Mandate</a></li>
               <li><a href="about.html#vision" class="dropdown-item"><i class="fas fa-eye"></i> Vision & Mission</a></li>
               <li><a href="about.html#governance" class="dropdown-item"><i class="fas fa-sitemap"></i> Governance & Leadership</a></li>
             </ul>
           </li>
-
           <li class="nav-item">
             <a href="regulations.html" class="nav-link">Regulatory Instruments <i class="fas fa-chevron-down arrow"></i></a>
             <ul class="dropdown-menu">
-              <li><a href="regulations.html?category=regulations" class="dropdown-item"><i class="fas fa-gavel"></i> Electricity Regulations</a></li>
+              <li><a href="regulations.html?category=regulations" class="dropdown-item"><i class="fas fa-file-contract"></i> Electricity Regulations</a></li>
               <li><a href="regulations.html?category=licenses" class="dropdown-item"><i class="fas fa-certificate"></i> Licenses & Permits</a></li>
-              <li><a href="regulations.html?category=tariff" class="dropdown-item"><i class="fas fa-chart-line"></i> Tariff Orders (MYTO)</a></li>
-              <li><a href="regulations.html?category=guidelines" class="dropdown-item"><i class="fas fa-book"></i> Codes & Frameworks</a></li>
+              <li><a href="regulations.html?category=guidelines" class="dropdown-item"><i class="fas fa-book-open"></i> Codes & Frameworks</a></li>
             </ul>
           </li>
-
-          <li class="nav-item">
-            <a href="activities.html" class="nav-link">Activities <i class="fas fa-chevron-down arrow"></i></a>
-            <ul class="dropdown-menu">
-              <li><a href="activities.html#news" class="dropdown-item"><i class="fas fa-newspaper"></i> News & Updates</a></li>
-              <li><a href="activities.html#projects" class="dropdown-item"><i class="fas fa-bolt"></i> Commission Projects</a></li>
-              <li><a href="activities.html#events" class="dropdown-item"><i class="fas fa-calendar-alt"></i> Events & Hearings</a></li>
-            </ul>
-          </li>
-
+          <li class="nav-item"><a href="activities.html" class="nav-link">Activities</a></li>
           <li class="nav-item">
             <a href="forms.html" class="nav-link">Forms <i class="fas fa-chevron-down arrow"></i></a>
             <ul class="dropdown-menu">
               <li><a href="forms.html?tab=complaint" class="dropdown-item"><i class="fas fa-exclamation-circle"></i> Customer Complaint Form</a></li>
-              <li><a href="forms.html?tab=license" class="dropdown-item"><i class="fas fa-file-contract"></i> License Application Form</a></li>
+              <li><a href="forms.html?tab=license" class="dropdown-item"><i class="fas fa-calculator"></i> License Estimator & Application</a></li>
             </ul>
           </li>
-
-          <li class="nav-item">
-            <a href="contact.html" class="nav-link">Contact Us</a>
-          </li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
         </ul>
       </nav>
 
-      <!-- Action Button & Mobile Toggle -->
       <div class="header-actions">
         <a href="forms.html?tab=complaint" class="btn btn-accent btn-sm"><i class="fas fa-paper-plane"></i> File Complaint</a>
-        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Menu">
-          <i class="fas fa-bars"></i>
-        </button>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Navigation Drawer -->
-  <div class="drawer-backdrop" id="drawerBackdrop"></div>
-  <aside class="mobile-drawer" id="mobileDrawer">
-    <div class="drawer-header">
-      <span style="font-weight: 800; font-family: var(--font-heading);">NASERC PORTAL</span>
-      <button class="drawer-close" id="mobileDrawerClose">&times;</button>
-    </div>
-    <div class="drawer-body">
-      <ul class="mobile-nav-list">
-        <li class="mobile-nav-item"><a href="index.html" class="mobile-nav-link">Home</a></li>
-        <li class="mobile-nav-item">
-          <a href="#" class="mobile-nav-link mobile-submenu-toggle">About Us <i class="fas fa-chevron-down"></i></a>
-          <ul class="mobile-submenu">
-            <li class="mobile-submenu-item"><a href="about.html#mandate">Statutory Mandate</a></li>
-            <li class="mobile-submenu-item"><a href="about.html#vision">Vision & Mission</a></li>
-            <li class="mobile-submenu-item"><a href="about.html#governance">Governance & Leadership</a></li>
-          </ul>
-        </li>
-        <li class="mobile-nav-item">
-          <a href="#" class="mobile-nav-link mobile-submenu-toggle">Regulatory Instruments <i class="fas fa-chevron-down"></i></a>
-          <ul class="mobile-submenu">
-            <li class="mobile-submenu-item"><a href="regulations.html?category=regulations">Electricity Regulations</a></li>
-            <li class="mobile-submenu-item"><a href="regulations.html?category=licenses">Licenses & Permits</a></li>
-            <li class="mobile-submenu-item"><a href="regulations.html?category=tariff">Tariff Orders</a></li>
-          </ul>
-        </li>
-        <li class="mobile-nav-item">
-          <a href="#" class="mobile-nav-link mobile-submenu-toggle">Activities <i class="fas fa-chevron-down"></i></a>
-          <ul class="mobile-submenu">
-            <li class="mobile-submenu-item"><a href="activities.html#news">News & Press Releases</a></li>
-            <li class="mobile-submenu-item"><a href="activities.html#projects">Commission Projects</a></li>
-          </ul>
-        </li>
-        <li class="mobile-nav-item">
-          <a href="#" class="mobile-nav-link mobile-submenu-toggle">Forms <i class="fas fa-chevron-down"></i></a>
-          <ul class="mobile-submenu">
-            <li class="mobile-submenu-item"><a href="forms.html?tab=complaint">Customer Complaint Form</a></li>
-            <li class="mobile-submenu-item"><a href="forms.html?tab=license">License Application Form</a></li>
-          </ul>
-        </li>
-        <li class="mobile-nav-item"><a href="contact.html" class="mobile-nav-link">Contact Us</a></li>
-      </ul>
-      <div style="margin-top: 2rem;">
-        <a href="forms.html?tab=complaint" class="btn btn-accent" style="width: 100%;"><i class="fas fa-paper-plane"></i> Submit Complaint</a>
+  <!-- Live Ticker Bar -->
+  <div class="ticker-bar">
+    <div class="container ticker-wrapper">
+      <div class="ticker-label"><i class="fas fa-bullhorn"></i> Official Notice</div>
+      <div class="ticker-content" id="tickerMarquee">
+        <div class="ticker-item">Systems above 100 kW require a formal NASERC Operational License; systems up to 100 kW qualify for fast-track Permit Registration.</div>
+        <div class="ticker-item">NASERC issues new Smart Meter Asset Provider guidelines enforcing 14-day installation standards.</div>
+        <div class="ticker-item">2.5MW Lafia Solar Mini-Grid Facility commissioned for commercial clusters.</div>
       </div>
     </div>
-  </aside>
+  </div>
 
-  <!-- ==========================================================================
-       Homepage Hero Slider Section
-       ========================================================================== -->
-  <section class="hero-slider-section" aria-label="Hero Slider">
-    <div class="hero-slider-container">
-      <!-- Slide 1 -->
-      <div class="hero-slide active">
-        <img src="assets/images/hero_solar.png" alt="Nasarawa Solar Clean Energy" class="hero-slide-bg">
-        <div class="hero-slide-overlay"></div>
-        <div class="container hero-slide-content">
-          <span class="hero-tag"><i class="fas fa-bolt"></i> State Electricity Law 2024</span>
-          <h1 class="hero-title">Powering Nasarawa State’s Economic Growth</h1>
-          <p class="hero-description">Regulating safe, sustainable, and affordable electricity infrastructure across all 13 Local Government Areas through transparent governance and investor-friendly mini-grid frameworks.</p>
-          <div class="hero-actions">
-            <a href="regulations.html" class="btn btn-accent btn-lg"><i class="fas fa-book-open"></i> Explore Regulations</a>
-            <a href="forms.html?tab=complaint" class="btn btn-outline-white btn-lg"><i class="fas fa-exclamation-circle"></i> Submit Consumer Complaint</a>
+  <main>
+    <!-- Hero Slider Section -->
+    <section class="hero-slider-section" aria-label="Featured Carousel">
+      <div class="hero-slider-container">
+
+        <!-- Slide 1 -->
+        <div class="hero-slide active" data-slide="0">
+          <img src="assets/images/hero_solar.png" alt="Solar Energy Power Grid" class="hero-slide-bg">
+          <div class="hero-slide-overlay"></div>
+          <div class="container hero-slide-content">
+            <span class="hero-tag"><i class="fas fa-bolt"></i> State Electricity Powering Nasarawa</span>
+            <h1 class="hero-title">Regulating Clean, Reliable & Sustainable Electricity for Nasarawa State</h1>
+            <p class="hero-description">The Nasarawa State Electricity Regulatory Commission (NASERC) establishes transparent market rules, licenses mini-grids, and safeguards consumer rights across all 13 Local Government Areas.</p>
+            <div class="hero-actions">
+              <a href="forms.html?tab=license" class="btn btn-accent btn-lg"><i class="fas fa-calculator"></i> Calculate License & Apply</a>
+              <a href="regulations.html" class="btn btn-outline-white btn-lg"><i class="fas fa-file-contract"></i> Explore Regulations</a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Slide 2 -->
-      <div class="hero-slide">
-        <img src="assets/images/stakeholder_hearing.png" alt="NASERC Stakeholder Consultation" class="hero-slide-bg">
-        <div class="hero-slide-overlay"></div>
-        <div class="container hero-slide-content">
-          <span class="hero-tag"><i class="fas fa-gavel"></i> Regulatory Excellence</span>
-          <h2 class="hero-title">2026 Embedded Generation & Mini-Grid Framework</h2>
-          <p class="hero-description">Establishing a competitive sub-national electricity market that accelerates industrial cluster electrification and decentralization in Lafia, Karu, Keffi, and rural communities.</p>
-          <div class="hero-actions">
-            <a href="forms.html?tab=license" class="btn btn-accent btn-lg"><i class="fas fa-file-contract"></i> Apply for Mini-Grid License</a>
-            <a href="activities.html" class="btn btn-outline-white btn-lg"><i class="fas fa-users"></i> View Public Consultations</a>
+        <!-- Slide 2 -->
+        <div class="hero-slide" data-slide="1">
+          <img src="assets/images/stakeholder_hearing.png" alt="Stakeholder Public Hearing" class="hero-slide-bg">
+          <div class="hero-slide-overlay"></div>
+          <div class="container hero-slide-content">
+            <span class="hero-tag"><i class="fas fa-gavel"></i> Statutory Oversight</span>
+            <h1 class="hero-title">Off-Grid Licensing & 100 kW Capacity Threshold Regulations</h1>
+            <p class="hero-description">Frameworks establishing clear rules: Systems up to 100 kW operate under streamlined permits, while projects exceeding 100 kW receive full regulatory licensing.</p>
+            <div class="hero-actions">
+              <a href="forms.html?tab=license" class="btn btn-accent btn-lg"><i class="fas fa-calculator"></i> Check License Requirements</a>
+              <a href="about.html" class="btn btn-outline-white btn-lg"><i class="fas fa-info-circle"></i> Learn About Mandate</a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Slide 3 -->
-      <div class="hero-slide">
-        <img src="assets/images/hero_solar.png" alt="Consumer Protection & Quality Service" class="hero-slide-bg">
-        <div class="hero-slide-overlay"></div>
-        <div class="container hero-slide-content">
-          <span class="hero-tag"><i class="fas fa-user-shield"></i> Consumer Protection Mandate</span>
-          <h2 class="hero-title">Safeguarding Consumer Rights & Fair Tariffs</h2>
-          <p class="hero-description">Ensuring transparent billing, compulsory smart metering, fast dispute resolution, and quality of service standards for electricity customers state-wide.</p>
-          <div class="hero-actions">
-            <a href="forms.html?tab=complaint" class="btn btn-primary btn-lg"><i class="fas fa-headset"></i> File Service Dispute</a>
-            <a href="regulations.html?category=tariff" class="btn btn-outline-white btn-lg"><i class="fas fa-calculator"></i> Check MYTO Tariffs</a>
+        <!-- Slide 3 -->
+        <div class="hero-slide" data-slide="2">
+          <img src="assets/images/hero_solar.png" alt="Consumer Protection Rights" class="hero-slide-bg">
+          <div class="hero-slide-overlay"></div>
+          <div class="container hero-slide-content">
+            <span class="hero-tag"><i class="fas fa-user-shield"></i> Consumer Advocacy</span>
+            <h1 class="hero-title">Fast-Track Resolution for Consumer Disputes & Metering Issues</h1>
+            <p class="hero-description">Protecting electricity customers against estimated overbilling, wrongful disconnections, and delayed smart meter rollouts in Nasarawa State.</p>
+            <div class="hero-actions">
+              <a href="forms.html?tab=complaint" class="btn btn-accent btn-lg"><i class="fas fa-paper-plane"></i> File Consumer Complaint</a>
+              <a href="contact.html" class="btn btn-outline-white btn-lg"><i class="fas fa-headset"></i> Contact Secretariat Desk</a>
+            </div>
           </div>
         </div>
+
       </div>
 
-      <!-- Controls -->
-      <button class="slider-arrow prev" id="heroPrevBtn" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
-      <button class="slider-arrow next" id="heroNextBtn" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
+      <!-- Slider Nav Controls -->
+      <button class="slider-arrow prev" id="sliderPrevBtn" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
+      <button class="slider-arrow next" id="sliderNextBtn" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
 
       <!-- Indicators -->
-      <div class="slider-indicators">
-        <button class="indicator-dot active" aria-label="Slide 1"></button>
-        <button class="indicator-dot" aria-label="Slide 2"></button>
-        <button class="indicator-dot" aria-label="Slide 3"></button>
+      <div class="slider-indicators" id="sliderIndicators">
+        <button class="indicator-dot active" data-slide="0" aria-label="Slide 1"></button>
+        <button class="indicator-dot" data-slide="1" aria-label="Slide 2"></button>
+        <button class="indicator-dot" data-slide="2" aria-label="Slide 3"></button>
       </div>
-    </div>
+    </section>
 
-    <!-- Ticker Bar -->
-    <div class="ticker-bar">
-      <div class="container ticker-wrapper">
-        <div class="ticker-label"><i class="fas fa-bullhorn"></i> Latest Notice</div>
-        <div class="ticker-content">
-          <div class="ticker-item">Public Notice: Call for Comments on the 2026 Draft Nasarawa State Embedded Generation Regulations.</div>
-          <div class="ticker-item">Notice to all Mini-Grid Operators: Mandatory License Compliance Audit commences September 2026.</div>
-          <div class="ticker-item">Consumer Alert: Beware of unauthorized meter installation fees in Karu and Lafia Zonal Operations.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       Executive Chairman Message Section
-       ========================================================================== -->
-  <section class="section-padding executive-section">
-    <div class="container">
-      <div class="executive-grid">
-        <div class="executive-card">
-          <img src="assets/images/chairman.png" alt="Engr. Dr. Ibrahim A. Abdullahi - Executive Chairman NASERC" class="executive-img">
-          <div class="executive-badge-overlay">
-            <h3 class="executive-name">Engr. Dr. Ibrahim A. Abdullahi</h3>
-            <p class="executive-role">Executive Chairman / CEO, NASERC</p>
+    <!-- Executive Chairman Message -->
+    <section class="section-padding executive-section">
+      <div class="container">
+        <div class="executive-grid">
+          <div class="executive-card">
+            <img src="assets/images/chairman.png" alt="Engr. Dr. Ibrahim A. Abdullahi - Executive Chairman NASERC" class="executive-img">
+            <div class="executive-badge-overlay">
+              <div class="executive-name">Engr. Dr. Ibrahim A. Abdullahi</div>
+              <div class="executive-role">Executive Chairman / CEO, NASERC</div>
+            </div>
           </div>
-        </div>
-        <div>
-          <span class="section-badge"><i class="fas fa-quote-left"></i> Leadership Statement</span>
-          <h2 class="section-title" style="margin-bottom: 1.5rem;">Message from the Executive Chairman</h2>
+
           <div class="quote-box">
-            <p class="executive-quote">
-              "Our mission at NASERC is to build a modern, transparent, and sustainable electricity ecosystem in Nasarawa State that powers agricultural growth, drives industrialization, and guarantees reliable power for every household."
-            </p>
-            <p style="color: var(--slate-600); margin-bottom: 1.5rem; font-size: 1rem; line-height: 1.7;">
-              With the decentralization of electricity regulation under Nigeria's Electricity Act 2023 and the Nasarawa State Electricity Law 2024, the Commission is equipped to license off-grid generators, regulate distribution networks, and enforce cost-reflective yet equitable tariffs. We are committed to fostering investor confidence while rigorously protecting electricity consumers across all 13 Local Government Areas.
-            </p>
-            <button class="btn btn-navy" id="readChairmanSpeechBtn"><i class="fas fa-envelope-open-text"></i> Read Full Executive Address</button>
+            <span class="section-badge gold"><i class="fas fa-user-tie"></i> Executive Statement</span>
+            <h2 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 1rem;">Building a Self-Sustaining Power Sector for Nasarawa State</h2>
+            <blockquote class="executive-quote">
+              "Under the Nasarawa State Electricity Law 2024, our mission is clear: to establish a robust, transparent, and investor-friendly regulatory climate. By enforcing grid standards, streamlining licensing for off-grid mini-grids, and safeguarding consumer rights, NASERC is empowering local commerce and transforming livelihoods across Nasarawa State."
+            </blockquote>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <button class="btn btn-navy btn-sm" id="readSpeechBtn"><i class="fas fa-book-open"></i> Read Full Address</button>
+              <a href="about.html#governance" class="btn btn-outline btn-sm"><i class="fas fa-users"></i> Board of Commissioners</a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ==========================================================================
-       Regulatory Documents Showcase (3-second auto-delay carousel)
-       ========================================================================== -->
-  <section class="section-padding docs-slider-section">
-    <div class="container">
-      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem;">
-        <div>
-          <span class="section-badge gold"><i class="fas fa-folder-open"></i> Publications & Instruments</span>
-          <h2 class="section-title">Regulatory Documents Showcase</h2>
-          <p class="section-subtitle" style="margin-left: 0;">Access statutory regulations, licensing codes, consumer protection mandates, and official MYTO tariff schedules.</p>
+    <!-- Regulatory Showcase Slider Section (3-Second Auto Delay) -->
+    <section class="section-padding docs-slider-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge"><i class="fas fa-file-contract"></i> Statutory Codes</span>
+          <h2 class="section-title">Regulatory Instruments & Frameworks Showcase</h2>
+          <p class="section-subtitle">Auto-sliding showcase of official operational guidelines and licensing frameworks issued by NASERC.</p>
         </div>
-        <div style="display: flex; gap: 0.5rem;">
-          <button class="slider-arrow" id="docsPrevBtn" style="position: static; transform: none;" aria-label="Previous Document"><i class="fas fa-chevron-left"></i></button>
-          <button class="slider-arrow" id="docsNextBtn" style="position: static; transform: none;" aria-label="Next Document"><i class="fas fa-chevron-right"></i></button>
-        </div>
-      </div>
 
-      <div class="docs-slider-wrapper">
-        <div class="docs-track" id="docsTrack">
-          <!-- Card 1 -->
-          <div class="doc-card">
-            <div>
+        <div class="docs-slider-wrapper">
+          <div class="docs-track" id="docsCarouselTrack">
+
+            <!-- Card 1 -->
+            <div class="doc-card">
               <div class="doc-header">
                 <div class="doc-icon"><i class="fas fa-network-wired"></i></div>
-                <span class="doc-category-badge">Regulation</span>
+                <span class="doc-category-badge">Grid Code</span>
               </div>
-              <h3 class="doc-title">Nasarawa State Electricity Grid Code Regulation 2026</h3>
+              <h3 class="doc-title">Nasarawa State Grid Code Regulation 2026</h3>
+              <p style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem;">Technical specifications, voltage limits, sub-station interconnectivity, and security rules for distribution networks.</p>
               <div class="doc-meta">
                 <span><i class="far fa-calendar-alt"></i> Jan 2026</span>
                 <span><i class="far fa-file-pdf"></i> 2.8 MB</span>
               </div>
+              <div class="doc-footer">
+                <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-green);">Ref: NAS-REG-01</span>
+                <a href="regulations.html" class="btn btn-sm btn-primary"><i class="fas fa-download"></i> View Code</a>
+              </div>
             </div>
-            <div class="doc-footer">
-              <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-green);">Ref: NAS-REG-01</span>
-              <button class="btn btn-sm btn-outline download-doc-btn" data-doc-title="Nasarawa State Grid Code Regulation 2026"><i class="fas fa-download"></i> PDF</button>
-            </div>
-          </div>
 
-          <!-- Card 2 -->
-          <div class="doc-card">
-            <div>
+            <!-- Card 2 -->
+            <div class="doc-card">
               <div class="doc-header">
                 <div class="doc-icon"><i class="fas fa-user-shield"></i></div>
-                <span class="doc-category-badge">Consumer Code</span>
+                <span class="doc-category-badge">Consumer Rights</span>
               </div>
-              <h3 class="doc-title">Customer Protection & Rights Regulation Standard</h3>
+              <h3 class="doc-title">Customer Protection Rights & Service Standard</h3>
+              <p style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem;">Protects electricity consumers against unlawful disconnections, unreasonable estimated billing, and meter delays.</p>
               <div class="doc-meta">
                 <span><i class="far fa-calendar-alt"></i> Nov 2025</span>
                 <span><i class="far fa-file-pdf"></i> 1.9 MB</span>
               </div>
+              <div class="doc-footer">
+                <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-green);">Ref: NAS-REG-02</span>
+                <a href="regulations.html" class="btn btn-sm btn-primary"><i class="fas fa-download"></i> View Mandate</a>
+              </div>
             </div>
-            <div class="doc-footer">
-              <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-green);">Ref: NAS-REG-02</span>
-              <button class="btn btn-sm btn-outline download-doc-btn" data-doc-title="Customer Protection & Rights Regulation Standard"><i class="fas fa-download"></i> PDF</button>
-            </div>
-          </div>
 
-          <!-- Card 3 -->
-          <div class="doc-card">
-            <div>
+            <!-- Card 3 -->
+            <div class="doc-card">
               <div class="doc-header">
                 <div class="doc-icon"><i class="fas fa-solar-panel"></i></div>
                 <span class="doc-category-badge">Licensing</span>
               </div>
               <h3 class="doc-title">Mini-Grid & Off-Grid Licensing Framework 2026</h3>
+              <p style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem;">Licensing criteria establishing fast-track permits for <= 100 kW and full operational licenses for > 100 kW.</p>
               <div class="doc-meta">
                 <span><i class="far fa-calendar-alt"></i> Feb 2026</span>
                 <span><i class="far fa-file-pdf"></i> 3.4 MB</span>
               </div>
-            </div>
-            <div class="doc-footer">
-              <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-green);">Ref: NAS-LIC-04</span>
-              <button class="btn btn-sm btn-outline download-doc-btn" data-doc-title="Mini-Grid & Off-Grid Licensing Framework 2026"><i class="fas fa-download"></i> PDF</button>
-            </div>
-          </div>
-
-          <!-- Card 4 -->
-          <div class="doc-card">
-            <div>
-              <div class="doc-header">
-                <div class="doc-icon"><i class="fas fa-chart-line"></i></div>
-                <span class="doc-category-badge">Tariff Order</span>
-              </div>
-              <h3 class="doc-title">Multi-Year Tariff Order (MYTO 2026-2029)</h3>
-              <div class="doc-meta">
-                <span><i class="far fa-calendar-alt"></i> Jan 2026</span>
-                <span><i class="far fa-file-pdf"></i> 4.1 MB</span>
+              <div class="doc-footer">
+                <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-green);">Ref: NAS-LIC-04</span>
+                <a href="regulations.html" class="btn btn-sm btn-primary"><i class="fas fa-download"></i> View Guidelines</a>
               </div>
             </div>
-            <div class="doc-footer">
-              <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-green);">Ref: NAS-MYTO-01</span>
-              <button class="btn btn-sm btn-outline download-doc-btn" data-doc-title="Multi-Year Tariff Order (MYTO 2026-2029)"><i class="fas fa-download"></i> PDF</button>
-            </div>
-          </div>
 
-          <!-- Card 5 -->
-          <div class="doc-card">
-            <div>
+            <!-- Card 4 -->
+            <div class="doc-card">
               <div class="doc-header">
                 <div class="doc-icon"><i class="fas fa-microchip"></i></div>
-                <span class="doc-category-badge">Metering</span>
+                <span class="doc-category-badge">MAP Rules</span>
               </div>
-              <h3 class="doc-title">Smart Meter Asset Provider (MAP) Operating Guidelines</h3>
+              <h3 class="doc-title">Smart Meter Asset Provider (MAP) Rules</h3>
+              <p style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem;">Standard Operating Procedures for meter installation vendors, speed guarantees, and quality certifications.</p>
               <div class="doc-meta">
                 <span><i class="far fa-calendar-alt"></i> Dec 2025</span>
                 <span><i class="far fa-file-pdf"></i> 2.1 MB</span>
               </div>
+              <div class="doc-footer">
+                <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-green);">Ref: NAS-MAP-03</span>
+                <a href="regulations.html" class="btn btn-sm btn-primary"><i class="fas fa-download"></i> View Document</a>
+              </div>
             </div>
-            <div class="doc-footer">
-              <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-green);">Ref: NAS-MAP-03</span>
-              <button class="btn btn-sm btn-outline download-doc-btn" data-doc-title="Smart Meter Asset Provider Guidelines"><i class="fas fa-download"></i> PDF</button>
-            </div>
+
+          </div>
+        </div>
+
+        <div class="text-center" style="margin-top: 1.5rem;">
+          <a href="regulations.html" class="btn btn-outline"><i class="fas fa-folder-open"></i> See All Documents Repository</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Statistics Section -->
+    <section class="section-padding stats-section">
+      <div class="container">
+        <div class="section-header text-center" style="margin-bottom: 2.5rem;">
+          <span class="section-badge gold"><i class="fas fa-chart-bar"></i> Performance Metrics</span>
+          <h2 class="section-title" style="color: var(--white);">Regulatory Impact Across Nasarawa State</h2>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-solar-panel"></i></div>
+            <div class="stat-number" data-target="48">0</div>
+            <div class="stat-label">Licensed Mini-Grids</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-user-check"></i></div>
+            <div class="stat-number" data-target="2450">0</div>
+            <div class="stat-label">Resolved Complaints</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-certificate"></i></div>
+            <div class="stat-number" data-target="112">0</div>
+            <div class="stat-label">Active Operator Licenses</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-map-marked-alt"></i></div>
+            <div class="stat-number" data-target="13">0</div>
+            <div class="stat-label">LGAs Coverage Area</div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="text-center" style="margin-top: 2rem;">
-        <a href="regulations.html" class="btn btn-primary btn-lg"><i class="fas fa-folder-open"></i> See More Documents</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       Key Statistics / Impact Section
-       ========================================================================== -->
-  <section class="section-padding stats-section">
-    <div class="container">
-      <div class="section-header text-center">
-        <span class="section-badge gold"><i class="fas fa-chart-pie"></i> Measurable Results</span>
-        <h2 class="section-title" style="color: var(--white);">Regulatory Impact Across Nasarawa State</h2>
-        <p class="section-subtitle" style="color: var(--slate-300);">Driving transparency, infrastructure expansion, and consumer protection in the power sector.</p>
-      </div>
-
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fas fa-solar-panel"></i></div>
-          <div class="stat-number" data-target="48" data-suffix="+">0</div>
-          <div class="stat-label">Registered Mini-Grids & Generators</div>
+    <!-- Quick Access Services & Licensee Verifier -->
+    <section class="section-padding quick-services-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge"><i class="fas fa-th-large"></i> E-Services</span>
+          <h2 class="section-title">Direct E-Governance Portals</h2>
+          <p class="section-subtitle">Access core regulatory services, dispute resolution desks, and licensing estimation online.</p>
         </div>
 
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fas fa-user-check"></i></div>
-          <div class="stat-number" data-target="2450" data-suffix="+">0</div>
-          <div class="stat-label">Resolved Consumer Complaints</div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fas fa-certificate"></i></div>
-          <div class="stat-number" data-target="112">0</div>
-          <div class="stat-label">Active Licenses & Permits Issued</div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fas fa-map-marked-alt"></i></div>
-          <div class="stat-number" data-target="13" data-suffix=" LGAs">0</div>
-          <div class="stat-label">Coverage & Zonal Oversight</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       Quick Links / Online E-Services Section
-       ========================================================================== -->
-  <section class="section-padding quick-services-section">
-    <div class="container">
-      <div class="section-header text-center">
-        <span class="section-badge"><i class="fas fa-laptop-code"></i> E-Services Portal</span>
-        <h2 class="section-title">Quick Online Regulatory Services</h2>
-        <p class="section-subtitle">Fast, accessible, and transparent digital tools for consumers, DisCos, and power market investors.</p>
-      </div>
-
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon-box"><i class="fas fa-exclamation-triangle"></i></div>
-          <h3 class="service-title">File a Complaint</h3>
-          <p class="service-desc">Report billing disputes, unmetered connections, prolonged outages, or service provider misconduct directly to NASERC's Consumer Protection Unit.</p>
-          <a href="forms.html?tab=complaint" class="btn btn-outline" style="width: 100%;"><i class="fas fa-arrow-right"></i> Submit Complaint</a>
-        </div>
-
-        <div class="service-card gold">
-          <div class="service-icon-box"><i class="fas fa-file-contract"></i></div>
-          <h3 class="service-title">Apply for License</h3>
-          <p class="service-desc">Submit formal applications for Mini-Grid Generation, Electricity Distribution, Embedded Generation, or Meter Asset Provider permits in Nasarawa State.</p>
-          <a href="forms.html?tab=license" class="btn btn-accent" style="width: 100%;"><i class="fas fa-arrow-right"></i> Start License Application</a>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon-box"><i class="fas fa-search-dollar"></i></div>
-          <h3 class="service-title">Tariff Calculator & MYTO</h3>
-          <p class="service-desc">Understand approved electricity rate structures across different customer bands (Band A-E) and off-grid mini-grid tariff benchmarks.</p>
-          <a href="regulations.html?category=tariff" class="btn btn-outline" style="width: 100%;"><i class="fas fa-arrow-right"></i> View Tariff Schedule</a>
-        </div>
-      </div>
-
-      <!-- Licensee Verification Widget Box -->
-      <div class="verifier-box">
-        <span class="section-badge gold"><i class="fas fa-shield-alt"></i> Public Licensee Lookup</span>
-        <h3 style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--primary-navy); margin-top: 0.5rem;">Verify Electricity Licensee or Mini-Grid Operator</h3>
-        <p style="color: var(--slate-600); max-width: 600px; margin: 0.5rem auto;">Verify whether an electricity service provider, mini-grid developer, or meter installer is officially licensed by NASERC.</p>
-        
-        <form class="verifier-form" id="licenseeVerifierForm">
-          <input type="text" class="verifier-input" placeholder="Enter License ID (e.g. NAS-MG-2025-014) or Business Name" required>
-          <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Verify Licensee</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       Latest News Grid
-       ========================================================================== -->
-  <section class="section-padding" style="background: var(--slate-100);">
-    <div class="container">
-      <div class="section-header text-center">
-        <span class="section-badge"><i class="fas fa-newspaper"></i> Media & Press Releases</span>
-        <h2 class="section-title">News & Regulatory Updates</h2>
-        <p class="section-subtitle">Stay informed about Commission hearings, power sector developments, and energy policies in Nasarawa State.</p>
-      </div>
-
-      <div class="news-grid">
-        <article class="news-card" data-full-content="Executive Chairman Engr. Dr. Ibrahim A. Abdullahi today hosted representatives from 14 accredited mini-grid developers in Lafia to review operational performance and discuss phase 2 expansion into Karu and Akwanga Zonal hubs.">
-          <div class="news-img-wrapper">
-            <img src="assets/images/stakeholder_hearing.png" alt="NASERC Stakeholder Summit" class="news-img">
-            <span class="news-category-tag">Press Release</span>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon-box"><i class="fas fa-paper-plane"></i></div>
+            <h3 class="service-title">File Consumer Complaint</h3>
+            <p class="service-desc">Lodge disputes regarding overbilling, transformer issues, meter installation delays, or service disconnections.</p>
+            <a href="forms.html?tab=complaint" class="btn btn-sm btn-primary"><i class="fas fa-arrow-right"></i> File Complaint</a>
           </div>
-          <div class="news-body">
-            <div class="news-meta">
-              <span><i class="far fa-calendar-alt"></i> August 4, 2026</span>
-              <span><i class="far fa-user"></i> NASERC Communications</span>
-            </div>
-            <h3 class="news-title">NASERC Hosts 2026 Stakeholder Engagement Summit on Decentralized Power Generation</h3>
-            <p class="news-excerpt">The Commission convened a high-level summit with mini-grid operators, investor consortia, and consumer groups to harmonize state grid interconnection standards.</p>
-            <a href="#" class="btn btn-sm btn-outline read-news-btn" style="margin-top: auto;"><i class="fas fa-book-reader"></i> Read Full Story</a>
-          </div>
-        </article>
 
-        <article class="news-card" data-full-content="In a move to protect electricity consumers against extortion and sub-standard hardware, NASERC has released the 2026 Smart Meter Asset Provider guidelines mandating a 14-day installation timeline upon payment.">
-          <div class="news-img-wrapper">
-            <img src="assets/images/hero_solar.png" alt="Smart Metering Rollout" class="news-img">
-            <span class="news-category-tag">Consumer Alert</span>
+          <div class="service-card gold">
+            <div class="service-icon-box"><i class="fas fa-calculator"></i></div>
+            <h3 class="service-title">License & Permit Fee Estimator</h3>
+            <p class="service-desc">Check whether your proposed power generation requires a Permit (<= 100 kW) or Full License (> 100 kW) and calculate fees.</p>
+            <a href="forms.html?tab=license" class="btn btn-sm btn-accent"><i class="fas fa-calculator"></i> Launch Calculator</a>
           </div>
-          <div class="news-body">
-            <div class="news-meta">
-              <span><i class="far fa-calendar-alt"></i> July 28, 2026</span>
-              <span><i class="far fa-user"></i> Consumer Protection Unit</span>
-            </div>
-            <h3 class="news-title">Commission Enforces Mandatory 14-Day Metering Rule for DisCos in Nasarawa State</h3>
-            <p class="news-excerpt">NASERC issues strict enforcement directives to distribution licensees to eliminate estimated billing practices across commercial and residential customer bands.</p>
-            <a href="#" class="btn btn-sm btn-outline read-news-btn" style="margin-top: auto;"><i class="fas fa-book-reader"></i> Read Full Story</a>
-          </div>
-        </article>
 
-        <article class="news-card" data-full-content="Governor Abdullahi Sule and the Board of NASERC officially commissioned the 2.5MW Lafia Solar Mini-Grid Facility, providing 24/7 continuous green electricity to over 4,200 shops, health centers, and households.">
-          <div class="news-img-wrapper">
-            <img src="assets/images/hero_solar.png" alt="Lafia Solar Mini-Grid Facility" class="news-img">
-            <span class="news-category-tag">Commission Project</span>
+          <div class="service-card">
+            <div class="service-icon-box"><i class="fas fa-search-location"></i></div>
+            <h3 class="service-title">Track Complaint Status</h3>
+            <p class="service-desc">Enter your complaint reference ID (e.g. NAS-CMP-2026-XXXX) to check the real-time resolution status of your filing.</p>
+            <button class="btn btn-sm btn-outline" id="trackComplaintModalBtn"><i class="fas fa-search"></i> Track Status</button>
           </div>
-          <div class="news-body">
-            <div class="news-meta">
-              <span><i class="far fa-calendar-alt"></i> July 15, 2026</span>
-              <span><i class="far fa-user"></i> Technical Division</span>
-            </div>
-            <h3 class="news-title">Commissioning of 2.5MW Lafia Green Energy Mini-Grid Hub</h3>
-            <p class="news-excerpt">A landmark project expanding clean power access to commercial markets and agro-processing hubs in the State Capital.</p>
-            <a href="#" class="btn btn-sm btn-outline read-news-btn" style="margin-top: auto;"><i class="fas fa-book-reader"></i> Read Full Story</a>
-          </div>
-        </article>
+        </div>
+
+        <!-- Licensee Verifier Widget Box -->
+        <div class="verifier-box">
+          <span class="section-badge gold"><i class="fas fa-shield-alt"></i> Official Verification</span>
+          <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--primary-navy); margin-top: 0.5rem;">Verify Licensed Power Operator or Mini-Grid</h3>
+          <p style="color: var(--slate-600); max-width: 600px; margin: 0.5rem auto 0 auto; font-size: 0.9rem;">
+            Verify whether an electricity developer or mini-grid operator holds a valid NASERC License or Permit in Nasarawa State.
+          </p>
+
+          <form class="verifier-form" id="licenseeVerifyForm">
+            <input type="text" class="verifier-input" id="verifierQuery" placeholder="Enter License Ref (e.g., NAS-LIC-2026-04) or Company Name..." required>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Verify License</button>
+          </form>
+        </div>
+
       </div>
+    </section>
+  </main>
 
-      <div class="text-center" style="margin-top: 3rem;">
-        <a href="activities.html" class="btn btn-navy btn-lg"><i class="fas fa-newspaper"></i> View All Activities & News</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       Global Footer
-       ========================================================================== -->
+  <!-- Global Footer -->
   <footer class="main-footer">
     <div class="footer-top">
       <div class="container">
         <div class="footer-grid">
-          <!-- Col 1 -->
           <div class="footer-brand-col">
             <div class="footer-logo-row">
-              <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="footer-logo" onerror="this.src='https://naserc.na.gov.ng/nasarawa.jpg'; this.onerror=null;">
+              <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="footer-logo">
               <span style="font-family: var(--font-heading); font-weight: 800; font-size: 1.35rem; color: var(--white);">NASERC</span>
             </div>
             <p class="footer-desc">
-              The Nasarawa State Electricity Regulatory Commission (NASERC) is the statutory body empowered under the Nasarawa State Electricity Law 2024 to regulate power generation, distribution, mini-grids, and consumer rights across Nasarawa State.
+              The Nasarawa State Electricity Regulatory Commission (NASERC) regulates power generation, distribution, mini-grids, and consumer rights across Nasarawa State.
             </p>
-            <div class="social-links">
-              <a href="#" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="social-btn" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-              <a href="#" class="social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#" class="social-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            </div>
           </div>
-
-          <!-- Col 2 -->
           <div>
-            <h4 class="footer-heading">Quick Navigation</h4>
+            <h4 class="footer-heading">Quick Links</h4>
             <ul class="footer-links">
               <li><a href="index.html" class="footer-link"><i class="fas fa-chevron-right"></i> Home</a></li>
-              <li><a href="about.html" class="footer-link"><i class="fas fa-chevron-right"></i> Statutory Mandate</a></li>
-              <li><a href="about.html#governance" class="footer-link"><i class="fas fa-chevron-right"></i> Leadership & Governance</a></li>
-              <li><a href="regulations.html" class="footer-link"><i class="fas fa-chevron-right"></i> Regulatory Instruments</a></li>
-              <li><a href="activities.html" class="footer-link"><i class="fas fa-chevron-right"></i> News & Events</a></li>
-              <li><a href="contact.html" class="footer-link"><i class="fas fa-chevron-right"></i> Contact Zonal Offices</a></li>
+              <li><a href="about.html" class="footer-link"><i class="fas fa-chevron-right"></i> Mandate</a></li>
+              <li><a href="regulations.html" class="footer-link"><i class="fas fa-chevron-right"></i> Regulations</a></li>
+              <li><a href="contact.html" class="footer-link"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
             </ul>
           </div>
-
-          <!-- Col 3 -->
           <div>
-            <h4 class="footer-heading">E-Services & Forms</h4>
+            <h4 class="footer-heading">Forms & Services</h4>
             <ul class="footer-links">
-              <li><a href="forms.html?tab=complaint" class="footer-link"><i class="fas fa-chevron-right"></i> File Customer Complaint</a></li>
-              <li><a href="forms.html?tab=license" class="footer-link"><i class="fas fa-chevron-right"></i> Apply for Mini-Grid License</a></li>
-              <li><a href="regulations.html?category=tariff" class="footer-link"><i class="fas fa-chevron-right"></i> MYTO Tariff Schedules</a></li>
-              <li><a href="index.html#verifier" class="footer-link"><i class="fas fa-chevron-right"></i> Public Licensee Verification</a></li>
-              <li><a href="forms.html" class="footer-link"><i class="fas fa-chevron-right"></i> Track Application Status</a></li>
+              <li><a href="forms.html?tab=complaint" class="footer-link"><i class="fas fa-chevron-right"></i> File Complaint</a></li>
+              <li><a href="forms.html?tab=license" class="footer-link"><i class="fas fa-chevron-right"></i> Apply for License</a></li>
             </ul>
           </div>
-
-          <!-- Col 4 -->
           <div>
             <h4 class="footer-heading">Contact Secretariat</h4>
             <ul class="footer-links">
-              <li style="color: var(--slate-400); font-size: 0.9rem;">
-                <i class="fas fa-map-marker-alt" style="color: var(--accent-gold); margin-right: 0.5rem;"></i>
-                NASERC Secretariat Headquarters, Shendam Road, Lafia, Nasarawa State, Nigeria.
-              </li>
-              <li style="color: var(--slate-400); font-size: 0.9rem;">
-                <i class="fas fa-phone" style="color: var(--accent-gold); margin-right: 0.5rem;"></i>
-                Hotline: 0800-NASERC-HOT (+234 803 123 4567)
-              </li>
-              <li style="color: var(--slate-400); font-size: 0.9rem;">
-                <i class="fas fa-envelope" style="color: var(--accent-gold); margin-right: 0.5rem;"></i>
-                info@naserc.na.gov.ng
-              </li>
-              <li style="color: var(--slate-400); font-size: 0.9rem;">
-                <i class="fas fa-globe" style="color: var(--accent-gold); margin-right: 0.5rem;"></i>
-                https://naserc.na.gov.ng/
-              </li>
+              <li style="color: var(--slate-400); font-size: 0.9rem;"><i class="fas fa-map-marker-alt" style="color: var(--accent-gold); margin-right: 0.5rem;"></i> Lafia Headquarters, Nasarawa State.</li>
+              <li style="color: var(--slate-400); font-size: 0.9rem;"><i class="fas fa-phone" style="color: var(--accent-gold); margin-right: 0.5rem;"></i> Hotline: 0800-NASERC-HOT</li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-
     <div class="footer-bottom">
       <div class="container footer-bottom-content">
-        <div>
-          &copy; 2026 Nasarawa State Electricity Regulatory Commission (NASERC). All Rights Reserved.
-        </div>
-        <div style="display: flex; gap: 1.5rem;">
-          <a href="#" class="footer-link" style="font-size: 0.85rem;">Privacy Policy</a>
-          <a href="#" class="footer-link" style="font-size: 0.85rem;">Terms of Service</a>
-          <a href="#" class="footer-link" style="font-size: 0.85rem;">Accessibility Statement</a>
-        </div>
+        <div>&copy; 2026 Nasarawa State Electricity Regulatory Commission (NASERC). All Rights Reserved.</div>
       </div>
     </div>
   </footer>

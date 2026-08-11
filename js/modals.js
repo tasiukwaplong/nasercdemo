@@ -1,280 +1,216 @@
 /**
- * NASERC Web Portal - Interactive Modals & Preview Engine
- * News modals, Document downloads, Chairman Speech reader, Licensee Verifier tool.
+ * NASERC Web Portal - Dynamic Modals, Speech Reader & Licensee Verifier Tool
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initNewsModals();
-  initDocDownloadSimulators();
-  initChairmanModal();
-  initLicenseeVerifier();
+  initModalListeners();
 });
 
-/* --------------------------------------------------------------------------
-   1. News Article Full Modal Reader
-   -------------------------------------------------------------------------- */
-function initNewsModals() {
-  const readMoreBtns = document.querySelectorAll('.read-news-btn');
+function initModalListeners() {
 
-  readMoreBtns.forEach(btn => {
+  // 1. Speech Modal Reader for Executive Chairman Address
+  const readSpeechBtn = document.getElementById('readSpeechBtn');
+  if (readSpeechBtn) {
+    readSpeechBtn.addEventListener('click', () => {
+      openCustomModal({
+        title: 'Executive Address — Engr. Dr. Ibrahim A. Abdullahi',
+        bodyHTML: `
+          <div style="line-height: 1.7; color: var(--slate-700);">
+            <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.5rem; background: var(--slate-100); padding: 1rem; border-radius: var(--radius-md);">
+              <img src="assets/images/chairman.png" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-gold);">
+              <div>
+                <strong style="color: var(--primary-navy); font-size: 1.05rem;">Engr. Dr. Ibrahim A. Abdullahi</strong><br>
+                <span style="color: var(--primary-green); font-size: 0.85rem; font-weight: 600;">Executive Chairman / CEO, NASERC</span>
+              </div>
+            </div>
+
+            <p style="margin-bottom: 1rem;">
+              "It is with immense privilege that I welcome citizens, electricity customers, and mini-grid developers to the official e-governance portal of the Nasarawa State Electricity Regulatory Commission (NASERC).
+            </p>
+            <p style="margin-bottom: 1rem;">
+              Enacted under the landmark Nasarawa State Electricity Law 2024, NASERC has assumed full regulatory jurisdiction over intrastate power generation, distribution networks, and off-grid renewable energy projects.
+            </p>
+            <p style="margin-bottom: 1rem;">
+              Our mandatory 100 kW threshold rule provides clear direction: off-grid solar mini-grids up to 100 kW operate under fast-track permit registrations, while utility projects above 100 kW receive full regulatory licensing and technical support.
+            </p>
+            <p>
+              We remain steadfast in defending electricity consumer rights, accelerating smart meter distribution, and making Nasarawa State the premier destination for sustainable energy investment in Nigeria."
+            </p>
+          </div>
+        `
+      });
+    });
+  }
+
+  // 2. News Article Reader Modals
+  document.querySelectorAll('.read-news-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      const newsCard = btn.closest('.news-card');
-      if (!newsCard) return;
+      const card = btn.closest('.news-card');
+      if (!card) return;
 
-      const title = newsCard.querySelector('.news-title') ? newsCard.querySelector('.news-title').textContent : 'News Article';
-      const category = newsCard.querySelector('.news-category-tag') ? newsCard.querySelector('.news-category-tag').textContent : 'Commission News';
-      const date = newsCard.querySelector('.news-date') ? newsCard.querySelector('.news-date').textContent : 'Recent';
-      const imgSrc = newsCard.querySelector('.news-img') ? newsCard.querySelector('.news-img').src : '';
-      const content = newsCard.getAttribute('data-full-content') || newsCard.querySelector('.news-excerpt').textContent;
+      const title = card.querySelector('.news-title') ? card.querySelector('.news-title').textContent : 'News Article';
+      const meta = card.querySelector('.news-meta') ? card.querySelector('.news-meta').innerHTML : '';
+      const content = card.dataset.fullContent || card.querySelector('.news-excerpt').textContent;
+      const imgSrc = card.querySelector('.news-img') ? card.querySelector('.news-img').src : '';
 
-      openNewsModal({
-        title,
-        category,
-        date,
-        imgSrc,
-        content
+      openCustomModal({
+        title: title,
+        bodyHTML: `
+          <div>
+            ${imgSrc ? `<img src="${imgSrc}" style="width: 100%; height: 260px; object-fit: cover; border-radius: var(--radius-lg); margin-bottom: 1.25rem;">` : ''}
+            <div style="display: flex; gap: 1rem; font-size: 0.85rem; color: var(--slate-500); margin-bottom: 1rem;">${meta}</div>
+            <p style="line-height: 1.7; color: var(--slate-700); font-size: 1rem;">${content}</p>
+          </div>
+        `
       });
     });
   });
-}
 
-function openNewsModal(data) {
-  const modalHTML = `
-    <div class="modal-backdrop active" id="newsModal">
-      <div class="modal-dialog" style="max-width: 800px;">
-        <div class="modal-header">
-          <div>
-            <span class="section-badge" style="margin-bottom: 0.25rem;">${data.category}</span>
-            <h3 class="modal-title">${data.title}</h3>
-            <span style="font-size: 0.825rem; color: var(--slate-500);"><i class="far fa-calendar-alt"></i> Published: ${data.date}</span>
-          </div>
-          <button class="modal-close" onclick="closeNewsModal()">&times;</button>
-        </div>
-        <div class="modal-body">
-          ${data.imgSrc ? `<img src="${data.imgSrc}" alt="${data.title}" style="width: 100%; height: 320px; object-fit: cover; border-radius: var(--radius-lg); margin-bottom: 1.5rem;">` : ''}
-          <div style="font-size: 1.05rem; line-height: 1.8; color: var(--slate-700);">
-            <p style="margin-bottom: 1.25rem;"><strong>Lafia, Nasarawa State —</strong> ${data.content}</p>
-            <p style="margin-bottom: 1.25rem;">The Nasarawa State Electricity Regulatory Commission (NASERC) continues to drive robust regulatory standards under the Nasarawa State Electricity Law 2024. In alignment with Governor Abdullahi Sule's vision for sustainable industrialization and energy independence across all 13 Local Government Areas, this milestone underscores the Commission's commitment to grid reliability, investor confidence, and consumer protection.</p>
-            <blockquote style="border-left: 4px solid var(--primary-green); padding-left: 1.25rem; font-style: italic; background: var(--slate-50); padding-top: 0.75rem; padding-bottom: 0.75rem; margin: 1.5rem 0; border-radius: 0 var(--radius-md) var(--radius-md) 0;">
-              "Ensuring universal access to clean, affordable, and safe electricity for all citizens, commercial enterprises, and agricultural hubs in Nasarawa State."
-            </blockquote>
-            <p>For inquiries regarding this press briefing or public consultation schedules, please contact the NASERC Communications & Stakeholder Engagement Division via email at <code>media@naserc.na.gov.ng</code>.</p>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-outline" onclick="showToast('Link copied to clipboard!', 'info')"><i class="fas fa-share-alt"></i> Share Article</button>
-          <button class="btn btn-navy" onclick="closeNewsModal()">Close Reader</button>
-        </div>
-      </div>
-    </div>
-  `;
+  // 3. Licensee Verification Search Tool
+  const verifierForm = document.getElementById('licenseeVerifyForm');
+  if (verifierForm) {
+    verifierForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const queryInput = document.getElementById('verifierQuery');
+      const query = queryInput ? queryInput.value.trim() : '';
 
-  const container = document.createElement('div');
-  container.id = 'newsModalContainer';
-  container.innerHTML = modalHTML;
-  document.body.appendChild(container);
-}
+      if (!query) {
+        showToast('Please enter a License Reference Code or Company Name.', 'warning');
+        return;
+      }
 
-function closeNewsModal() {
-  const modal = document.getElementById('newsModalContainer');
-  if (modal) modal.remove();
-}
+      // Mock License Database lookup
+      const mockDatabase = [
+        { code: 'NAS-LIC-2026-04', company: 'Lafia Solar Power Mini-Grid Ltd', status: 'ACTIVE & VALID', capacity: '2.5 MW', location: 'Lafia LGA', expiry: 'Jan 2036' },
+        { code: 'NAS-LIC-2025-02', company: 'Karu Renewable Energy Cooperative', status: 'ACTIVE & VALID', capacity: '750 kW', location: 'Karu LGA', expiry: 'Aug 2035' },
+        { code: 'NAS-LIC-2025-09', company: 'Keffi Green Power Off-Grid DisCo', status: 'ACTIVE & VALID', capacity: '1.2 MW', location: 'Keffi LGA', expiry: 'Nov 2035' }
+      ];
 
-/* --------------------------------------------------------------------------
-   2. Executive Chairman Message Full Reader Modal
-   -------------------------------------------------------------------------- */
-function initChairmanModal() {
-  const btn = document.getElementById('readChairmanSpeechBtn');
-  if (!btn) return;
+      const match = mockDatabase.find(item => 
+        item.code.toLowerCase().includes(query.toLowerCase()) || 
+        item.company.toLowerCase().includes(query.toLowerCase())
+      );
 
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    const modalHTML = `
-      <div class="modal-backdrop active" id="chairmanSpeechModal">
-        <div class="modal-dialog" style="max-width: 800px;">
-          <div class="modal-header" style="background: var(--primary-navy); color: var(--white);">
-            <div>
-              <span class="section-badge gold" style="margin-bottom: 0.25rem;">Executive Address</span>
-              <h3 class="modal-title" style="color: var(--white);">Welcome Message from the Executive Chairman</h3>
+      if (match) {
+        openCustomModal({
+          title: 'Official Licensee Verification Report',
+          bodyHTML: `
+            <div style="text-align: center; padding: 1rem 0;">
+              <div style="width: 60px; height: 60px; background: rgba(0, 104, 55, 0.1); color: var(--primary-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem auto;">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <span style="background: rgba(16, 185, 129, 0.15); color: var(--success); font-weight: 800; padding: 0.35rem 1rem; border-radius: var(--radius-full); font-size: 0.85rem;">${match.status}</span>
+              <h3 style="font-family: var(--font-heading); color: var(--primary-navy); font-size: 1.4rem; margin-top: 1rem;">${match.company}</h3>
+              <p style="color: var(--primary-green); font-weight: 700;">Ref Code: ${match.code}</p>
             </div>
-            <button class="modal-close" style="color: var(--white);" onclick="closeChairmanModal()">&times;</button>
-          </div>
-          <div class="modal-body">
-            <div style="display: flex; gap: 1.5rem; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap;">
-              <img src="assets/images/chairman.png" alt="Executive Chairman" style="width: 110px; height: 110px; border-radius: var(--radius-full); object-fit: cover; border: 3px solid var(--accent-gold);">
-              <div>
-                <h4 style="font-family: var(--font-heading); font-size: 1.25rem; color: var(--primary-navy);">Engr. Dr. Ibrahim A. Abdullahi, FNSE</h4>
-                <p style="color: var(--primary-green); font-weight: 700; font-size: 0.9rem;">Executive Chairman / Chief Executive Officer</p>
-                <p style="color: var(--slate-500); font-size: 0.85rem;">Nasarawa State Electricity Regulatory Commission (NASERC)</p>
+
+            <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.25rem; margin-top: 1rem;">
+              <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--slate-200);">
+                <span style="color: var(--slate-600);">Capacity Rating:</span>
+                <strong style="color: var(--primary-navy);">${match.capacity}</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--slate-200);">
+                <span style="color: var(--slate-600);">Operation Zone:</span>
+                <strong style="color: var(--primary-navy);">${match.location}</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 0.5rem 0;">
+                <span style="color: var(--slate-600);">License Expiry Date:</span>
+                <strong style="color: var(--primary-navy);">${match.expiry}</strong>
               </div>
             </div>
-            <div style="font-size: 1rem; line-height: 1.8; color: var(--slate-700);">
-              <p style="margin-bottom: 1rem;">It is my distinct honor and privilege to welcome you to the official web portal of the Nasarawa State Electricity Regulatory Commission (NASERC).</p>
-              <p style="margin-bottom: 1rem;">Following the historic devolution of power sector regulation to sub-national authorities in Nigeria, Nasarawa State positioned itself at the forefront of sub-national energy governance through the enactment of the Nasarawa State Electricity Law 2024. NASERC was created with a clear mandate: to establish a transparent, competitive, and robust regulatory environment that attracts private sector investment while safeguarding the rights of electricity consumers across all 13 Local Government Areas.</p>
-              <p style="margin-bottom: 1rem;">Our regulatory philosophy rests on three fundamental pillars:</p>
-              <ul style="list-style: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; color: var(--slate-800);">
-                <li style="margin-bottom: 0.5rem;"><strong>Energy Access Expansion:</strong> Accelerating off-grid and mini-grid deployment to power rural communities, agricultural processing hubs, and solid mineral industrial clusters.</li>
-                <li style="margin-bottom: 0.5rem;"><strong>Fair & Cost-Reflective Tariffs:</strong> Striking a healthy balance between investor returns and consumer affordability through rigorous Multi-Year Tariff Orders (MYTO).</li>
-                <li style="margin-bottom: 0.5rem;"><strong>Consumer Rights & Standards:</strong> Enforcing strict service standards, metering mandates, and fast-track dispute resolution mechanisms.</li>
-              </ul>
-              <p>We invite investors, developers, distribution companies, and electricity consumers to engage with our digital services—whether filing license applications, exploring regulatory frameworks, or submitting feedback. Together, we are building a vibrant, resilient, and sustainable power market for Nasarawa State.</p>
+          `
+        });
+      } else {
+        openCustomModal({
+          title: 'Verification Search Result',
+          bodyHTML: `
+            <div style="text-align: center; padding: 1.5rem 0;">
+              <div style="width: 60px; height: 60px; background: rgba(239, 68, 68, 0.1); color: var(--danger); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem auto;">
+                <i class="fas fa-exclamation-triangle"></i>
+              </div>
+              <h3 style="font-family: var(--font-heading); color: var(--primary-navy); font-size: 1.3rem;">No Active License Match Found</h3>
+              <p style="color: var(--slate-600); margin-top: 0.5rem; font-size: 0.9rem;">
+                No registered license match was found for "<strong>${query}</strong>". Please verify the operator name or contact NASERC Secretariat for official confirmation.
+              </p>
             </div>
+          `
+        });
+      }
+    });
+  }
+
+  // 4. Track Complaint Modal
+  const trackBtn = document.getElementById('trackComplaintModalBtn');
+  if (trackBtn) {
+    trackBtn.addEventListener('click', () => {
+      openCustomModal({
+        title: 'Track Consumer Dispute Status',
+        bodyHTML: `
+          <div>
+            <p style="color: var(--slate-600); font-size: 0.9rem; margin-bottom: 1rem;">Enter your NASERC Complaint Reference Number (e.g. NAS-CMP-2026-8942) to view resolution status.</p>
+            <div style="display: flex; gap: 0.5rem;">
+              <input type="text" id="trackInputCode" class="form-control" placeholder="e.g. NAS-CMP-2026-8942">
+              <button class="btn btn-primary" id="execTrackBtn"><i class="fas fa-search"></i> Track</button>
+            </div>
+            <div id="trackResultContainer" style="margin-top: 1.5rem; display: none;"></div>
           </div>
-          <div class="modal-footer">
-            <button class="btn btn-navy" onclick="closeChairmanModal()">Close Address</button>
-          </div>
+        `
+      });
+
+      setTimeout(() => {
+        const execBtn = document.getElementById('execTrackBtn');
+        if (execBtn) {
+          execBtn.onclick = () => {
+            const inputVal = document.getElementById('trackInputCode').value.trim();
+            const resultBox = document.getElementById('trackResultContainer');
+            if (!inputVal) return;
+
+            resultBox.style.display = 'block';
+            resultBox.innerHTML = `
+              <div style="background: var(--slate-50); border: 1px solid var(--slate-200); padding: 1.25rem; border-radius: var(--radius-lg);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                  <strong style="color: var(--primary-navy);">${inputVal.toUpperCase()}</strong>
+                  <span style="background: rgba(245, 158, 11, 0.2); color: var(--accent-gold-hover); font-weight: 700; padding: 0.2rem 0.6rem; border-radius: var(--radius-full); font-size: 0.75rem;">UNDER INVESTIGATION</span>
+                </div>
+                <p style="font-size: 0.875rem; color: var(--slate-600); margin: 0;">Dispute referred to Lafia Zonal Dispute Panel. Hearing officer assigned.</p>
+              </div>
+            `;
+          };
+        }
+      }, 100);
+    });
+  }
+
+}
+
+function openCustomModal({ title, bodyHTML }) {
+  let backdrop = document.getElementById('globalModalBackdrop');
+  if (!backdrop) {
+    backdrop = document.createElement('div');
+    backdrop.id = 'globalModalBackdrop';
+    backdrop.className = 'modal-backdrop';
+    backdrop.innerHTML = `
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <h3 class="modal-title" id="globalModalTitle"></h3>
+          <button class="modal-close" id="globalModalClose">&times;</button>
         </div>
+        <div class="modal-body" id="globalModalBody"></div>
       </div>
     `;
+    document.body.appendChild(backdrop);
 
-    const div = document.createElement('div');
-    div.id = 'chairmanModalContainer';
-    div.innerHTML = modalHTML;
-    document.body.appendChild(div);
-  });
-}
+    backdrop.querySelector('#globalModalClose').onclick = () => {
+      backdrop.classList.remove('active');
+    };
 
-function closeChairmanModal() {
-  const modal = document.getElementById('chairmanModalContainer');
-  if (modal) modal.remove();
-}
+    backdrop.onclick = (e) => {
+      if (e.target === backdrop) backdrop.classList.remove('active');
+    };
+  }
 
-/* --------------------------------------------------------------------------
-   3. Document PDF Download Simulator with Toast
-   -------------------------------------------------------------------------- */
-function initDocDownloadSimulators() {
-  document.addEventListener('click', (e) => {
-    const downloadBtn = e.target.closest('.download-doc-btn');
-    if (!downloadBtn) return;
-
-    e.preventDefault();
-    const docTitle = downloadBtn.getAttribute('data-doc-title') || 'NASERC Regulatory Document';
-    const docFile = downloadBtn.getAttribute('data-doc-file') || 'document.pdf';
-
-    showToast(`Downloading: "${docTitle}"...`, 'info');
-
-    // Create dynamic downloadable blob text document preview
-    setTimeout(() => {
-      const blob = new Blob([
-        `OFFICIAL REGULATORY DOCUMENT - NASARAWA STATE ELECTRICITY REGULATORY COMMISSION (NASERC)\n` +
-        `Title: ${docTitle}\n` +
-        `Reference Code: NASERC/REG/2026/DOC-0492\n` +
-        `Authority: Executive Chairman & Board of Commissioners, NASERC\n` +
-        `Primary Context: https://naserc.na.gov.ng/\n\n` +
-        `--------------------------------------------------------------------------------\n` +
-        `SUMMARY & MANDATE:\n` +
-        `This official regulatory instrument prescribes the operational standards, license terms, grid rules,\n` +
-        `and consumer protection guidelines applicable within Nasarawa State under the State Electricity Law 2024.\n\n` +
-        `Downloaded from NASERC Web Portal on: ${new Date().toLocaleString()}\n` +
-        `Contact: info@naserc.na.gov.ng | Emergency Hotline: 0800-NASERC-HOT`
-      ], { type: 'text/plain;charset=utf-8' });
-
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = `${docTitle.replace(/[^a-zA-Z0-9]/g, '_')}_NASERC.txt`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      showToast(`Download completed for "${docTitle}"`, 'success');
-    }, 1000);
-  });
-}
-
-/* --------------------------------------------------------------------------
-   4. Licensee Verification Quick Tool
-   -------------------------------------------------------------------------- */
-function initLicenseeVerifier() {
-  const form = document.getElementById('licenseeVerifierForm');
-  if (!form) return;
-
-  const mockDatabase = [
-    { code: 'NAS-MG-2025-014', name: 'Lafia Solar Power Mini-Grid Ltd', capacity: '2.5 MW', location: 'Lafia LGA', status: 'ACTIVE', category: 'Mini-Grid Generation' },
-    { code: 'NAS-MG-2025-022', name: 'Karu Renewable Energy Cooperative', capacity: '1.2 MW', location: 'Karu LGA', status: 'ACTIVE', category: 'Embedded Generation' },
-    { code: 'NAS-DIS-2024-001', name: 'Abuja Electricity Distribution Plc (Nasarawa DisCo)', capacity: 'Regional Provider', location: 'State-wide', status: 'ACTIVE', category: 'Distribution & Trading' },
-    { code: 'NAS-MAP-2026-088', name: 'Keffi Smart Metering Assets Solutions Ltd', capacity: '50,000 Meters', location: 'Keffi Zonal Area', status: 'ACTIVE', category: 'Meter Asset Provider (MAP)' }
-  ];
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const input = form.querySelector('.verifier-input').value.trim().toLowerCase();
-    if (!input) {
-      showToast('Please enter a License Number or Business Name.', 'warning');
-      return;
-    }
-
-    const match = mockDatabase.find(item => 
-      item.code.toLowerCase().includes(input) || item.name.toLowerCase().includes(input)
-    );
-
-    if (match) {
-      openVerifierResultModal(match);
-    } else {
-      showToast(`No active licensee found for keyword "${input}". Please check the ID or contact Licensing Desk.`, 'danger');
-    }
-  });
-}
-
-function openVerifierResultModal(data) {
-  const modalHTML = `
-    <div class="modal-backdrop active" id="verifierModal">
-      <div class="modal-dialog">
-        <div class="modal-header" style="background: var(--primary-navy); color: var(--white);">
-          <h3 class="modal-title" style="color: var(--white);"><i class="fas fa-certificate" style="color: var(--accent-gold);"></i> License Verification Result</h3>
-          <button class="modal-close" style="color: var(--white);" onclick="closeVerifierModal()">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div style="text-align: center; margin-bottom: 1.25rem;">
-            <span style="background: var(--success-bg); color: var(--success); border: 1px solid var(--success); padding: 0.35rem 1rem; border-radius: var(--radius-full); font-weight: 800; font-size: 0.9rem; text-transform: uppercase;">
-              <i class="fas fa-check-circle"></i> VERIFIED & AUTHORIZED LICENSEE
-            </span>
-          </div>
-
-          <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.5rem;">
-            <div style="margin-bottom: 0.75rem; border-bottom: 1px solid var(--slate-200); padding-bottom: 0.5rem;">
-              <span style="font-size: 0.8rem; color: var(--slate-500); text-transform: uppercase; font-weight: 700;">Entity Name</span>
-              <div style="font-size: 1.2rem; font-weight: 800; color: var(--primary-navy);">${data.name}</div>
-            </div>
-
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; font-size: 0.9rem;">
-              <div>
-                <span style="color: var(--slate-500); font-size: 0.8rem; font-weight: 600;">License ID:</span>
-                <div style="font-weight: 700; color: var(--slate-800);">${data.code}</div>
-              </div>
-              <div>
-                <span style="color: var(--slate-500); font-size: 0.8rem; font-weight: 600;">Category:</span>
-                <div style="font-weight: 700; color: var(--slate-800);">${data.category}</div>
-              </div>
-              <div>
-                <span style="color: var(--slate-500); font-size: 0.8rem; font-weight: 600;">Capacity / Scope:</span>
-                <div style="font-weight: 700; color: var(--slate-800);">${data.capacity}</div>
-              </div>
-              <div>
-                <span style="color: var(--slate-500); font-size: 0.8rem; font-weight: 600;">Operational Zone:</span>
-                <div style="font-weight: 700; color: var(--slate-800);">${data.location}</div>
-              </div>
-            </div>
-          </div>
-
-          <p style="font-size: 0.85rem; color: var(--slate-600); text-align: center;">
-            Issued under authority of the Nasarawa State Electricity Regulatory Commission (NASERC).
-          </p>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-navy" onclick="closeVerifierModal()">Close Window</button>
-        </div>
-      </div>
-    </div>
-  `;
-
-  const container = document.createElement('div');
-  container.id = 'verifierModalContainer';
-  container.innerHTML = modalHTML;
-  document.body.appendChild(container);
-}
-
-function closeVerifierModal() {
-  const modal = document.getElementById('verifierModalContainer');
-  if (modal) modal.remove();
+  document.getElementById('globalModalTitle').textContent = title;
+  document.getElementById('globalModalBody').innerHTML = bodyHTML;
+  backdrop.classList.add('active');
 }

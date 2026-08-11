@@ -1,27 +1,78 @@
 /**
- * NASERC Web Portal - Core JavaScript Application
- * Global UI initializations, Mobile Navigation, Accessibility, and Utilities.
+ * NASERC Web Portal - Core Global Logic
+ * Handles Sticky Nav, Mobile Drawer, Accessibility Toggles, and Toast Notifications
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initMobileNav();
-  initStickyHeader();
+  initMobileDrawer();
   initAccessibilityControls();
-  initQuickSearch();
-  setActiveNavLink();
 });
 
-/* --------------------------------------------------------------------------
-   1. Mobile Navigation & Drawer Toggle
-   -------------------------------------------------------------------------- */
-function initMobileNav() {
+/* Mobile Drawer Navigation */
+function initMobileDrawer() {
   const toggleBtn = document.getElementById('mobileNavToggle');
-  const closeBtn = document.getElementById('mobileDrawerClose');
-  const drawer = document.getElementById('mobileDrawer');
-  const backdrop = document.getElementById('drawerBackdrop');
-  const submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
+  
+  if (!toggleBtn) return;
 
-  if (!drawer || !backdrop) return;
+  // Create backdrop if not exists
+  let backdrop = document.querySelector('.drawer-backdrop');
+  if (!backdrop) {
+    backdrop = document.createElement('div');
+    backdrop.className = 'drawer-backdrop';
+    document.body.appendChild(backdrop);
+  }
+
+  // Create drawer element if not exists
+  let drawer = document.querySelector('.mobile-drawer');
+  if (!drawer) {
+    drawer = document.createElement('div');
+    drawer.className = 'mobile-drawer';
+    drawer.innerHTML = `
+      <div class="drawer-header">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <img src="https://naserc.na.gov.ng/logo.png" style="height: 32px;" alt="Logo">
+          <strong style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--white);">NASERC Portal</strong>
+        </div>
+        <button class="drawer-close" id="drawerCloseBtn">&times;</button>
+      </div>
+      <div class="drawer-body">
+        <ul class="mobile-nav-list">
+          <li class="mobile-nav-item"><a href="index.html" class="mobile-nav-link">Home</a></li>
+          <li class="mobile-nav-item">
+            <a href="about.html" class="mobile-nav-link">About Us</a>
+            <div class="mobile-submenu open">
+              <a href="about.html#mandate" class="mobile-submenu-item">Statutory Mandate</a><br>
+              <a href="about.html#vision" class="mobile-submenu-item">Vision & Mission</a><br>
+              <a href="about.html#governance" class="mobile-submenu-item">Governance Structure</a>
+            </div>
+          </li>
+          <li class="mobile-nav-item">
+            <a href="regulations.html" class="mobile-nav-link">Regulatory Instruments</a>
+            <div class="mobile-submenu open">
+              <a href="regulations.html?category=regulations" class="mobile-submenu-item">Electricity Regulations</a><br>
+              <a href="regulations.html?category=licenses" class="mobile-submenu-item">Licenses & Permits</a><br>
+              <a href="regulations.html?category=guidelines" class="mobile-submenu-item">Codes & Frameworks</a>
+            </div>
+          </li>
+          <li class="mobile-nav-item"><a href="activities.html" class="mobile-nav-link">Activities</a></li>
+          <li class="mobile-nav-item">
+            <a href="forms.html" class="mobile-nav-link">Forms & Services</a>
+            <div class="mobile-submenu open">
+              <a href="forms.html?tab=complaint" class="mobile-submenu-item">Customer Complaint Form</a><br>
+              <a href="forms.html?tab=license" class="mobile-submenu-item">License Calculator & Form</a>
+            </div>
+          </li>
+          <li class="mobile-nav-item"><a href="contact.html" class="mobile-nav-link">Contact Us</a></li>
+        </ul>
+        <div style="margin-top: 2rem;">
+          <a href="forms.html?tab=complaint" class="btn btn-accent" style="width: 100%; text-align: center;"><i class="fas fa-paper-plane"></i> File Complaint</a>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(drawer);
+  }
+
+  const closeBtn = document.getElementById('drawerCloseBtn');
 
   function openDrawer() {
     drawer.classList.add('open');
@@ -35,100 +86,34 @@ function initMobileNav() {
     document.body.style.overflow = '';
   }
 
-  if (toggleBtn) toggleBtn.addEventListener('click', openDrawer);
+  toggleBtn.addEventListener('click', openDrawer);
   if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
-  if (backdrop) backdrop.addEventListener('click', closeDrawer);
-
-  submenuToggles.forEach(toggle => {
-    toggle.addEventListener('click', (e) => {
-      e.preventDefault();
-      const submenu = toggle.nextElementSibling;
-      if (submenu) {
-        submenu.classList.toggle('open');
-        const icon = toggle.querySelector('i');
-        if (icon) icon.classList.toggle('fa-chevron-up');
-      }
-    });
-  });
+  backdrop.addEventListener('click', closeDrawer);
 }
 
-/* --------------------------------------------------------------------------
-   2. Sticky Header Shadow Dynamics
-   -------------------------------------------------------------------------- */
-function initStickyHeader() {
-  const header = document.querySelector('.main-header');
-  if (!header) return;
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
-      header.style.boxShadow = '0 10px 25px -5px rgba(10, 25, 47, 0.12)';
-      header.style.padding = '0.2rem 0';
-    } else {
-      header.style.boxShadow = 'var(--shadow-sm)';
-      header.style.padding = '0';
-    }
-  });
-}
-
-/* --------------------------------------------------------------------------
-   3. Navigation Active Link Handler
-   -------------------------------------------------------------------------- */
-function setActiveNavLink() {
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-  const navLinks = document.querySelectorAll('.nav-link, .dropdown-item, .mobile-nav-link');
-
-  navLinks.forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === currentPath) {
-      const navItem = link.closest('.nav-item');
-      if (navItem) navItem.classList.add('active');
-    }
-  });
-}
-
-/* --------------------------------------------------------------------------
-   4. Quick Search Popup / Search Modal
-   -------------------------------------------------------------------------- */
-function initQuickSearch() {
-  const searchInputs = document.querySelectorAll('.quick-search-input');
-  searchInputs.forEach(input => {
-    input.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        const query = input.value.trim();
-        if (query) {
-          window.location.href = `regulations.html?search=${encodeURIComponent(query)}`;
-        }
-      }
-    });
-  });
-}
-
-/* --------------------------------------------------------------------------
-   5. Accessibility Controls (High Contrast / Text Sizing)
-   -------------------------------------------------------------------------- */
+/* Accessibility Control Features */
 function initAccessibilityControls() {
   const contrastBtn = document.getElementById('toggleContrastBtn');
-  const fontIncreaseBtn = document.getElementById('fontIncreaseBtn');
+  const fontIncBtn = document.getElementById('fontIncreaseBtn');
   const fontResetBtn = document.getElementById('fontResetBtn');
-
-  let currentFontSize = 16;
 
   if (contrastBtn) {
     contrastBtn.addEventListener('click', (e) => {
       e.preventDefault();
       document.body.classList.toggle('high-contrast');
-      const isHighContrast = document.body.classList.contains('high-contrast');
-      showToast(isHighContrast ? 'High Contrast Mode Enabled' : 'Standard View Restored', 'info');
+      const isContrast = document.body.classList.contains('high-contrast');
+      showToast(isContrast ? 'High Contrast Mode Enabled' : 'Standard View Restored', 'info');
     });
   }
 
-  if (fontIncreaseBtn) {
-    fontIncreaseBtn.addEventListener('click', (e) => {
+  let currentFontSize = 16;
+  if (fontIncBtn) {
+    fontIncBtn.addEventListener('click', (e) => {
       e.preventDefault();
       if (currentFontSize < 20) {
         currentFontSize += 1;
         document.documentElement.style.fontSize = `${currentFontSize}px`;
+        showToast(`Text Size Increased (${currentFontSize}px)`, 'info');
       }
     });
   }
@@ -138,40 +123,39 @@ function initAccessibilityControls() {
       e.preventDefault();
       currentFontSize = 16;
       document.documentElement.style.fontSize = '16px';
+      showToast('Text Size Reset to Default', 'info');
     });
   }
 }
 
-/* --------------------------------------------------------------------------
-   6. Global Toast Notification System
-   -------------------------------------------------------------------------- */
-function showToast(message, type = 'success') {
-  let container = document.querySelector('.toast-container');
-  if (!container) {
-    container = document.createElement('div');
-    container.className = 'toast-container';
-    document.body.appendChild(container);
+/* Global Custom Toast System */
+function showToast(message, type = 'info') {
+  let toastContainer = document.querySelector('.toast-container');
+  if (!toastContainer) {
+    toastContainer = document.createElement('div');
+    toastContainer.className = 'toast-container';
+    document.body.appendChild(toastContainer);
   }
 
   const toast = document.createElement('div');
   toast.className = `toast ${type}`;
-  
-  let iconClass = 'fa-check-circle';
+
+  let iconClass = 'fa-info-circle';
+  if (type === 'success') iconClass = 'fa-check-circle';
   if (type === 'warning') iconClass = 'fa-exclamation-triangle';
   if (type === 'danger') iconClass = 'fa-times-circle';
-  if (type === 'info') iconClass = 'fa-info-circle';
 
   toast.innerHTML = `
-    <i class="fas ${iconClass}"></i>
+    <i class="fas ${iconClass}" style="font-size: 1.25rem;"></i>
     <span>${message}</span>
   `;
 
-  container.appendChild(toast);
+  toastContainer.appendChild(toast);
 
   // Trigger animation
   setTimeout(() => toast.classList.add('show'), 50);
 
-  // Auto remove after 3.5 seconds
+  // Auto dismiss after 3.5s
   setTimeout(() => {
     toast.classList.remove('show');
     setTimeout(() => toast.remove(), 400);

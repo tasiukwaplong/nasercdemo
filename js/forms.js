@@ -1,252 +1,209 @@
 /**
- * NASERC Web Portal - Forms & Verification Module
- * Handles Complaint & License Application Forms, tab switching, client validation,
- * reference generation, and submission receipt modals.
+ * NASERC Web Portal - Form Validation, File Previews, and Tab Handling
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initFormTabs();
-  initComplaintForm();
-  initLicenseForm();
+  initFormValidations();
   initFileUploadPreviews();
 });
 
-/* --------------------------------------------------------------------------
-   1. Tab Switcher Controller
-   -------------------------------------------------------------------------- */
+/* Tab Switching Logic on Forms Page */
 function initFormTabs() {
-  const tabBtns = document.querySelectorAll('.tab-button');
-  const tabContents = document.querySelectorAll('.form-tab-content');
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const complaintTab = document.getElementById('complaintTab');
+  const licenseTab = document.getElementById('licenseTab');
 
-  if (tabBtns.length === 0) return;
+  if (!tabButtons.length) return;
 
-  function switchTab(tabId) {
-    tabBtns.forEach(btn => {
-      if (btn.getAttribute('data-tab') === tabId) {
+  function switchTab(targetTab) {
+    tabButtons.forEach(btn => {
+      if (btn.dataset.tab === targetTab) {
         btn.classList.add('active');
       } else {
         btn.classList.remove('active');
       }
     });
 
-    tabContents.forEach(content => {
-      if (content.id === `${tabId}Tab`) {
-        content.style.display = 'block';
-      } else {
-        content.style.display = 'none';
-      }
-    });
+    if (targetTab === 'complaint') {
+      if (complaintTab) complaintTab.style.display = 'block';
+      if (licenseTab) licenseTab.style.display = 'none';
+    } else if (targetTab === 'license') {
+      if (complaintTab) complaintTab.style.display = 'none';
+      if (licenseTab) licenseTab.style.display = 'block';
+    }
   }
 
-  // Parse URL query parameter (e.g. forms.html?tab=license)
-  const urlParams = new URLSearchParams(window.location.search);
-  const activeTab = urlParams.get('tab') || 'complaint';
-  switchTab(activeTab);
-
-  tabBtns.forEach(btn => {
+  tabButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      const tabId = btn.getAttribute('data-tab');
-      switchTab(tabId);
+      switchTab(btn.dataset.tab);
     });
   });
-}
 
-/* --------------------------------------------------------------------------
-   2. Customer Complaint Form Handler
-   -------------------------------------------------------------------------- */
-function initComplaintForm() {
-  const form = document.getElementById('customerComplaintForm');
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (!validateForm(form)) {
-      showToast('Please correct the errors in the form before submitting.', 'danger');
-      return;
-    }
-
-    const refNumber = `NAS-CMP-2026-${Math.floor(1000 + Math.random() * 9000)}`;
-    const fullName = form.querySelector('[name="fullName"]').value;
-    const provider = form.querySelector('[name="provider"]').value;
-    const category = form.querySelector('[name="complaintCategory"]').value;
-
-    showSubmissionSuccessModal({
-      title: 'Complaint Submitted Successfully!',
-      reference: refNumber,
-      details: [
-        { label: 'Complainant', value: fullName },
-        { label: 'Electricity DisCo / Provider', value: provider },
-        { label: 'Category', value: category },
-        { label: 'Date Submitted', value: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) },
-        { label: 'Expected Resolution Timeline', value: '7 Working Days' }
-      ],
-      notice: 'Our Consumer Protection Unit will investigate your complaint. You will receive SMS & Email notifications on the resolution status.'
-    });
-
-    form.reset();
-  });
-}
-
-/* --------------------------------------------------------------------------
-   3. License Application Form Handler
-   -------------------------------------------------------------------------- */
-function initLicenseForm() {
-  const form = document.getElementById('licenseApplicationForm');
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (!validateForm(form)) {
-      showToast('Please fill all required fields correctly.', 'danger');
-      return;
-    }
-
-    const refNumber = `NAS-LIC-2026-${Math.floor(1000 + Math.random() * 9000)}`;
-    const companyName = form.querySelector('[name="companyName"]').value;
-    const licenseType = form.querySelector('[name="licenseType"]').value;
-    const capacity = form.querySelector('[name="capacity"]').value;
-
-    showSubmissionSuccessModal({
-      title: 'License Application Submitted!',
-      reference: refNumber,
-      details: [
-        { label: 'Applicant / Business', value: companyName },
-        { label: 'License Class', value: licenseType },
-        { label: 'Proposed Capacity', value: `${capacity} kW/MW` },
-        { label: 'Filing Date', value: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) },
-        { label: 'Status', value: 'Under Technical & Legal Review' }
-      ],
-      notice: 'Your application has been received by the NASERC Licensing & Technical Committee. Payment instructions for processing fees will be dispatched to your registered email.'
-    });
-
-    form.reset();
-  });
-}
-
-/* --------------------------------------------------------------------------
-   4. Live Form Validation Engine
-   -------------------------------------------------------------------------- */
-function validateForm(form) {
-  let isValid = true;
-  const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
-
-  inputs.forEach(input => {
-    const value = input.value.trim();
-    if (!value) {
-      setError(input, 'This field is required');
-      isValid = false;
-    } else if (input.type === 'email' && !validateEmail(value)) {
-      setError(input, 'Please enter a valid email address');
-      isValid = false;
-    } else if (input.type === 'tel' && value.length < 10) {
-      setError(input, 'Please enter a valid phone number');
-      isValid = false;
-    } else {
-      clearError(input);
-    }
-  });
-
-  return isValid;
-}
-
-function setError(input, message) {
-  input.classList.add('error');
-  let errElem = input.nextElementSibling;
-  if (!errElem || !errElem.classList.contains('error-message')) {
-    errElem = document.createElement('div');
-    errElem.className = 'error-message';
-    input.parentNode.insertBefore(errElem, input.nextSibling);
-  }
-  errElem.textContent = message;
-}
-
-function clearError(input) {
-  input.classList.remove('error');
-  const errElem = input.nextElementSibling;
-  if (errElem && errElem.classList.contains('error-message')) {
-    errElem.remove();
+  // Handle URL query parameters (e.g., forms.html?tab=license)
+  const urlParams = new URLSearchParams(window.location.search);
+  const tabParam = urlParams.get('tab');
+  if (tabParam && (tabParam === 'complaint' || tabParam === 'license')) {
+    switchTab(tabParam);
   }
 }
 
-function validateEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-/* --------------------------------------------------------------------------
-   5. Drag & Drop File Upload Preview
-   -------------------------------------------------------------------------- */
+/* File Upload Drag & Drop Preview */
 function initFileUploadPreviews() {
-  const uploadZones = document.querySelectorAll('.file-upload-zone');
+  const fileZones = document.querySelectorAll('.file-upload-zone');
 
-  uploadZones.forEach(zone => {
+  fileZones.forEach(zone => {
     const fileInput = zone.querySelector('input[type="file"]');
     const previewText = zone.querySelector('.upload-preview-text');
 
-    if (!fileInput) return;
+    if (!fileInput || !previewText) return;
 
     zone.addEventListener('click', () => fileInput.click());
 
-    fileInput.addEventListener('change', () => {
-      if (fileInput.files.length > 0) {
-        const fileName = fileInput.files[0].name;
-        const fileSize = (fileInput.files[0].size / (1024 * 1024)).toFixed(2);
-        if (previewText) {
-          previewText.innerHTML = `<strong>Selected:</strong> ${fileName} (${fileSize} MB)`;
-          zone.style.borderColor = 'var(--primary-green)';
-          zone.style.backgroundColor = 'var(--success-bg)';
-        }
+    zone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      zone.style.borderColor = 'var(--primary-green)';
+      zone.style.background = 'rgba(0, 104, 55, 0.05)';
+    });
+
+    zone.addEventListener('dragleave', () => {
+      zone.style.borderColor = 'var(--slate-300)';
+      zone.style.background = 'var(--slate-50)';
+    });
+
+    zone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      zone.style.borderColor = 'var(--slate-300)';
+      zone.style.background = 'var(--slate-50)';
+
+      if (e.dataTransfer.files.length) {
+        fileInput.files = e.dataTransfer.files;
+        updatePreview(fileInput.files[0]);
       }
     });
+
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files.length) {
+        updatePreview(fileInput.files[0]);
+      }
+    });
+
+    function updatePreview(file) {
+      previewText.innerHTML = `
+        <strong style="color: var(--primary-green);"><i class="fas fa-file-check"></i> File Selected: ${file.name}</strong>
+        <div style="font-size: 0.8rem; color: var(--slate-500); margin-top: 0.25rem;">Size: ${(file.size / (1024 * 1024)).toFixed(2)} MB</div>
+      `;
+    }
   });
 }
 
-/* --------------------------------------------------------------------------
-   6. Submission Confirmation Modal Dialog
-   -------------------------------------------------------------------------- */
-function showSubmissionSuccessModal(data) {
-  const modalHTML = `
-    <div class="modal-backdrop active" id="successModal">
-      <div class="modal-dialog">
-        <div class="modal-header" style="background: var(--primary-green); color: var(--white);">
-          <h3 class="modal-title" style="color: var(--white);"><i class="fas fa-check-circle"></i> ${data.title}</h3>
-          <button class="modal-close" style="color: var(--white);" onclick="closeSuccessModal()">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div style="text-align: center; margin-bottom: 1.5rem;">
-            <span style="font-size: 0.85rem; color: var(--slate-500); text-transform: uppercase; font-weight: 700;">Official Reference ID</span>
-            <div style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--primary-navy); letter-spacing: 0.05em; margin-top: 0.25rem;">
-              ${data.reference}
+/* Form Submissions & Receipt Modal Generators */
+function initFormValidations() {
+  const complaintForm = document.getElementById('customerComplaintForm');
+  const licenseForm = document.getElementById('licenseApplicationForm');
+
+  if (complaintForm) {
+    complaintForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const name = complaintForm.querySelector('[name="fullName"]').value.trim();
+      const phone = complaintForm.querySelector('[name="phone"]').value.trim();
+      const email = complaintForm.querySelector('[name="email"]').value.trim();
+      const lga = complaintForm.querySelector('[name="lga"]').value;
+      const provider = complaintForm.querySelector('[name="provider"]').value;
+      const account = complaintForm.querySelector('[name="accountNumber"]').value.trim();
+      const cat = complaintForm.querySelector('[name="complaintCategory"]').value;
+      const desc = complaintForm.querySelector('[name="description"]').value.trim();
+
+      if (!name || !phone || !email || !lga || !provider || !account || !cat || !desc) {
+        showToast('Please fill all required fields before submitting.', 'danger');
+        return;
+      }
+
+      const refCode = `NAS-CMP-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+
+      openCustomModal({
+        title: 'Complaint Lodged Successfully',
+        bodyHTML: `
+          <div style="text-align: center; padding: 1rem 0;">
+            <div style="width: 60px; height: 60px; background: rgba(0, 104, 55, 0.1); color: var(--primary-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem auto;">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 style="font-family: var(--font-heading); color: var(--primary-navy); font-size: 1.4rem;">Official Receipt</h3>
+            <p style="color: var(--slate-600); font-size: 0.9rem;">Your customer dispute has been logged with the NASERC Consumer Advocacy Desk.</p>
+            <div style="background: var(--slate-100); border: 1px dashed var(--primary-green); padding: 1rem; border-radius: var(--radius-md); margin: 1.25rem 0;">
+              <span style="font-size: 0.8rem; color: var(--slate-500); text-transform: uppercase;">Tracking Reference Code</span>
+              <div style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--primary-green); letter-spacing: 0.05em;">${refCode}</div>
             </div>
           </div>
-          
-          <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.5rem;">
-            ${data.details.map(item => `
-              <div style="display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid var(--slate-200); font-size: 0.9rem;">
-                <span style="color: var(--slate-600); font-weight: 600;">${item.label}:</span>
-                <span style="color: var(--slate-900); font-weight: 700;">${item.value}</span>
-              </div>
-            `).join('')}
+          <div style="font-size: 0.875rem; color: var(--slate-600); line-height: 1.5;">
+            <strong>Filing Details:</strong><br>
+            • Complainant: ${name}<br>
+            • Service Provider: ${provider}<br>
+            • Account/Meter ID: ${account}<br>
+            • LGA: ${lga} LGA<br>
+            • Category: ${cat}
           </div>
+          <div style="margin-top: 1.5rem; text-align: center;">
+            <button onclick="window.print()" class="btn btn-outline btn-sm"><i class="fas fa-print"></i> Print Receipt</button>
+          </div>
+        `
+      });
 
-          <p style="font-size: 0.9rem; color: var(--slate-600); background: var(--warning-bg); padding: 1rem; border-left: 4px solid var(--accent-gold); border-radius: var(--radius-sm);">
-            <i class="fas fa-info-circle" style="color: var(--accent-gold); margin-right: 0.5rem;"></i> ${data.notice}
-          </p>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-outline" onclick="window.print()"><i class="fas fa-print"></i> Print Receipt</button>
-          <button class="btn btn-primary" onclick="closeSuccessModal()">Done</button>
-        </div>
-      </div>
-    </div>
-  `;
+      complaintForm.reset();
+    });
+  }
 
-  const div = document.createElement('div');
-  div.id = 'modalContainer';
-  div.innerHTML = modalHTML;
-  document.body.appendChild(div);
-}
+  if (licenseForm) {
+    licenseForm.addEventListener('submit', (e) => {
+      e.preventDefault();
 
-function closeSuccessModal() {
-  const modal = document.getElementById('modalContainer');
-  if (modal) modal.remove();
+      const company = licenseForm.querySelector('[name="companyName"]').value.trim();
+      const cac = licenseForm.querySelector('[name="cacNumber"]').value.trim();
+      const person = licenseForm.querySelector('[name="contactPerson"]').value.trim();
+      const phone = licenseForm.querySelector('[name="phone"]').value.trim();
+      const email = licenseForm.querySelector('[name="email"]').value.trim();
+      const type = licenseForm.querySelector('[name="licenseType"]').value;
+      const capacity = licenseForm.querySelector('[name="capacity"]').value.trim();
+      const location = licenseForm.querySelector('[name="location"]').value.trim();
+      const summary = licenseForm.querySelector('[name="projectSummary"]').value.trim();
+
+      if (!company || !cac || !person || !phone || !email || !type || !capacity || !location || !summary) {
+        showToast('Please complete all statutory application fields.', 'danger');
+        return;
+      }
+
+      const refCode = `NAS-LIC-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+
+      openCustomModal({
+        title: 'License Application Docket Created',
+        bodyHTML: `
+          <div style="text-align: center; padding: 1rem 0;">
+            <div style="width: 60px; height: 60px; background: rgba(0, 104, 55, 0.1); color: var(--primary-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem auto;">
+              <i class="fas fa-file-signature"></i>
+            </div>
+            <h3 style="font-family: var(--font-heading); color: var(--primary-navy); font-size: 1.4rem;">Docket Acknowledgement</h3>
+            <p style="color: var(--slate-600); font-size: 0.9rem;">Your statutory license application has been filed with the NASERC Technical & Legal Division.</p>
+            <div style="background: var(--slate-100); border: 1px dashed var(--accent-gold-hover); padding: 1rem; border-radius: var(--radius-md); margin: 1.25rem 0;">
+              <span style="font-size: 0.8rem; color: var(--slate-500); text-transform: uppercase;">Application Reference Docket</span>
+              <div style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--primary-navy); letter-spacing: 0.05em;">${refCode}</div>
+            </div>
+          </div>
+          <div style="font-size: 0.875rem; color: var(--slate-600); line-height: 1.5;">
+            <strong>Application Metadata:</strong><br>
+            • Applicant: ${company} (${cac})<br>
+            • Authorized Rep: ${person}<br>
+            • Permit / License Class: ${type}<br>
+            • Proposed Capacity: ${capacity}<br>
+            • Location: ${location}
+          </div>
+          <div style="margin-top: 1.5rem; text-align: center;">
+            <button onclick="window.print()" class="btn btn-outline btn-sm"><i class="fas fa-print"></i> Print Docket Receipt</button>
+          </div>
+        `
+      });
+
+      licenseForm.reset();
+    });
+  }
 }

@@ -1,6 +1,5 @@
 /**
- * NASERC Web Portal - Regulatory Documents Dynamic Search & Filter
- * Performs dynamic real-time filtering without page reloads.
+ * NASERC Web Portal - Document Repository Search & Filter Logic
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,32 +8,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initDocumentFilters() {
   const searchInput = document.getElementById('regSearchInput');
-  const categoryPills = document.querySelectorAll('.category-pill');
   const yearSelect = document.getElementById('regYearSelect');
-  const docItems = document.querySelectorAll('.doc-item-card');
-  const noResultsMsg = document.getElementById('noResultsMessage');
+  const categoryPills = document.querySelectorAll('.category-pill');
+  const docCards = document.querySelectorAll('.doc-item-card');
   const resultCount = document.getElementById('resultCount');
+  const noResultsMsg = document.getElementById('noResultsMessage');
 
-  if (docItems.length === 0) return;
+  if (!docCards.length) return;
 
   let currentCategory = 'all';
   let currentSearch = '';
   let currentYear = 'all';
 
-  // Check URL query parameters for initial search or category filter
+  // Check URL parameters for preset category (e.g. regulations.html?category=licenses)
   const urlParams = new URLSearchParams(window.location.search);
-  const paramSearch = urlParams.get('search');
-  const paramCat = urlParams.get('category');
-
-  if (paramSearch) {
-    currentSearch = paramSearch;
-    if (searchInput) searchInput.value = paramSearch;
-  }
-
-  if (paramCat) {
-    currentCategory = paramCat.toLowerCase();
+  const presetCategory = urlParams.get('category');
+  if (presetCategory) {
+    currentCategory = presetCategory.toLowerCase();
     categoryPills.forEach(pill => {
-      if (pill.getAttribute('data-category') === currentCategory) {
+      if (pill.dataset.category === currentCategory) {
         pill.classList.add('active');
       } else {
         pill.classList.remove('active');
@@ -42,17 +34,17 @@ function initDocumentFilters() {
     });
   }
 
-  function applyFilters() {
+  function filterDocuments() {
     let visibleCount = 0;
 
-    docItems.forEach(card => {
-      const title = card.getAttribute('data-title').toLowerCase();
-      const code = card.getAttribute('data-code').toLowerCase();
-      const cat = card.getAttribute('data-category').toLowerCase();
-      const year = card.getAttribute('data-year');
+    docCards.forEach(card => {
+      const title = (card.dataset.title || '').toLowerCase();
+      const code = (card.dataset.code || '').toLowerCase();
+      const category = (card.dataset.category || '').toLowerCase();
+      const year = card.dataset.year || 'all';
 
       const matchesSearch = !currentSearch || title.includes(currentSearch) || code.includes(currentSearch);
-      const matchesCategory = currentCategory === 'all' || cat === currentCategory;
+      const matchesCategory = currentCategory === 'all' || category === currentCategory;
       const matchesYear = currentYear === 'all' || year === currentYear;
 
       if (matchesSearch && matchesCategory && matchesYear) {
@@ -64,7 +56,7 @@ function initDocumentFilters() {
     });
 
     if (resultCount) {
-      resultCount.textContent = `${visibleCount} Document${visibleCount !== 1 ? 's' : ''} Found`;
+      resultCount.textContent = `Showing ${visibleCount} Document${visibleCount !== 1 ? 's' : ''}`;
     }
 
     if (noResultsMsg) {
@@ -72,32 +64,38 @@ function initDocumentFilters() {
     }
   }
 
-  // Category Pills Event
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      currentSearch = e.target.value.toLowerCase().trim();
+      filterDocuments();
+    });
+  }
+
+  if (yearSelect) {
+    yearSelect.addEventListener('change', (e) => {
+      currentYear = e.target.value;
+      filterDocuments();
+    });
+  }
+
   categoryPills.forEach(pill => {
     pill.addEventListener('click', () => {
       categoryPills.forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
-      currentCategory = pill.getAttribute('data-category').toLowerCase();
-      applyFilters();
+      currentCategory = pill.dataset.category;
+      filterDocuments();
     });
   });
 
-  // Search Input Event
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      currentSearch = e.target.value.trim().toLowerCase();
-      applyFilters();
+  // Attach PDF download simulation listeners
+  document.querySelectorAll('.download-doc-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const docTitle = btn.dataset.docTitle || 'Regulatory Document';
+      showToast(`Downloading PDF: ${docTitle}...`, 'success');
     });
-  }
+  });
 
-  // Year Dropdown Select Event
-  if (yearSelect) {
-    yearSelect.addEventListener('change', (e) => {
-      currentYear = e.target.value;
-      applyFilters();
-    });
-  }
-
-  // Initial Filter Apply
-  applyFilters();
+  // Initial filter run
+  filterDocuments();
 }
