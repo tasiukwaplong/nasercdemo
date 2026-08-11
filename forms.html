@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Forms & Applications | Nasarawa State Electricity Regulatory Commission (NASERC)</title>
+  <meta name="description" content="Submit electricity consumer complaints, file mini-grid license applications, or track reference numbers online with NASERC.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://naserc.na.gov.ng/logo.png" type="image/png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <div class="top-bar-info">
+        <div class="top-bar-item">
+          <i class="fas fa-shield-alt"></i>
+          <span>Nasarawa State Government — Official E-Governance Portal</span>
+        </div>
+        <div class="top-bar-item">
+          <i class="fas fa-phone-alt"></i>
+          <span>Hotline: <strong class="hotline-badge">0800-NASERC-HOT</strong> (+234 803 123 4567)</span>
+        </div>
+        <div class="top-bar-item">
+          <i class="fas fa-envelope"></i>
+          <span>info@naserc.na.gov.ng</span>
+        </div>
+      </div>
+      <div class="top-bar-tools">
+        <div class="quick-search-form">
+          <i class="fas fa-search quick-search-icon"></i>
+          <input type="text" class="quick-search-input" placeholder="Search regulations, laws..." aria-label="Search">
+        </div>
+        <div class="top-bar-links">
+          <a href="#" id="toggleContrastBtn" class="top-bar-link" title="High Contrast Mode"><i class="fas fa-adjust"></i> Contrast</a>
+          <a href="#" id="fontIncreaseBtn" class="top-bar-link" title="Increase Text Size">A+</a>
+          <a href="#" id="fontResetBtn" class="top-bar-link" title="Reset Text Size">A</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="main-header">
+    <div class="container header-inner">
+      <div class="brand-wrapper">
+        <a href="index.html" class="brand-logo-link">
+          <div class="logo-badge-container">
+            <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="logo-img" onerror="this.src='https://naserc.na.gov.ng/nasarawa.jpg'; this.onerror=null;">
+            <img src="https://naserc.na.gov.ng/nasarawa.jpg" alt="Nasarawa Coat of Arms" class="state-coat-img">
+          </div>
+          <div class="brand-text">
+            <span class="brand-acronym">NASERC</span>
+            <span class="brand-tagline">Nasarawa State Electricity Regulatory Commission</span>
+          </div>
+        </a>
+      </div>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">About Us <i class="fas fa-chevron-down arrow"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="about.html#mandate" class="dropdown-item">Statutory Mandate</a></li>
+              <li><a href="about.html#vision" class="dropdown-item">Vision & Mission</a></li>
+              <li><a href="about.html#governance" class="dropdown-item">Governance & Leadership</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="regulations.html" class="nav-link">Regulatory Instruments <i class="fas fa-chevron-down arrow"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="regulations.html?category=regulations" class="dropdown-item">Electricity Regulations</a></li>
+              <li><a href="regulations.html?category=licenses" class="dropdown-item">Licenses & Permits</a></li>
+              <li><a href="regulations.html?category=tariff" class="dropdown-item">Tariff Orders (MYTO)</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="activities.html" class="nav-link">Activities</a></li>
+          <li class="nav-item active">
+            <a href="forms.html" class="nav-link">Forms <i class="fas fa-chevron-down arrow"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="forms.html?tab=complaint" class="dropdown-item">Customer Complaint Form</a></li>
+              <li><a href="forms.html?tab=license" class="dropdown-item">License Application Form</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="forms.html?tab=complaint" class="btn btn-accent btn-sm"><i class="fas fa-paper-plane"></i> File Complaint</a>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Banner -->
+  <section style="background: linear-gradient(135deg, var(--primary-navy-dark) 0%, var(--primary-navy) 100%); color: var(--white); padding: 4rem 0 3rem 0;">
+    <div class="container text-center">
+      <span class="section-badge gold"><i class="fas fa-laptop-code"></i> Digital Submissions</span>
+      <h1 style="font-family: var(--font-heading); font-size: 2.75rem; font-weight: 800; margin-top: 0.5rem;">Online Forms & Licensing Desk</h1>
+      <p style="color: var(--slate-300); max-width: 700px; margin: 0.75rem auto 0 auto;">File consumer disputes or submit power generation/distribution license applications online.</p>
+    </div>
+  </section>
+
+  <!-- Forms Section -->
+  <section class="section-padding" style="background: var(--slate-50);">
+    <div class="container">
+
+      <!-- Form Selector Tabs -->
+      <div class="form-tabs-container">
+        <button class="tab-button active" data-tab="complaint"><i class="fas fa-exclamation-triangle"></i> Customer Complaint Form</button>
+        <button class="tab-button" data-tab="license"><i class="fas fa-file-contract"></i> License Application Form</button>
+      </div>
+
+      <!-- Tab 1: Customer Complaint Form -->
+      <div class="form-tab-content" id="complaintTab">
+        <div class="form-card">
+          <div style="margin-bottom: 2rem; border-bottom: 1px solid var(--slate-200); padding-bottom: 1rem;">
+            <h2 style="font-family: var(--font-heading); font-size: 1.75rem; color: var(--primary-navy); font-weight: 800;">Customer Complaint Filing Form</h2>
+            <p style="color: var(--slate-600); font-size: 0.95rem; margin-top: 0.25rem;">Pursuant to the Nasarawa State Electricity Law 2024 (Consumer Protection Regulations). Please provide accurate details below.</p>
+          </div>
+
+          <form id="customerComplaintForm" novalidate>
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label class="form-label">Full Name <span class="required">*</span></label>
+                <input type="text" class="form-control" name="fullName" placeholder="e.g. Alhaji Mustapha Bello" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Phone Number <span class="required">*</span></label>
+                <input type="tel" class="form-control" name="phone" placeholder="e.g. 08031234567" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Email Address <span class="required">*</span></label>
+                <input type="email" class="form-control" name="email" placeholder="e.g. m.bello@example.com" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Local Government Area (LGA) <span class="required">*</span></label>
+                <select class="form-control" name="lga" required>
+                  <option value="">Select Nasarawa State LGA...</option>
+                  <option value="Lafia">Lafia LGA (Capital)</option>
+                  <option value="Karu">Karu LGA</option>
+                  <option value="Keffi">Keffi LGA</option>
+                  <option value="Akwanga">Akwanga LGA</option>
+                  <option value="Nasarawa">Nasarawa LGA</option>
+                  <option value="Awe">Awe LGA</option>
+                  <option value="Doma">Doma LGA</option>
+                  <option value="Kokona">Kokona LGA</option>
+                  <option value="Keana">Keana LGA</option>
+                  <option value="Nasarawa-Eggon">Nasarawa-Eggon LGA</option>
+                  <option value="Obi">Obi LGA</option>
+                  <option value="Toto">Toto LGA</option>
+                  <option value="Wamba">Wamba LGA</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Electricity Service Provider (DisCo / Mini-Grid) <span class="required">*</span></label>
+                <select class="form-control" name="provider" required>
+                  <option value="">Select Service Provider...</option>
+                  <option value="Abuja Electricity Distribution Plc (AEDC)">Abuja Electricity Distribution Plc (AEDC)</option>
+                  <option value="Lafia Solar Power Mini-Grid Ltd">Lafia Solar Power Mini-Grid Ltd</option>
+                  <option value="Karu Renewable Energy Cooperative">Karu Renewable Energy Cooperative</option>
+                  <option value="Keffi Green Power Off-Grid DisCo">Keffi Green Power Off-Grid DisCo</option>
+                  <option value="Other Independent Mini-Grid Operator">Other Independent Mini-Grid Operator</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Account or Smart Meter Number <span class="required">*</span></label>
+                <input type="text" class="form-control" name="accountNumber" placeholder="e.g. 45019827361 or Meter ID" required>
+              </div>
+
+              <div class="form-group full-width">
+                <label class="form-label">Complaint Category <span class="required">*</span></label>
+                <select class="form-control" name="complaintCategory" required>
+                  <option value="">Select Complaint Category...</option>
+                  <option value="Overbilling / Estimated Billing Dispute">Overbilling / Estimated Billing Dispute</option>
+                  <option value="Unmetered Premises / Delayed Smart Meter Rollout">Unmetered Premises / Delayed Smart Meter Rollout</option>
+                  <option value="Prolonged Outage / Transformer Failure">Prolonged Outage / Transformer Failure</option>
+                  <option value="Voltage Fluctuation / Equipment Damage">Voltage Fluctuation / Equipment Damage</option>
+                  <option value="Unlawful Disconnection / Service Interruption">Unlawful Disconnection / Service Interruption</option>
+                  <option value="Staff Misconduct / Extortion Report">Staff Misconduct / Extortion Report</option>
+                </select>
+              </div>
+
+              <div class="form-group full-width">
+                <label class="form-label">Detailed Description of Complaint <span class="required">*</span></label>
+                <textarea class="form-control" name="description" rows="5" placeholder="Please describe what happened, dates of occurrence, previous complaints lodged with provider, and desired resolution..." required></textarea>
+              </div>
+
+              <div class="form-group full-width">
+                <label class="form-label">Upload Supporting Evidence (Electricity Bill, Payment Receipt, Photo)</label>
+                <div class="file-upload-zone">
+                  <input type="file" style="display: none;" name="attachment" accept=".pdf,.png,.jpg,.jpeg">
+                  <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                  <div class="upload-preview-text">
+                    <strong>Click or Drag & Drop File Here</strong>
+                    <div style="font-size: 0.8rem; color: var(--slate-500); margin-top: 0.25rem;">Supported formats: PDF, JPG, PNG (Max size: 5MB)</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div style="margin-top: 2.5rem; display: flex; justify-content: flex-end; gap: 1rem;">
+              <button type="reset" class="btn btn-outline">Reset Form</button>
+              <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-paper-plane"></i> Submit Formal Complaint</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Tab 2: License Application Form -->
+      <div class="form-tab-content" id="licenseTab" style="display: none;">
+        <div class="form-card">
+          <div style="margin-bottom: 2rem; border-bottom: 1px solid var(--slate-200); padding-bottom: 1rem;">
+            <h2 style="font-family: var(--font-heading); font-size: 1.75rem; color: var(--primary-navy); font-weight: 800;">Electricity License & Permit Application Form</h2>
+            <p style="color: var(--slate-600); font-size: 0.95rem; margin-top: 0.25rem;">For Power Generation, Distribution, Mini-Grid Operations, and Meter Asset Provider (MAP) licenses in Nasarawa State.</p>
+          </div>
+
+          <form id="licenseApplicationForm" novalidate>
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label class="form-label">Registered Business / Corporate Name <span class="required">*</span></label>
+                <input type="text" class="form-control" name="companyName" placeholder="e.g. Nasarawa Sun Power Energy Ltd" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">CAC Registration Number (RC/BN) <span class="required">*</span></label>
+                <input type="text" class="form-control" name="cacNumber" placeholder="e.g. RC-1849204" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Authorized Representative Name <span class="required">*</span></label>
+                <input type="text" class="form-control" name="contactPerson" placeholder="e.g. Engr. Samuel O. David" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Representative Phone Number <span class="required">*</span></label>
+                <input type="tel" class="form-control" name="phone" placeholder="e.g. 08029998877" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Official Email Address <span class="required">*</span></label>
+                <input type="email" class="form-control" name="email" placeholder="e.g. licensing@company.com" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">License Application Class <span class="required">*</span></label>
+                <select class="form-control" name="licenseType" required>
+                  <option value="">Select License Class...</option>
+                  <option value="Off-Grid Mini-Grid Generation (< 1MW)">Off-Grid Mini-Grid Generation (< 1MW)</option>
+                  <option value="Off-Grid Mini-Grid Generation (1MW - 10MW)">Off-Grid Mini-Grid Generation (1MW - 10MW)</option>
+                  <option value="Embedded Generation Permit">Embedded Generation Permit</option>
+                  <option value="Independent Electricity Distribution Network (IEDN)">Independent Electricity Distribution Network (IEDN)</option>
+                  <option value="Meter Asset Provider (MAP) License">Meter Asset Provider (MAP) License</option>
+                  <option value="Captive Generation Permit">Captive Generation Permit</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Proposed Generating Capacity (kW or MW) <span class="required">*</span></label>
+                <input type="text" class="form-control" name="capacity" placeholder="e.g. 500 kW Solar Hybrid" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Target LGA / Location in Nasarawa State <span class="required">*</span></label>
+                <input type="text" class="form-control" name="location" placeholder="e.g. Karu Industrial Cluster, Karu LGA" required>
+              </div>
+
+              <div class="form-group full-width">
+                <label class="form-label">Project Scope & Executive Summary <span class="required">*</span></label>
+                <textarea class="form-control" name="projectSummary" rows="4" placeholder="Briefly describe energy source (Solar PV, Gas, Hydro, Biomass), target customer base, land acquisition status, and project timeline..." required></textarea>
+              </div>
+
+              <div class="form-group full-width">
+                <label class="form-label">Upload Technical Feasibility & EIA Report (Zip/PDF) <span class="required">*</span></label>
+                <div class="file-upload-zone">
+                  <input type="file" style="display: none;" name="licenseDocs" accept=".pdf,.zip,.rar" required>
+                  <div class="upload-icon"><i class="fas fa-file-pdf"></i></div>
+                  <div class="upload-preview-text">
+                    <strong>Click or Drag & Drop Application Dossier</strong>
+                    <div style="font-size: 0.8rem; color: var(--slate-500); margin-top: 0.25rem;">Includes CAC Cert, Feasibility Study, EIA Approval, and Layout (Max 15MB)</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div style="margin-top: 2.5rem; display: flex; justify-content: flex-end; gap: 1rem;">
+              <button type="reset" class="btn btn-outline">Reset Form</button>
+              <button type="submit" class="btn btn-accent btn-lg"><i class="fas fa-paper-plane"></i> File License Application</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Global Footer -->
+  <footer class="main-footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand-col">
+            <div class="footer-logo-row">
+              <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="footer-logo" onerror="this.src='https://naserc.na.gov.ng/nasarawa.jpg'; this.onerror=null;">
+              <span style="font-family: var(--font-heading); font-weight: 800; font-size: 1.35rem; color: var(--white);">NASERC</span>
+            </div>
+            <p class="footer-desc">
+              The Nasarawa State Electricity Regulatory Commission (NASERC) regulates power generation, distribution, mini-grids, and consumer rights across Nasarawa State.
+            </p>
+          </div>
+          <div>
+            <h4 class="footer-heading">Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="index.html" class="footer-link"><i class="fas fa-chevron-right"></i> Home</a></li>
+              <li><a href="about.html" class="footer-link"><i class="fas fa-chevron-right"></i> Mandate</a></li>
+              <li><a href="regulations.html" class="footer-link"><i class="fas fa-chevron-right"></i> Regulations</a></li>
+              <li><a href="contact.html" class="footer-link"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-heading">Forms & Services</h4>
+            <ul class="footer-links">
+              <li><a href="forms.html?tab=complaint" class="footer-link"><i class="fas fa-chevron-right"></i> File Complaint</a></li>
+              <li><a href="forms.html?tab=license" class="footer-link"><i class="fas fa-chevron-right"></i> Apply for License</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-heading">Contact Secretariat</h4>
+            <ul class="footer-links">
+              <li style="color: var(--slate-400); font-size: 0.9rem;"><i class="fas fa-map-marker-alt" style="color: var(--accent-gold); margin-right: 0.5rem;"></i> Lafia Headquarters, Nasarawa State.</li>
+              <li style="color: var(--slate-400); font-size: 0.9rem;"><i class="fas fa-phone" style="color: var(--accent-gold); margin-right: 0.5rem;"></i> Hotline: 0800-NASERC-HOT</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-content">
+        <div>&copy; 2026 Nasarawa State Electricity Regulatory Commission (NASERC). All Rights Reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/forms.js"></script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activities & News | Nasarawa State Electricity Regulatory Commission (NASERC)</title>
+  <meta name="description" content="News updates, press releases, community engagement activities, and public regulatory hearings organized by NASERC.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://naserc.na.gov.ng/logo.png" type="image/png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <div class="top-bar-info">
+        <div class="top-bar-item">
+          <i class="fas fa-shield-alt"></i>
+          <span>Nasarawa State Government — Official E-Governance Portal</span>
+        </div>
+        <div class="top-bar-item">
+          <i class="fas fa-phone-alt"></i>
+          <span>Hotline: <strong class="hotline-badge">0800-NASERC-HOT</strong> (+234 803 123 4567)</span>
+        </div>
+        <div class="top-bar-item">
+          <i class="fas fa-envelope"></i>
+          <span>info@naserc.na.gov.ng</span>
+        </div>
+      </div>
+      <div class="top-bar-tools">
+        <div class="quick-search-form">
+          <i class="fas fa-search quick-search-icon"></i>
+          <input type="text" class="quick-search-input" placeholder="Search regulations, laws..." aria-label="Search">
+        </div>
+        <div class="top-bar-links">
+          <a href="#" id="toggleContrastBtn" class="top-bar-link" title="High Contrast Mode"><i class="fas fa-adjust"></i> Contrast</a>
+          <a href="#" id="fontIncreaseBtn" class="top-bar-link" title="Increase Text Size">A+</a>
+          <a href="#" id="fontResetBtn" class="top-bar-link" title="Reset Text Size">A</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="main-header">
+    <div class="container header-inner">
+      <div class="brand-wrapper">
+        <a href="index.html" class="brand-logo-link">
+          <div class="logo-badge-container">
+            <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="logo-img" onerror="this.src='https://naserc.na.gov.ng/nasarawa.jpg'; this.onerror=null;">
+            <img src="https://naserc.na.gov.ng/nasarawa.jpg" alt="Nasarawa Coat of Arms" class="state-coat-img">
+          </div>
+          <div class="brand-text">
+            <span class="brand-acronym">NASERC</span>
+            <span class="brand-tagline">Nasarawa State Electricity Regulatory Commission</span>
+          </div>
+        </a>
+      </div>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">About Us <i class="fas fa-chevron-down arrow"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="about.html#mandate" class="dropdown-item">Statutory Mandate</a></li>
+              <li><a href="about.html#vision" class="dropdown-item">Vision & Mission</a></li>
+              <li><a href="about.html#governance" class="dropdown-item">Governance & Leadership</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="regulations.html" class="nav-link">Regulatory Instruments <i class="fas fa-chevron-down arrow"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="regulations.html?category=regulations" class="dropdown-item">Electricity Regulations</a></li>
+              <li><a href="regulations.html?category=licenses" class="dropdown-item">Licenses & Permits</a></li>
+              <li><a href="regulations.html?category=tariff" class="dropdown-item">Tariff Orders (MYTO)</a></li>
+            </ul>
+          </li>
+          <li class="nav-item active"><a href="activities.html" class="nav-link">Activities</a></li>
+          <li class="nav-item"><a href="forms.html" class="nav-link">Forms</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="forms.html?tab=complaint" class="btn btn-accent btn-sm"><i class="fas fa-paper-plane"></i> File Complaint</a>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Banner -->
+  <section style="background: linear-gradient(135deg, var(--primary-navy-dark) 0%, var(--primary-navy) 100%); color: var(--white); padding: 4rem 0 3rem 0;">
+    <div class="container text-center">
+      <span class="section-badge gold"><i class="fas fa-bullhorn"></i> News & Events</span>
+      <h1 style="font-family: var(--font-heading); font-size: 2.75rem; font-weight: 800; margin-top: 0.5rem;">Commission Activities & News</h1>
+      <p style="color: var(--slate-300); max-width: 700px; margin: 0.75rem auto 0 auto;">Official press releases, community engagement outreach, regulatory public hearings, and power sector milestones in Nasarawa State.</p>
+    </div>
+  </section>
+
+  <!-- News Grid Section -->
+  <section class="section-padding" id="news" style="background: var(--slate-50);">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-badge"><i class="fas fa-newspaper"></i> Latest Coverage</span>
+        <h2 class="section-title">Press Releases & Field Reports</h2>
+      </div>
+
+      <div class="news-grid">
+        <!-- Post 1 -->
+        <article class="news-card" data-full-content="The Executive Chairman, Engr. Dr. Ibrahim A. Abdullahi, alongside Commissioners of NASERC, today met with mini-grid developers and key energy stakeholders in Lafia to evaluate the state's 2026 decentralized electrification strategy.">
+          <div class="news-img-wrapper">
+            <img src="assets/images/stakeholder_hearing.png" alt="Stakeholder Summit" class="news-img">
+            <span class="news-category-tag">Press Release</span>
+          </div>
+          <div class="news-body">
+            <div class="news-meta">
+              <span><i class="far fa-calendar-alt"></i> August 4, 2026</span>
+              <span><i class="far fa-user"></i> Communications Unit</span>
+            </div>
+            <h3 class="news-title">NASERC Hosts 2026 Stakeholder Engagement Summit on Decentralized Power Generation</h3>
+            <p class="news-excerpt">A landmark consultation harmonizing mini-grid grid standards, rural tariff subsidies, and technical inspection protocols across Nasarawa State.</p>
+            <a href="#" class="btn btn-sm btn-outline read-news-btn" style="margin-top: auto;"><i class="fas fa-book-reader"></i> Read Full Story</a>
+          </div>
+        </article>
+
+        <!-- Post 2 -->
+        <article class="news-card" data-full-content="In response to citizen complaints regarding unmetered estimated billing, NASERC has released strict Smart Meter Asset Provider guidelines requiring distribution companies to install prepaid meters within 14 business days of payment.">
+          <div class="news-img-wrapper">
+            <img src="assets/images/hero_solar.png" alt="Smart Meter Directives" class="news-img">
+            <span class="news-category-tag">Consumer Alert</span>
+          </div>
+          <div class="news-body">
+            <div class="news-meta">
+              <span><i class="far fa-calendar-alt"></i> July 28, 2026</span>
+              <span><i class="far fa-user"></i> Consumer Protection Unit</span>
+            </div>
+            <h3 class="news-title">Commission Enforces Mandatory 14-Day Smart Metering Rule</h3>
+            <p class="news-excerpt">NASERC issues binding directives to eliminate unmetered estimated billing across commercial and residential customer bands in Karu, Keffi, and Lafia.</p>
+            <a href="#" class="btn btn-sm btn-outline read-news-btn" style="margin-top: auto;"><i class="fas fa-book-reader"></i> Read Full Story</a>
+          </div>
+        </article>
+
+        <!-- Post 3 -->
+        <article class="news-card" data-full-content="Governor Abdullahi Sule and the leadership of NASERC today commissioned the 2.5MW Lafia Solar Mini-Grid Facility, supplying continuous renewable power to over 4,200 commercial shops, agricultural processing plants, and residential quarters.">
+          <div class="news-img-wrapper">
+            <img src="assets/images/hero_solar.png" alt="Lafia Solar Mini-Grid Facility" class="news-img">
+            <span class="news-category-tag">Commission Project</span>
+          </div>
+          <div class="news-body">
+            <div class="news-meta">
+              <span><i class="far fa-calendar-alt"></i> July 15, 2026</span>
+              <span><i class="far fa-user"></i> Technical Division</span>
+            </div>
+            <h3 class="news-title">Commissioning of 2.5MW Lafia Green Energy Mini-Grid Hub</h3>
+            <p class="news-excerpt">Expanding continuous clean electricity to commercial markets and agro-processing clusters in the State Capital.</p>
+            <a href="#" class="btn btn-sm btn-outline read-news-btn" style="margin-top: auto;"><i class="fas fa-book-reader"></i> Read Full Story</a>
+          </div>
+        </article>
+
+        <!-- Post 4 -->
+        <article class="news-card" data-full-content="NASERC Consumer Protection teams conducted a 3-day sensitization campaign in Karu Zonal Hub, educating residents on their rights regarding billing disputes, meter testing, and reporting power outages.">
+          <div class="news-img-wrapper">
+            <img src="assets/images/stakeholder_hearing.png" alt="Consumer Townhall Karu" class="news-img">
+            <span class="news-category-tag">Community Outreach</span>
+          </div>
+          <div class="news-body">
+            <div class="news-meta">
+              <span><i class="far fa-calendar-alt"></i> June 30, 2026</span>
+              <span><i class="far fa-user"></i> Consumer Affairs</span>
+            </div>
+            <h3 class="news-title">Consumer Rights Townhall & Dispute Resolution Campaign in Karu</h3>
+            <p class="news-excerpt">Educating over 1,500 electricity consumers in Karu on tariff rights, dispute escalation pathways, and free meter testing requests.</p>
+            <a href="#" class="btn btn-sm btn-outline read-news-btn" style="margin-top: auto;"><i class="fas fa-book-reader"></i> Read Full Story</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Upcoming Events & Consultations Section -->
+  <section class="section-padding" id="events" style="background: var(--white);">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-badge gold"><i class="fas fa-calendar-check"></i> Public Calendar</span>
+        <h2 class="section-title">Upcoming Regulatory Hearings & Consultations</h2>
+        <p class="section-subtitle">Participate in public hearings, tariff reviews, and regulatory rulemaking sessions.</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 900px; margin: 0 auto;">
+        
+        <!-- Event 1 -->
+        <div style="display: flex; gap: 1.5rem; background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.5rem; align-items: center; flex-wrap: wrap;">
+          <div style="background: var(--primary-navy); color: var(--white); border-radius: var(--radius-md); padding: 1rem 1.25rem; text-align: center; min-width: 90px;">
+            <div style="font-size: 1.5rem; font-weight: 800; font-family: var(--font-heading); color: var(--accent-gold);">SEP 18</div>
+            <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">2026</div>
+          </div>
+          <div style="flex: 1; min-width: 250px;">
+            <span style="background: rgba(0, 104, 55, 0.1); color: var(--primary-green); padding: 0.2rem 0.6rem; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">Public Hearing</span>
+            <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; color: var(--primary-navy); margin: 0.35rem 0;">2026-2029 Multi-Year Tariff Order (MYTO) Public Consultation</h3>
+            <p style="font-size: 0.875rem; color: var(--slate-600);"><i class="fas fa-map-marker-alt" style="color: var(--accent-gold);"></i> NASERC Conference Center, Shendam Road, Lafia | 10:00 AM WAT</p>
+          </div>
+          <div>
+            <button class="btn btn-sm btn-accent" onclick="showToast('RSVP Confirmed for MYTO Hearing on Sep 18, 2026!', 'success')"><i class="fas fa-calendar-plus"></i> Attend Hearing</button>
+          </div>
+        </div>
+
+        <!-- Event 2 -->
+        <div style="display: flex; gap: 1.5rem; background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 1.5rem; align-items: center; flex-wrap: wrap;">
+          <div style="background: var(--primary-navy); color: var(--white); border-radius: var(--radius-md); padding: 1rem 1.25rem; text-align: center; min-width: 90px;">
+            <div style="font-size: 1.5rem; font-weight: 800; font-family: var(--font-heading); color: var(--accent-gold);">OCT 05</div>
+            <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">2026</div>
+          </div>
+          <div style="flex: 1; min-width: 250px;">
+            <span style="background: rgba(245, 158, 11, 0.15); color: var(--accent-gold-hover); padding: 0.2rem 0.6rem; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">Investor Workshop</span>
+            <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; color: var(--primary-navy); margin: 0.35rem 0;">Nasarawa State Off-Grid Mini-Grid Investor Forum</h3>
+            <p style="font-size: 0.875rem; color: var(--slate-600);"><i class="fas fa-map-marker-alt" style="color: var(--accent-gold);"></i> Karu Zonal Office Auditorium, Karu | 09:30 AM WAT</p>
+          </div>
+          <div>
+            <button class="btn btn-sm btn-outline" onclick="showToast('RSVP Confirmed for Investor Forum on Oct 5, 2026!', 'success')"><i class="fas fa-calendar-plus"></i> Register Forum</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Global Footer -->
+  <footer class="main-footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand-col">
+            <div class="footer-logo-row">
+              <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="footer-logo" onerror="this.src='https://naserc.na.gov.ng/nasarawa.jpg'; this.onerror=null;">
+              <span style="font-family: var(--font-heading); font-weight: 800; font-size: 1.35rem; color: var(--white);">NASERC</span>
+            </div>
+            <p class="footer-desc">
+              The Nasarawa State Electricity Regulatory Commission (NASERC) regulates power generation, distribution, mini-grids, and consumer rights across Nasarawa State.
+            </p>
+          </div>
+          <div>
+            <h4 class="footer-heading">Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="index.html" class="footer-link"><i class="fas fa-chevron-right"></i> Home</a></li>
+              <li><a href="about.html" class="footer-link"><i class="fas fa-chevron-right"></i> Mandate</a></li>
+              <li><a href="regulations.html" class="footer-link"><i class="fas fa-chevron-right"></i> Regulations</a></li>
+              <li><a href="contact.html" class="footer-link"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-heading">Forms & Services</h4>
+            <ul class="footer-links">
+              <li><a href="forms.html?tab=complaint" class="footer-link"><i class="fas fa-chevron-right"></i> File Complaint</a></li>
+              <li><a href="forms.html?tab=license" class="footer-link"><i class="fas fa-chevron-right"></i> Apply for License</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-heading">Contact Secretariat</h4>
+            <ul class="footer-links">
+              <li style="color: var(--slate-400); font-size: 0.9rem;"><i class="fas fa-map-marker-alt" style="color: var(--accent-gold); margin-right: 0.5rem;"></i> Lafia Headquarters, Nasarawa State.</li>
+              <li style="color: var(--slate-400); font-size: 0.9rem;"><i class="fas fa-phone" style="color: var(--accent-gold); margin-right: 0.5rem;"></i> Hotline: 0800-NASERC-HOT</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-content">
+        <div>&copy; 2026 Nasarawa State Electricity Regulatory Commission (NASERC). All Rights Reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/modals.js"></script>
+</body>
+</html>
