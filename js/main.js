@@ -65,7 +65,7 @@ function initMobileDrawer() {
           <li class="mobile-nav-item"><a href="contact.html" class="mobile-nav-link">Contact Us</a></li>
         </ul>
         <div style="margin-top: 2rem;">
-          <a href="forms.html?tab=complaint" class="btn btn-accent" style="width: 100%; text-align: center;"><i class="fas fa-paper-plane"></i> File Complaint</a>
+          <a href="forms.html?tab=complaint" class="btn btn-accent" style="width: 100%; text-align: center;">File Complaint</a>
         </div>
       </div>
     `;
@@ -140,13 +140,7 @@ function showToast(message, type = 'info') {
   const toast = document.createElement('div');
   toast.className = `toast ${type}`;
 
-  let iconClass = 'fa-info-circle';
-  if (type === 'success') iconClass = 'fa-check-circle';
-  if (type === 'warning') iconClass = 'fa-exclamation-triangle';
-  if (type === 'danger') iconClass = 'fa-times-circle';
-
   toast.innerHTML = `
-    <i class="fas ${iconClass}" style="font-size: 1.25rem;"></i>
     <span>${message}</span>
   `;
 

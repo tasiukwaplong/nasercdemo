@@ -13,14 +13,14 @@ function initModalListeners() {
   if (readSpeechBtn) {
     readSpeechBtn.addEventListener('click', () => {
       openCustomModal({
-        title: 'Executive Address — Engr. Dr. Ibrahim A. Abdullahi',
+        title: 'Executive Address — Engr. Muhammad Bello',
         bodyHTML: `
           <div style="line-height: 1.7; color: var(--slate-700);">
             <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.5rem; background: var(--slate-100); padding: 1rem; border-radius: var(--radius-md);">
               <img src="assets/images/chairman.png" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-gold);">
               <div>
-                <strong style="color: var(--primary-navy); font-size: 1.05rem;">Engr. Dr. Ibrahim A. Abdullahi</strong><br>
-                <span style="color: var(--primary-green); font-size: 0.85rem; font-weight: 600;">Executive Chairman / CEO, NASERC</span>
+                <strong style="color: var(--primary-navy); font-size: 1.05rem;">Engr. Muhammad Bello</strong><br>
+                <span style="color: var(--primary-green); font-size: 0.85rem; font-weight: 600;">Chairman / CEO, NASERC</span>
               </div>
             </div>
 
@@ -97,9 +97,6 @@ function initModalListeners() {
           title: 'Official Licensee Verification Report',
           bodyHTML: `
             <div style="text-align: center; padding: 1rem 0;">
-              <div style="width: 60px; height: 60px; background: rgba(0, 104, 55, 0.1); color: var(--primary-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem auto;">
-                <i class="fas fa-check-circle"></i>
-              </div>
               <span style="background: rgba(16, 185, 129, 0.15); color: var(--success); font-weight: 800; padding: 0.35rem 1rem; border-radius: var(--radius-full); font-size: 0.85rem;">${match.status}</span>
               <h3 style="font-family: var(--font-heading); color: var(--primary-navy); font-size: 1.4rem; margin-top: 1rem;">${match.company}</h3>
               <p style="color: var(--primary-green); font-weight: 700;">Ref Code: ${match.code}</p>
@@ -126,9 +123,6 @@ function initModalListeners() {
           title: 'Verification Search Result',
           bodyHTML: `
             <div style="text-align: center; padding: 1.5rem 0;">
-              <div style="width: 60px; height: 60px; background: rgba(239, 68, 68, 0.1); color: var(--danger); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem auto;">
-                <i class="fas fa-exclamation-triangle"></i>
-              </div>
               <h3 style="font-family: var(--font-heading); color: var(--primary-navy); font-size: 1.3rem;">No Active License Match Found</h3>
               <p style="color: var(--slate-600); margin-top: 0.5rem; font-size: 0.9rem;">
                 No registered license match was found for "<strong>${query}</strong>". Please verify the operator name or contact NASERC Secretariat for official confirmation.
@@ -151,7 +145,7 @@ function initModalListeners() {
             <p style="color: var(--slate-600); font-size: 0.9rem; margin-bottom: 1rem;">Enter your NASERC Complaint Reference Number (e.g. NAS-CMP-2026-8942) to view resolution status.</p>
             <div style="display: flex; gap: 0.5rem;">
               <input type="text" id="trackInputCode" class="form-control" placeholder="e.g. NAS-CMP-2026-8942">
-              <button class="btn btn-primary" id="execTrackBtn"><i class="fas fa-search"></i> Track</button>
+              <button class="btn btn-primary" id="execTrackBtn">Track</button>
             </div>
             <div id="trackResultContainer" style="margin-top: 1.5rem; display: none;"></div>
           </div>

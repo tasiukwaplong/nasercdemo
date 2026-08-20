@@ -90,7 +90,7 @@ function initFileUploadPreviews() {
 
     function updatePreview(file) {
       previewText.innerHTML = `
-        <strong style="color: var(--primary-green);"><i class="fas fa-file-check"></i> File Selected: ${file.name}</strong>
+        <strong style="color: var(--primary-green);">File Selected: ${file.name}</strong>
         <div style="font-size: 0.8rem; color: var(--slate-500); margin-top: 0.25rem;">Size: ${(file.size / (1024 * 1024)).toFixed(2)} MB</div>
       `;
     }
@@ -126,9 +126,6 @@ function initFormValidations() {
         title: 'Complaint Lodged Successfully',
         bodyHTML: `
           <div style="text-align: center; padding: 1rem 0;">
-            <div style="width: 60px; height: 60px; background: rgba(0, 104, 55, 0.1); color: var(--primary-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem auto;">
-              <i class="fas fa-check-circle"></i>
-            </div>
             <h3 style="font-family: var(--font-heading); color: var(--primary-navy); font-size: 1.4rem;">Official Receipt</h3>
             <p style="color: var(--slate-600); font-size: 0.9rem;">Your customer dispute has been logged with the NASERC Consumer Advocacy Desk.</p>
             <div style="background: var(--slate-100); border: 1px dashed var(--primary-green); padding: 1rem; border-radius: var(--radius-md); margin: 1.25rem 0;">
@@ -145,7 +142,7 @@ function initFormValidations() {
             • Category: ${cat}
           </div>
           <div style="margin-top: 1.5rem; text-align: center;">
-            <button onclick="window.print()" class="btn btn-outline btn-sm"><i class="fas fa-print"></i> Print Receipt</button>
+            <button onclick="window.print()" class="btn btn-outline btn-sm">Print Receipt</button>
           </div>
         `
       });
@@ -179,9 +176,6 @@ function initFormValidations() {
         title: 'License Application Docket Created',
         bodyHTML: `
           <div style="text-align: center; padding: 1rem 0;">
-            <div style="width: 60px; height: 60px; background: rgba(0, 104, 55, 0.1); color: var(--primary-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem auto;">
-              <i class="fas fa-file-signature"></i>
-            </div>
             <h3 style="font-family: var(--font-heading); color: var(--primary-navy); font-size: 1.4rem;">Docket Acknowledgement</h3>
             <p style="color: var(--slate-600); font-size: 0.9rem;">Your statutory license application has been filed with the NASERC Technical & Legal Division.</p>
             <div style="background: var(--slate-100); border: 1px dashed var(--accent-gold-hover); padding: 1rem; border-radius: var(--radius-md); margin: 1.25rem 0;">
@@ -198,7 +192,7 @@ function initFormValidations() {
             • Location: ${location}
           </div>
           <div style="margin-top: 1.5rem; text-align: center;">
-            <button onclick="window.print()" class="btn btn-outline btn-sm"><i class="fas fa-print"></i> Print Docket Receipt</button>
+            <button onclick="window.print()" class="btn btn-outline btn-sm">Print Docket Receipt</button>
           </div>
         `
       });

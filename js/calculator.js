@@ -109,7 +109,7 @@ function initFeeCalculator() {
     if (checklistEl) {
       checklistEl.innerHTML = checklistItems.map(item => `
         <li style="display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.5rem 0; font-size: 0.875rem; color: var(--slate-700); border-bottom: 1px solid var(--slate-100);">
-          <i class="fas fa-check-circle" style="color: var(--primary-green); font-size: 1rem; margin-top: 0.15rem;"></i>
+          <span style="color: var(--primary-green); font-weight: bold; font-size: 1rem; line-height: 1;">•</span>
           <span>${item}</span>
         </li>
       `).join('');
