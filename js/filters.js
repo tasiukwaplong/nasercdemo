@@ -87,15 +87,6 @@ function initDocumentFilters() {
     });
   });
 
-  // Attach PDF download simulation listeners
-  document.querySelectorAll('.download-doc-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const docTitle = btn.dataset.docTitle || 'Regulatory Document';
-      showToast(`Downloading PDF: ${docTitle}...`, 'success');
-    });
-  });
-
   // Initial filter run
   filterDocuments();
 }

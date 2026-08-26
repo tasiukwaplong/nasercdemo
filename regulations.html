@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Regulatory Instruments | Nasarawa State Electricity Regulatory Commission (NASERC)</title>
-  <meta name="description" content="Search and download statutory electricity regulations, licenses, grid codes, and operational guidelines issued by NASERC.">
+  <meta name="description"
+    content="Search and download statutory electricity regulations, licenses, grid codes, and operational guidelines issued by NASERC.">
 
   <!-- Favicon -->
-  <link rel="icon" href="https://naserc.na.gov.ng/logo.png" type="image/png">
+  <link rel="icon" href="assets/images/logo.png" type="image/png">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -20,6 +24,7 @@
   <!-- Core Stylesheet -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
 
   <!-- Header Navigation -->
@@ -28,7 +33,7 @@
       <div class="brand-wrapper">
         <a href="index.html" class="brand-logo-link">
           <div class="logo-badge-container">
-            <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="logo-img">
+            <img src="assets/images/logo.png" alt="NASERC Logo" class="logo-img">
           </div>
           <div class="brand-text">
             <span class="brand-acronym">NASERC</span>
@@ -53,45 +58,31 @@
             <ul class="dropdown-menu">
               <li><a href="regulations.html?category=regulations" class="dropdown-item">Electricity Regulations</a></li>
               <li><a href="regulations.html?category=licenses" class="dropdown-item">Licenses & Permits</a></li>
-              <li><a href="regulations.html?category=guidelines" class="dropdown-item">Codes & Frameworks</a></li>
             </ul>
           </li>
           <li class="nav-item"><a href="activities.html" class="nav-link">Activities</a></li>
-          <li class="nav-item">
-            <a href="forms.html" class="nav-link">Forms</a>
-            <ul class="dropdown-menu">
-              <li><a href="forms.html?tab=complaint" class="dropdown-item">Customer Complaint Form</a></li>
-              <li><a href="forms.html?tab=license" class="dropdown-item">License Estimator & Application</a></li>
-            </ul>
-          </li>
-          <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
+          <li class="nav-item"><a href="forms.html?tab=complaint" class="nav-link">File Complaint</a></li>
         </ul>
       </nav>
 
       <div class="header-actions">
-        <a href="forms.html?tab=complaint" class="btn btn-accent btn-sm">File Complaint</a>
-        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
+        <a href="contact.html" class="btn btn-accent btn-sm">Contact Us</a>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Menu"><i
+            class="fas fa-bars"></i></button>
       </div>
     </div>
   </header>
 
   <!-- Page Banner -->
-  <section style="background: linear-gradient(135deg, var(--primary-navy-dark) 0%, var(--primary-navy) 100%); color: var(--white); padding: 4rem 0 3rem 0;">
+  <section
+    style="background: linear-gradient(135deg, var(--primary-navy-dark) 0%, var(--primary-navy) 100%); color: var(--white); padding: 4rem 0 3rem 0;">
     <div class="container text-center">
-      <span class="section-badge gold">Legal Repository</span>
-      <h1 style="font-family: var(--font-heading); font-size: 2.75rem; font-weight: 800; margin-top: 0.5rem;">Regulatory Instruments & Codes</h1>
-      <p style="color: var(--slate-300); max-width: 700px; margin: 0.75rem auto 0 auto;">Official collection of electricity regulations, licensing procedures, technical grid codes, and consumer rights mandates in Nasarawa State.</p>
-    </div>
-  </section>
-
-  <!-- Quick Banner for License Threshold & Calculator -->
-  <section style="background: var(--primary-green); color: var(--white); padding: 1.5rem 0;">
-    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-      <div>
-        <h4 style="font-family: var(--font-heading); font-size: 1.15rem; color: var(--white);">Statutory Licensing Threshold Notice</h4>
-        <p style="font-size: 0.875rem; color: var(--slate-100); margin: 0;">Systems <strong>up to 100 kW</strong> require a Permit. Systems <strong>above 100 kW</strong> require a Full Regulatory License.</p>
-      </div>
-      <a href="forms.html?tab=license" class="btn btn-accent">Launch Fee Calculator</a>
+      <!-- <span class="section-badge gold">Legal Repository</span> -->
+      <h1 style="font-family: var(--font-heading); font-size: 2.75rem; font-weight: 800; margin-top: 0.5rem;">Regulatory
+        Instruments & Codes</h1>
+      <p style="color: var(--slate-300); max-width: 700px; margin: 0.75rem auto 0 auto;">Official collection of
+        electricity regulations, licensing procedures, technical grid codes, and consumer rights mandates in Nasarawa
+        State.</p>
     </div>
   </section>
 
@@ -103,7 +94,8 @@
       <div class="filter-bar">
         <div class="filter-top-row">
           <div class="search-input-group">
-            <input type="text" id="regSearchInput" placeholder="Search by title, keyword, or document reference (e.g., Grid Code, MAP Rules)...">
+            <input type="text" id="regSearchInput"
+              placeholder="Search by title or keyword...">
           </div>
           <select class="filter-select" id="regYearSelect">
             <option value="all">All Release Years</option>
@@ -111,21 +103,13 @@
             <option value="2025">2025 Regulations</option>
             <option value="2024">2024 Regulations</option>
           </select>
-        </div>
-
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-          <div class="filter-categories">
-            <button class="category-pill active" data-category="all">All Documents</button>
-            <button class="category-pill" data-category="regulations">Regulations & Codes</button>
-            <button class="category-pill" data-category="licenses">Licenses & Permits</button>
-            <button class="category-pill" data-category="guidelines">Guidelines & Frameworks</button>
-          </div>
           <div style="font-size: 0.875rem; font-weight: 700; color: var(--slate-600);" id="resultCount">Showing 7 Documents</div>
         </div>
       </div>
 
       <!-- No Results Container -->
-      <div id="noResultsMessage" style="display: none; text-align: center; padding: 4rem 2rem; background: var(--white); border-radius: var(--radius-xl); border: 1px solid var(--slate-200);">
+      <div id="noResultsMessage"
+        style="display: none; text-align: center; padding: 4rem 2rem; background: var(--white); border-radius: var(--radius-xl); border: 1px solid var(--slate-200);">
         <h3 style="font-family: var(--font-heading); color: var(--primary-navy);">No Regulatory Documents Found</h3>
         <p style="color: var(--slate-600);">Try searching for a different keyword or resetting your filter options.</p>
       </div>
@@ -134,121 +118,144 @@
       <div class="services-grid" id="documentsGrid">
 
         <!-- Doc 1 -->
-        <div class="doc-card doc-item-card" data-title="Nasarawa State Electricity Grid Code Regulation 2026" data-code="NAS-REG-01" data-category="regulations" data-year="2026">
-          <div class="doc-header">
-            <span class="doc-category-badge">Regulations & Codes</span>
-          </div>
+        <div class="doc-card doc-item-card" data-title="Nasarawa State Electricity Grid Code Regulation 2026"
+          data-code="NAS-REG-01" data-category="regulations" data-year="2026">
+          <div class="doc-header"></div>
           <h3 class="doc-title">Nasarawa State Electricity Grid Code Regulation 2026</h3>
-          <p style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem;">Establishes technical standards, power quality parameters, sub-station interconnectivity, and safety requirements for grid operations.</p>
+          <p style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem;">Establishes technical standards,
+            power quality parameters, sub-station interconnectivity, and safety requirements for grid operations.</p>
           <div class="doc-meta">
             <span>Jan 2026</span>
             <span>2.8 MB</span>
           </div>
           <div class="doc-footer">
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-green);">Ref: NAS-REG-01</span>
-            <button class="btn btn-sm btn-primary download-doc-btn" data-doc-title="Nasarawa State Electricity Grid Code Regulation 2026">Download PDF</button>
+            <button class="btn btn-sm btn-outline view-doc-btn"
+              data-doc-title="Nasarawa State Electricity Grid Code Regulation 2026"
+              data-doc-desc="Establishes technical standards, power quality parameters, sub-station interconnectivity, and safety requirements for grid operations.">View Document</button>
+            <button class="btn btn-sm btn-primary download-doc-btn"
+              data-doc-title="Nasarawa State Electricity Grid Code Regulation 2026">Download PDF</button>
           </div>
         </div>
 
         <!-- Doc 2 -->
-        <div class="doc-card doc-item-card" data-title="Customer Protection Rights & Service Standard Regulation" data-code="NAS-REG-02" data-category="regulations" data-year="2025">
-          <div class="doc-header">
-            <span class="doc-category-badge">Regulations & Codes</span>
-          </div>
+        <div class="doc-card doc-item-card" data-title="Customer Protection Rights & Service Standard Regulation"
+          data-code="NAS-REG-02" data-category="regulations" data-year="2025">
+          <div class="doc-header"></div>
           <h3 class="doc-title">Customer Protection Rights & Service Standard Regulation</h3>
-          <p style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem;">Protects electricity consumers against wrongful disconnection, unreasonable billing estimates, and unmetered billing penalties.</p>
+          <p style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem;">Protects electricity consumers
+            against wrongful disconnection, unreasonable billing estimates, and unmetered billing penalties.</p>
           <div class="doc-meta">
             <span>Nov 2025</span>
             <span>1.9 MB</span>
           </div>
           <div class="doc-footer">
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-green);">Ref: NAS-REG-02</span>
-            <button class="btn btn-sm btn-primary download-doc-btn" data-doc-title="Customer Protection Rights Regulation">Download PDF</button>
+            <button class="btn btn-sm btn-outline view-doc-btn"
+              data-doc-title="Customer Protection Rights & Service Standard Regulation"
+              data-doc-desc="Protects electricity consumers against wrongful disconnection, unreasonable billing estimates, and unmetered billing penalties.">View Document</button>
+            <button class="btn btn-sm btn-primary download-doc-btn"
+              data-doc-title="Customer Protection Rights & Service Standard Regulation">Download PDF</button>
           </div>
         </div>
 
         <!-- Doc 3 -->
-        <div class="doc-card doc-item-card" data-title="Mini-Grid & Off-Grid Licensing Framework 2026 (100 kW Threshold Rules)" data-code="NAS-LIC-04" data-category="licenses" data-year="2026">
-          <div class="doc-header">
-            <span class="doc-category-badge">Licenses & Permits</span>
-          </div>
-          <h3 class="doc-title">Mini-Grid & Off-Grid Licensing Framework 2026 (>100 kW Mandate)</h3>
-          <p style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem;">Provides clear guidelines: Permits for systems <= 100 kW and full Licenses for systems > 100 kW up to 10 MW in Nasarawa State.</p>
+        <div class="doc-card doc-item-card"
+          data-title="Mini-Grid & Off-Grid Licensing Framework 2026 (100 kW Threshold Rules)" data-code="NAS-LIC-04"
+          data-category="licenses" data-year="2026">
+          <div class="doc-header"></div>
+          <h3 class="doc-title">Mini-Grid & Off-Grid Licensing Framework 2026</h3>
+          <p style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem;">Provides clear guidelines:
+            Permits for systems <= 100 kW and full Licenses for systems > 100 kW up to 10 MW in Nasarawa State.</p>
           <div class="doc-meta">
             <span>Feb 2026</span>
             <span>3.4 MB</span>
           </div>
           <div class="doc-footer">
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-green);">Ref: NAS-LIC-04</span>
-            <button class="btn btn-sm btn-primary download-doc-btn" data-doc-title="Mini-Grid Licensing Framework 2026">Download PDF</button>
+            <button class="btn btn-sm btn-outline view-doc-btn"
+              data-doc-title="Mini-Grid & Off-Grid Licensing Framework 2026"
+              data-doc-desc="Provides clear guidelines: Permits for systems <= 100 kW and full Licenses for systems > 100 kW up to 10 MW in Nasarawa State.">View Document</button>
+            <button class="btn btn-sm btn-primary download-doc-btn"
+              data-doc-title="Mini-Grid & Off-Grid Licensing Framework 2026">Download PDF</button>
           </div>
         </div>
 
         <!-- Doc 4 -->
-        <div class="doc-card doc-item-card" data-title="Smart Meter Asset Provider (MAP) Operating Guidelines" data-code="NAS-MAP-03" data-category="guidelines" data-year="2025">
-          <div class="doc-header">
-            <span class="doc-category-badge">Guidelines & Frameworks</span>
-          </div>
+        <div class="doc-card doc-item-card" data-title="Smart Meter Asset Provider (MAP) Operating Guidelines"
+          data-code="NAS-MAP-03" data-category="guidelines" data-year="2025">
+          <div class="doc-header"></div>
           <h3 class="doc-title">Smart Meter Asset Provider (MAP) Operating Guidelines</h3>
-          <p style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem;">Standard Operating Procedures for meter vendors, testing agencies, and installation speed guarantees across all zonal hubs.</p>
+          <p style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem;">Standard Operating Procedures
+            for meter vendors, testing agencies, and installation speed guarantees across all zonal hubs.</p>
           <div class="doc-meta">
             <span>Dec 2025</span>
             <span>2.1 MB</span>
           </div>
           <div class="doc-footer">
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-green);">Ref: NAS-MAP-03</span>
-            <button class="btn btn-sm btn-primary download-doc-btn" data-doc-title="Smart Meter Asset Provider Operating Guidelines">Download PDF</button>
+            <button class="btn btn-sm btn-outline view-doc-btn"
+              data-doc-title="Smart Meter Asset Provider (MAP) Operating Guidelines"
+              data-doc-desc="Standard Operating Procedures for meter vendors, testing agencies, and installation speed guarantees across all zonal hubs.">View Document</button>
+            <button class="btn btn-sm btn-primary download-doc-btn"
+              data-doc-title="Smart Meter Asset Provider (MAP) Operating Guidelines">Download PDF</button>
           </div>
         </div>
 
         <!-- Doc 5 -->
-        <div class="doc-card doc-item-card" data-title="Embedded Generation & Renewable Power Regulations 2024" data-code="NAS-REG-03" data-category="regulations" data-year="2024">
-          <div class="doc-header">
-            <span class="doc-category-badge">Regulations & Codes</span>
-          </div>
+        <div class="doc-card doc-item-card" data-title="Embedded Generation & Renewable Power Regulations 2024"
+          data-code="NAS-REG-03" data-category="regulations" data-year="2024">
+          <div class="doc-header"></div>
           <h3 class="doc-title">Embedded Generation & Renewable Power Regulations 2024</h3>
-          <p style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem;">Regulatory provisions for power plant embedded generators feeding directly into distribution networks without transmission overhead.</p>
+          <p style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem;">Regulatory provisions for power
+            plant embedded generators feeding directly into distribution networks without transmission overhead.</p>
           <div class="doc-meta">
             <span>Aug 2024</span>
             <span>3.0 MB</span>
           </div>
           <div class="doc-footer">
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-green);">Ref: NAS-REG-03</span>
-            <button class="btn btn-sm btn-primary download-doc-btn" data-doc-title="Embedded Generation Regulations 2024">Download PDF</button>
+            <button class="btn btn-sm btn-outline view-doc-btn"
+              data-doc-title="Embedded Generation & Renewable Power Regulations 2024"
+              data-doc-desc="Regulatory provisions for power plant embedded generators feeding directly into distribution networks without transmission overhead.">View Document</button>
+            <button class="btn btn-sm btn-primary download-doc-btn"
+              data-doc-title="Embedded Generation & Renewable Power Regulations 2024">Download PDF</button>
           </div>
         </div>
 
         <!-- Doc 6 -->
-        <div class="doc-card doc-item-card" data-title="Distribution License Renewal & Quality of Service Performance Rules" data-code="NAS-LIC-02" data-category="licenses" data-year="2025">
-          <div class="doc-header">
-            <span class="doc-category-badge">Licenses & Permits</span>
-          </div>
+        <div class="doc-card doc-item-card"
+          data-title="Distribution License Renewal & Quality of Service Performance Rules" data-code="NAS-LIC-02"
+          data-category="licenses" data-year="2025">
+          <div class="doc-header"></div>
           <h3 class="doc-title">Distribution License Renewal & Quality of Service Performance Rules</h3>
-          <p style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem;">Key performance indicators (KPIs) for distribution network reliability, fault resolution speed, and transformer maintenance.</p>
+          <p style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem;">Key performance indicators
+            (KPIs) for distribution network reliability, fault resolution speed, and transformer maintenance.</p>
           <div class="doc-meta">
             <span>Sep 2025</span>
             <span>1.8 MB</span>
           </div>
           <div class="doc-footer">
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-green);">Ref: NAS-LIC-02</span>
-            <button class="btn btn-sm btn-primary download-doc-btn" data-doc-title="Distribution License Performance Rules">Download PDF</button>
+            <button class="btn btn-sm btn-outline view-doc-btn"
+              data-doc-title="Distribution License Renewal & Performance Rules"
+              data-doc-desc="Key performance indicators (KPIs) for distribution network reliability, fault resolution speed, and transformer maintenance.">View Document</button>
+            <button class="btn btn-sm btn-primary download-doc-btn"
+              data-doc-title="Distribution License Renewal & Performance Rules">Download PDF</button>
           </div>
         </div>
 
         <!-- Doc 7 -->
-        <div class="doc-card doc-item-card" data-title="Consumer Dispute Resolution Panel (CDRP) Rules 2025" data-code="NAS-GUI-01" data-category="guidelines" data-year="2025">
-          <div class="doc-header">
-            <span class="doc-category-badge">Guidelines & Frameworks</span>
-          </div>
+        <div class="doc-card doc-item-card" data-title="Consumer Dispute Resolution Panel (CDRP) Rules 2025"
+          data-code="NAS-GUI-01" data-category="guidelines" data-year="2025">
+          <div class="doc-header"></div>
           <h3 class="doc-title">Consumer Dispute Resolution Panel (CDRP) Rules 2025</h3>
-          <p style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem;">Rules of procedure for hearings, arbitrations, and appellate reviews before the NASERC Zonal Dispute Panels.</p>
+          <p style="font-size: 0.875rem; color: var(--slate-600); margin-bottom: 1rem;">Rules of procedure for hearings,
+            arbitrations, and appellate reviews before the NASERC Zonal Dispute Panels.</p>
           <div class="doc-meta">
             <span>May 2025</span>
             <span>1.5 MB</span>
           </div>
           <div class="doc-footer">
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-green);">Ref: NAS-GUI-01</span>
-            <button class="btn btn-sm btn-primary download-doc-btn" data-doc-title="Consumer Dispute Resolution Panel Rules 2025">Download PDF</button>
+            <button class="btn btn-sm btn-outline view-doc-btn"
+              data-doc-title="Consumer Dispute Resolution Panel (CDRP) Rules 2025"
+              data-doc-desc="Rules of procedure for hearings, arbitrations, and appellate reviews before the NASERC Zonal Dispute Panels.">View Document</button>
+            <button class="btn btn-sm btn-primary download-doc-btn"
+              data-doc-title="Consumer Dispute Resolution Panel (CDRP) Rules 2025">Download PDF</button>
           </div>
         </div>
 
@@ -263,11 +270,13 @@
         <div class="footer-grid">
           <div class="footer-brand-col">
             <div class="footer-logo-row">
-              <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="footer-logo">
-              <span style="font-family: var(--font-heading); font-weight: 800; font-size: 1.35rem; color: var(--white);">NASERC</span>
+              <img src="assets/images/logo.png" alt="NASERC Logo" class="footer-logo">
+              <span
+                style="font-family: var(--font-heading); font-weight: 800; font-size: 1.35rem; color: var(--white);">NASERC</span>
             </div>
             <p class="footer-desc">
-              The Nasarawa State Electricity Regulatory Commission (NASERC) regulates power generation, distribution, mini-grids, and consumer rights across Nasarawa State.
+              The Nasarawa State Electricity Regulatory Commission (NASERC) regulates power generation, distribution,
+              mini-grids, and consumer rights across Nasarawa State.
             </p>
           </div>
           <div>
@@ -280,10 +289,12 @@
             </ul>
           </div>
           <div>
-            <h4 class="footer-heading">Forms & Services</h4>
+            <h4 class="footer-heading">Social Media</h4>
             <ul class="footer-links">
-              <li><a href="forms.html?tab=complaint" class="footer-link">File Complaint</a></li>
-              <li><a href="forms.html?tab=license" class="footer-link">Apply for License</a></li>
+              <li><a href="https://x.com/nasercnas" target="_blank" rel="noopener" class="footer-link"><i class="fab fa-x-twitter" style="margin-right: 0.4rem; color: var(--accent-gold);"></i>@nasercnas</a></li>
+              <li><a href="https://facebook.com/nasercnas" target="_blank" rel="noopener" class="footer-link"><i class="fab fa-facebook" style="margin-right: 0.4rem; color: var(--accent-gold);"></i>@nasercnas</a></li>
+              <li><a href="https://instagram.com/nasercnas" target="_blank" rel="noopener" class="footer-link"><i class="fab fa-instagram" style="margin-right: 0.4rem; color: var(--accent-gold);"></i>@nasercnas</a></li>
+              <li><a href="https://linkedin.com/company/nasercnas" target="_blank" rel="noopener" class="footer-link"><i class="fab fa-linkedin" style="margin-right: 0.4rem; color: var(--accent-gold);"></i>@nasercnas</a></li>
             </ul>
           </div>
           <div>
@@ -307,4 +318,5 @@
   <script src="js/filters.js"></script>
   <script src="js/modals.js"></script>
 </body>
+
 </html>

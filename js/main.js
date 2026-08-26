@@ -30,7 +30,7 @@ function initMobileDrawer() {
     drawer.innerHTML = `
       <div class="drawer-header">
         <div style="display: flex; align-items: center; gap: 0.5rem;">
-          <img src="https://naserc.na.gov.ng/logo.png" style="height: 32px;" alt="Logo">
+          <img src="assets/images/logo.png" style="height: 32px;" alt="Logo">
           <strong style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--white);">NASERC Portal</strong>
         </div>
         <button class="drawer-close" id="drawerCloseBtn">&times;</button>
@@ -50,22 +50,15 @@ function initMobileDrawer() {
             <a href="regulations.html" class="mobile-nav-link">Regulatory Instruments</a>
             <div class="mobile-submenu open">
               <a href="regulations.html?category=regulations" class="mobile-submenu-item">Electricity Regulations</a><br>
-              <a href="regulations.html?category=licenses" class="mobile-submenu-item">Licenses & Permits</a><br>
-              <a href="regulations.html?category=guidelines" class="mobile-submenu-item">Codes & Frameworks</a>
+              <a href="regulations.html?category=licenses" class="mobile-submenu-item">Licenses & Permits</a>
             </div>
           </li>
           <li class="mobile-nav-item"><a href="activities.html" class="mobile-nav-link">Activities</a></li>
-          <li class="mobile-nav-item">
-            <a href="forms.html" class="mobile-nav-link">Forms & Services</a>
-            <div class="mobile-submenu open">
-              <a href="forms.html?tab=complaint" class="mobile-submenu-item">Customer Complaint Form</a><br>
-              <a href="forms.html?tab=license" class="mobile-submenu-item">License Calculator & Form</a>
-            </div>
-          </li>
+          <li class="mobile-nav-item"><a href="forms.html?tab=complaint" class="mobile-nav-link">File Complaint</a></li>
           <li class="mobile-nav-item"><a href="contact.html" class="mobile-nav-link">Contact Us</a></li>
         </ul>
         <div style="margin-top: 2rem;">
-          <a href="forms.html?tab=complaint" class="btn btn-accent" style="width: 100%; text-align: center;">File Complaint</a>
+          <a href="contact.html" class="btn btn-accent" style="width: 100%; text-align: center;">Contact Us</a>
         </div>
       </div>
     `;

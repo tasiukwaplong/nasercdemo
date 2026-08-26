@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Online Forms & Applications | Nasarawa State Electricity Regulatory Commission (NASERC)</title>
-  <meta name="description" content="Submit electricity consumer complaints, estimate license fees (>100kW mandate), or track reference numbers online with NASERC.">
+  <meta name="description"
+    content="Submit electricity consumer complaints, estimate license fees (>100kW mandate), or track reference numbers online with NASERC.">
 
   <!-- Favicon -->
-  <link rel="icon" href="https://naserc.na.gov.ng/logo.png" type="image/png">
+  <link rel="icon" href="assets/images/logo.png" type="image/png">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- Core Stylesheet -->
   <link rel="stylesheet" href="css/styles.css">
-  
+
   <style>
     /* License Calculator Specific Styling */
     .calculator-widget-box {
@@ -30,6 +34,7 @@
       box-shadow: var(--shadow-xl);
       margin-bottom: 3rem;
     }
+
     .calc-result-panel {
       background: var(--primary-navy);
       color: var(--white);
@@ -37,6 +42,7 @@
       padding: 2rem;
       box-shadow: var(--shadow-lg);
     }
+
     .calc-fee-row {
       display: flex;
       justify-content: space-between;
@@ -46,6 +52,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- Header Navigation -->
@@ -54,7 +61,7 @@
       <div class="brand-wrapper">
         <a href="index.html" class="brand-logo-link">
           <div class="logo-badge-container">
-            <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="logo-img">
+            <img src="assets/images/logo.png" alt="NASERC Logo" class="logo-img">
           </div>
           <div class="brand-text">
             <span class="brand-acronym">NASERC</span>
@@ -79,34 +86,29 @@
             <ul class="dropdown-menu">
               <li><a href="regulations.html?category=regulations" class="dropdown-item">Electricity Regulations</a></li>
               <li><a href="regulations.html?category=licenses" class="dropdown-item">Licenses & Permits</a></li>
-              <li><a href="regulations.html?category=guidelines" class="dropdown-item">Codes & Frameworks</a></li>
             </ul>
           </li>
           <li class="nav-item"><a href="activities.html" class="nav-link">Activities</a></li>
-          <li class="nav-item active">
-            <a href="forms.html" class="nav-link">Forms</a>
-            <ul class="dropdown-menu">
-              <li><a href="forms.html?tab=complaint" class="dropdown-item">Customer Complaint Form</a></li>
-              <li><a href="forms.html?tab=license" class="dropdown-item">License Estimator & Application</a></li>
-            </ul>
-          </li>
-          <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
+          <li class="nav-item active"><a href="forms.html?tab=complaint" class="nav-link">File Complaint</a></li>
         </ul>
       </nav>
 
       <div class="header-actions">
-        <a href="forms.html?tab=complaint" class="btn btn-accent btn-sm">File Complaint</a>
-        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
+        <a href="contact.html" class="btn btn-accent btn-sm">Contact Us</a>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Menu"><i
+            class="fas fa-bars"></i></button>
       </div>
     </div>
   </header>
 
   <!-- Page Banner -->
-  <section style="background: linear-gradient(135deg, var(--primary-navy-dark) 0%, var(--primary-navy) 100%); color: var(--white); padding: 4rem 0 3rem 0;">
+  <section
+    style="background: linear-gradient(135deg, var(--primary-navy-dark) 0%, var(--primary-navy) 100%); color: var(--white); padding: 4rem 0 3rem 0;">
     <div class="container text-center">
-      <span class="section-badge gold">Digital Submissions</span>
-      <h1 style="font-family: var(--font-heading); font-size: 2.75rem; font-weight: 800; margin-top: 0.5rem;">Online Forms & Licensing Desk</h1>
-      <p style="color: var(--slate-300); max-width: 700px; margin: 0.75rem auto 0 auto;">File consumer disputes, estimate license fees, or submit power generation/distribution permit applications online.</p>
+      <h1 style="font-family: var(--font-heading); font-size: 2.75rem; font-weight: 800; margin-top: 0.5rem;">Online
+        Customer Complaint Desk</h1>
+      <p style="color: var(--slate-300); max-width: 700px; margin: 0.75rem auto 0 auto;">File consumer disputes and
+        electricity service complaints online with the Commission.</p>
     </div>
   </section>
 
@@ -114,18 +116,14 @@
   <section class="section-padding" style="background: var(--slate-50);">
     <div class="container">
 
-      <!-- Form Selector Tabs -->
-      <div class="form-tabs-container">
-        <button class="tab-button active" data-tab="complaint">Customer Complaint Form</button>
-        <button class="tab-button" data-tab="license">License Estimator & Application</button>
-      </div>
-
-      <!-- Tab 1: Customer Complaint Form -->
+      <!-- Customer Complaint Form -->
       <div class="form-tab-content" id="complaintTab">
         <div class="form-card">
           <div style="margin-bottom: 2rem; border-bottom: 1px solid var(--slate-200); padding-bottom: 1rem;">
-            <h2 style="font-family: var(--font-heading); font-size: 1.75rem; color: var(--primary-navy); font-weight: 800;">Customer Complaint Filing Form</h2>
-            <p style="color: var(--slate-600); font-size: 0.95rem; margin-top: 0.25rem;">Pursuant to the Nasarawa State Electricity Law 2024 (Consumer Protection Regulations). Please provide accurate details below.</p>
+            <h2
+              style="font-family: var(--font-heading); font-size: 1.75rem; color: var(--primary-navy); font-weight: 800;">
+              Customer Complaint Form</h2>
+            <!-- <p style="color: var(--slate-600); font-size: 0.95rem; margin-top: 0.25rem;">Pursuant to the Nasarawa State Electricity Law 2024 (Consumer Protection Regulations). Please provide accurate details below.</p> -->
           </div>
 
           <form id="customerComplaintForm" novalidate>
@@ -133,7 +131,8 @@
 
               <div class="form-group">
                 <label class="form-label">Full Name <span class="required">*</span></label>
-                <input type="text" class="form-control" name="fullName" placeholder="e.g. Alhaji Mustapha Bello" required>
+                <input type="text" class="form-control" name="fullName" placeholder="e.g. Alhaji Mustapha Bello"
+                  required>
               </div>
 
               <div class="form-group">
@@ -167,38 +166,33 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">Electricity Service Provider (DisCo / Mini-Grid) <span class="required">*</span></label>
-                <select class="form-control" name="provider" required>
-                  <option value="">Select Service Provider...</option>
-                  <option value="Abuja Electricity Distribution Plc (AEDC)">Abuja Electricity Distribution Plc (AEDC)</option>
-                  <option value="Lafia Solar Power Mini-Grid Ltd">Lafia Solar Power Mini-Grid Ltd</option>
-                  <option value="Karu Renewable Energy Cooperative">Karu Renewable Energy Cooperative</option>
-                  <option value="Keffi Green Power Off-Grid DisCo">Keffi Green Power Off-Grid DisCo</option>
-                  <option value="Other Independent Mini-Grid Operator">Other Independent Mini-Grid Operator</option>
-                </select>
+                <label class="form-label">Electricity Service Provider (Optional)</label>
+                <input type="text" class="form-control" name="provider" placeholder="e.g. AEDC or Mini-Grid Operator">
               </div>
 
               <div class="form-group">
-                <label class="form-label">Account or Smart Meter Number <span class="required">*</span></label>
-                <input type="text" class="form-control" name="accountNumber" placeholder="e.g. 45019827361 or Meter ID" required>
+                <label class="form-label">Account or Smart Meter Number (Optional)</label>
+                <input type="text" class="form-control" name="accountNumber" placeholder="e.g. 45019827361 or Meter ID">
               </div>
 
               <div class="form-group full-width">
                 <label class="form-label">Complaint Category <span class="required">*</span></label>
                 <select class="form-control" name="complaintCategory" required>
                   <option value="">Select Complaint Category...</option>
-                  <option value="Overbilling / Estimated Billing Dispute">Overbilling / Estimated Billing Dispute</option>
-                  <option value="Unmetered Premises / Delayed Smart Meter Rollout">Unmetered Premises / Delayed Smart Meter Rollout</option>
-                  <option value="Prolonged Outage / Transformer Failure">Prolonged Outage / Transformer Failure</option>
-                  <option value="Voltage Fluctuation / Equipment Damage">Voltage Fluctuation / Equipment Damage</option>
-                  <option value="Unlawful Disconnection / Service Interruption">Unlawful Disconnection / Service Interruption</option>
-                  <option value="Staff Misconduct / Extortion Report">Staff Misconduct / Extortion Report</option>
+                  <option value="Overbilling / Estimated Billing Dispute">Overbilling / Estimated Billing Dispute
+                  </option>
+                  <option value="Unmetered">Unmetered</option>
+                  <option value="Transformer Failure">Transformer Failure</option>
+                  <option value="Power fluctuation">Power fluctuation</option>
+                  <option value="Disconnection">Disconnection</option>
+                  <!-- <option value="Staff Misconduct / Extortion Report">Staff Misconduct / Extortion Report</option> -->
                 </select>
               </div>
 
               <div class="form-group full-width">
-                <label class="form-label">Detailed Description of Complaint <span class="required">*</span></label>
-                <textarea class="form-control" name="description" rows="5" placeholder="Please describe what happened, dates of occurrence, previous complaints lodged with provider, and desired resolution..." required></textarea>
+                <label class="form-label">Short Description <span class="required">*</span></label>
+                <textarea class="form-control" name="description" rows="5"
+                  placeholder="Please describe the issue briefly..." required></textarea>
               </div>
 
               <div class="form-group full-width">
@@ -207,7 +201,8 @@
                   <input type="file" style="display: none;" name="attachment" accept=".pdf,.png,.jpg,.jpeg">
                   <div class="upload-preview-text">
                     <strong>Click or Drag & Drop File Here</strong>
-                    <div style="font-size: 0.8rem; color: var(--slate-500); margin-top: 0.25rem;">Supported formats: PDF, JPG, PNG (Max size: 5MB)</div>
+                    <div style="font-size: 0.8rem; color: var(--slate-500); margin-top: 0.25rem;">Supported formats:
+                      PDF, JPG, PNG (Max size: 5MB)</div>
                   </div>
                 </div>
               </div>
@@ -222,186 +217,10 @@
         </div>
       </div>
 
-      <!-- Tab 2: License Fee Estimator & Application Form -->
-      <div class="form-tab-content" id="licenseTab" style="display: none;">
-
-        <!-- Interactive Fee & Requirement Calculator Component -->
-        <div class="calculator-widget-box" id="licenseCalcWidget">
-          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--slate-200); padding-bottom: 1rem;">
-            <div>
-              <span class="section-badge gold" id="calcThresholdBadge">License Threshold & Fee Estimator</span>
-              <h2 style="font-family: var(--font-heading); font-size: 1.75rem; color: var(--primary-navy); font-weight: 800; margin-top: 0.25rem;">Statutory License & Fee Calculator</h2>
-              <p style="color: var(--slate-600); font-size: 0.9rem;">
-                Under Nasarawa State Electricity Law 2024: Systems <strong>up to 100 kW</strong> require a <strong>Permit</strong>; systems <strong>above 100 kW</strong> require a <strong>Full License</strong>.
-              </p>
-            </div>
-            <div style="background: rgba(0, 104, 55, 0.1); padding: 0.75rem 1.25rem; border-radius: var(--radius-md); border: 1px solid rgba(0, 104, 55, 0.3);">
-              <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-green); text-transform: uppercase;">Statutory Rule</span>
-              <div style="font-weight: 800; color: var(--primary-navy); font-size: 0.95rem;">> 100 kW = Full License Required</div>
-            </div>
-          </div>
-
-          <form id="licenseCalcForm" onsubmit="event.preventDefault();" style="margin-bottom: 2rem;">
-            <div class="form-grid">
-
-              <div class="form-group">
-                <label class="form-label">Proposed Generating / Operational Capacity <span class="required">*</span></label>
-                <div style="display: flex; gap: 0.5rem;">
-                  <input type="number" id="calcCapacityInput" class="form-control" placeholder="e.g. 150" value="150" min="1" step="any" required>
-                  <select id="calcUnitSelect" class="form-control" style="width: 110px;">
-                    <option value="kW" selected>kW</option>
-                    <option value="MW">MW</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">Category of Energy Operation <span class="required">*</span></label>
-                <select id="calcCategorySelect" class="form-control">
-                  <option value="minigrid">Off-Grid Mini-Grid Generation</option>
-                  <option value="embedded">Embedded Generation (DisCo Grid-tied)</option>
-                  <option value="distribution">Independent Distribution Network (IEDN)</option>
-                  <option value="map">Meter Asset Provider (MAP)</option>
-                  <option value="captive">Captive / Industrial Self-Generation</option>
-                </select>
-              </div>
-
-            </div>
-          </form>
-
-          <!-- Dynamic Result Display Box -->
-          <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;" class="contact-grid">
-            <div class="calc-result-panel">
-              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
-                <h3 id="calcReqTitle" style="font-family: var(--font-heading); font-size: 1.35rem; color: var(--accent-gold); font-weight: 800;">Class A Electricity License (> 100 kW)</h3>
-                <span style="font-size: 0.8rem; background: rgba(255, 255, 255, 0.15); padding: 0.25rem 0.75rem; border-radius: var(--radius-full); font-weight: 700;" id="calcTimeline">21 - 30 Working Days</span>
-              </div>
-
-              <p id="calcReqDesc" style="color: var(--slate-300); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.5;">
-                Your proposed capacity exceeds 100 kW and requires a formal Class A NASERC Operational License.
-              </p>
-
-              <div style="margin-bottom: 1.5rem;">
-                <div class="calc-fee-row">
-                  <span style="color: var(--slate-300);">Application Filing & Processing Fee:</span>
-                  <strong style="color: var(--white);" id="calcFilingFee">₦150,000</strong>
-                </div>
-                <div class="calc-fee-row">
-                  <span style="color: var(--slate-300);">Technical Grid Inspection & Audit Fee:</span>
-                  <strong style="color: var(--white);" id="calcInspectionFee">₦350,000</strong>
-                </div>
-                <div class="calc-fee-row">
-                  <span style="color: var(--slate-300);">Initial Statutory Grant Fee:</span>
-                  <strong style="color: var(--white);" id="calcGrantFee">₦500,000</strong>
-                </div>
-                <div class="calc-fee-row" style="border-bottom: 2px solid var(--accent-gold); padding-top: 0.8rem;">
-                  <span style="font-size: 1.1rem; font-weight: 800; color: var(--accent-gold);">Total Estimated Regulatory Fee:</span>
-                  <strong style="font-size: 1.35rem; font-weight: 800; color: var(--white);" id="calcTotalFee">₦1,000,000</strong>
-                </div>
-              </div>
-
-              <button type="button" id="calcApplyBtn" class="btn btn-accent" style="width: 100%;">Proceed to Apply with Calculated Capacity</button>
-            </div>
-
-            <!-- Required Document Checklist Panel -->
-            <div style="background: var(--white); border-radius: var(--radius-lg); padding: 1.75rem; border: 1px solid var(--slate-200); box-shadow: var(--shadow-sm);">
-              <h4 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 1rem;">
-                Required Submission Checklist
-              </h4>
-              <ul id="calcDocChecklist" style="margin-bottom: 0;">
-                <!-- Dynamically populated by js/calculator.js -->
-              </ul>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- License Application Form -->
-        <div class="form-card">
-          <div style="margin-bottom: 2rem; border-bottom: 1px solid var(--slate-200); padding-bottom: 1rem;">
-            <h2 style="font-family: var(--font-heading); font-size: 1.75rem; color: var(--primary-navy); font-weight: 800;">Official License & Permit Application</h2>
-            <p style="color: var(--slate-600); font-size: 0.95rem; margin-top: 0.25rem;">Complete your formal license or permit filing with NASERC Secretariat.</p>
-          </div>
-
-          <form id="licenseApplicationForm" novalidate>
-            <div class="form-grid">
-
-              <div class="form-group">
-                <label class="form-label">Registered Business / Corporate Name <span class="required">*</span></label>
-                <input type="text" class="form-control" name="companyName" placeholder="e.g. Nasarawa Sun Power Energy Ltd" required>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">CAC Registration Number (RC/BN) <span class="required">*</span></label>
-                <input type="text" class="form-control" name="cacNumber" placeholder="e.g. RC-1849204" required>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">Authorized Representative Name <span class="required">*</span></label>
-                <input type="text" class="form-control" name="contactPerson" placeholder="e.g. Engr. Samuel O. David" required>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">Representative Phone Number <span class="required">*</span></label>
-                <input type="tel" class="form-control" name="phone" placeholder="e.g. 08029998877" required>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">Official Email Address <span class="required">*</span></label>
-                <input type="email" class="form-control" name="email" placeholder="e.g. licensing@company.com" required>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">License / Permit Category <span class="required">*</span></label>
-                <select class="form-control" name="licenseType" required>
-                  <option value="">Select Application Class...</option>
-                  <option value="Permit: Off-Grid Generation (<= 100 kW)">Permit: Off-Grid Generation (<= 100 kW)</option>
-                  <option value="License Class A: Mini-Grid (101 kW - 1 MW)">License Class A: Mini-Grid (101 kW - 1 MW)</option>
-                  <option value="License Class B: Utility Mini-Grid (1 MW - 10 MW)">License Class B: Utility Mini-Grid (1 MW - 10 MW)</option>
-                  <option value="Embedded Generation Permit">Embedded Generation Permit</option>
-                  <option value="Independent Electricity Distribution Network (IEDN)">Independent Electricity Distribution Network (IEDN)</option>
-                  <option value="Meter Asset Provider (MAP) License">Meter Asset Provider (MAP) License</option>
-                  <option value="Captive Generation Permit">Captive Generation Permit</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">Proposed Generating Capacity (kW or MW) <span class="required">*</span></label>
-                <input type="text" class="form-control" name="capacity" placeholder="e.g. 150 kW Solar Hybrid" required>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">Target LGA / Location in Nasarawa State <span class="required">*</span></label>
-                <input type="text" class="form-control" name="location" placeholder="e.g. Karu Industrial Cluster, Karu LGA" required>
-              </div>
-
-              <div class="form-group full-width">
-                <label class="form-label">Project Scope & Executive Summary <span class="required">*</span></label>
-                <textarea class="form-control" name="projectSummary" rows="4" placeholder="Briefly describe energy source (Solar PV, Gas, Hydro, Biomass), target customer base, land acquisition status, and project timeline..." required></textarea>
-              </div>
-
-              <div class="form-group full-width">
-                <label class="form-label">Upload Technical Feasibility & EIA Report (Zip/PDF) <span class="required">*</span></label>
-                <div class="file-upload-zone">
-                  <input type="file" style="display: none;" name="licenseDocs" accept=".pdf,.zip,.rar" required>
-                  <div class="upload-preview-text">
-                    <strong>Click or Drag & Drop Application Dossier</strong>
-                    <div style="font-size: 0.8rem; color: var(--slate-500); margin-top: 0.25rem;">Includes CAC Cert, Feasibility Study, EIA Approval, and Layout (Max 15MB)</div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-            <div style="margin-top: 2.5rem; display: flex; justify-content: flex-end; gap: 1rem;">
-              <button type="reset" class="btn btn-outline">Reset Form</button>
-              <button type="submit" class="btn btn-accent btn-lg">File License Application</button>
-            </div>
-          </form>
-        </div>
-      </div>
-
     </div>
+  </section>
+
+  </div>
   </section>
 
   <!-- Global Footer -->
@@ -411,11 +230,13 @@
         <div class="footer-grid">
           <div class="footer-brand-col">
             <div class="footer-logo-row">
-              <img src="https://naserc.na.gov.ng/logo.png" alt="NASERC Logo" class="footer-logo">
-              <span style="font-family: var(--font-heading); font-weight: 800; font-size: 1.35rem; color: var(--white);">NASERC</span>
+              <img src="assets/images/logo.png" alt="NASERC Logo" class="footer-logo">
+              <span
+                style="font-family: var(--font-heading); font-weight: 800; font-size: 1.35rem; color: var(--white);">NASERC</span>
             </div>
             <p class="footer-desc">
-              The Nasarawa State Electricity Regulatory Commission (NASERC) regulates power generation, distribution, mini-grids, and consumer rights across Nasarawa State.
+              The Nasarawa State Electricity Regulatory Commission (NASERC) regulates power generation, distribution,
+              mini-grids, and consumer rights across Nasarawa State.
             </p>
           </div>
           <div>
@@ -428,10 +249,12 @@
             </ul>
           </div>
           <div>
-            <h4 class="footer-heading">Forms & Services</h4>
+            <h4 class="footer-heading">Social Media</h4>
             <ul class="footer-links">
-              <li><a href="forms.html?tab=complaint" class="footer-link">File Complaint</a></li>
-              <li><a href="forms.html?tab=license" class="footer-link">Apply for License</a></li>
+              <li><a href="https://x.com/nasercnas" target="_blank" rel="noopener" class="footer-link"><i class="fab fa-x-twitter" style="margin-right: 0.4rem; color: var(--accent-gold);"></i>@nasercnas</a></li>
+              <li><a href="https://facebook.com/nasercnas" target="_blank" rel="noopener" class="footer-link"><i class="fab fa-facebook" style="margin-right: 0.4rem; color: var(--accent-gold);"></i>@nasercnas</a></li>
+              <li><a href="https://instagram.com/nasercnas" target="_blank" rel="noopener" class="footer-link"><i class="fab fa-instagram" style="margin-right: 0.4rem; color: var(--accent-gold);"></i>@nasercnas</a></li>
+              <li><a href="https://linkedin.com/company/nasercnas" target="_blank" rel="noopener" class="footer-link"><i class="fab fa-linkedin" style="margin-right: 0.4rem; color: var(--accent-gold);"></i>@nasercnas</a></li>
             </ul>
           </div>
           <div>
@@ -452,7 +275,7 @@
   </footer>
 
   <script src="js/main.js"></script>
-  <script src="js/calculator.js"></script>
   <script src="js/forms.js"></script>
 </body>
+
 </html>

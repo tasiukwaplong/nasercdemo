@@ -176,6 +176,67 @@ function initModalListeners() {
     });
   }
 
+  // 5. In-Browser Document Reader Modal Listener
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.view-doc-btn');
+    if (!btn) return;
+    e.preventDefault();
+
+    const title = btn.dataset.docTitle || 'Regulatory Instrument';
+    const desc = btn.dataset.docDesc || 'Official regulatory standard and operational framework issued by the Nasarawa State Electricity Regulatory Commission.';
+
+    openCustomModal({
+      title: 'In-Browser Document Reader',
+      bodyHTML: `
+        <div style="font-family: var(--font-body); color: var(--slate-800);">
+          <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid var(--slate-200); padding-bottom: 1rem; margin-bottom: 1.25rem;">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <img src="assets/images/logo.png" style="width: 42px; height: 42px; object-fit: contain;" alt="NASERC Seal">
+              <div>
+                <div style="font-size: 0.75rem; font-weight: 700; color: var(--primary-navy); text-transform: uppercase; letter-spacing: 0.5px;">NASERC Statutory Document</div>
+                <h3 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--primary-navy); margin: 0; font-weight: 800;">${title}</h3>
+              </div>
+            </div>
+            <span style="background: rgba(0, 104, 55, 0.12); color: var(--primary-green); font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: var(--radius-full);">OFFICIAL & EFFECTIVE</span>
+          </div>
+
+          <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.25rem; font-size: 0.9rem; line-height: 1.6; color: var(--slate-600);">
+            <strong>Executive Summary & Scope:</strong><br>
+            ${desc}
+          </div>
+
+          <div style="background: var(--white); border: 1px dashed var(--slate-300); border-radius: var(--radius-md); padding: 1.25rem; max-height: 280px; overflow-y: auto; font-size: 0.9rem; line-height: 1.7; color: var(--slate-700);">
+            <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--primary-navy); margin-bottom: 0.5rem; border-bottom: 1px solid var(--slate-200); padding-bottom: 0.35rem;">Section 1: General Provisions & Statutory Authority</h4>
+            <p style="margin-bottom: 1rem;">This statutory regulatory instrument is promulgated under the authority of the Nasarawa State Electricity Law 2024. It governs all licensed energy operators, off-grid mini-grid developers, embedded generation providers, distribution companies, and electricity consumers operating within Nasarawa State.</p>
+
+            <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--primary-navy); margin-bottom: 0.5rem; border-bottom: 1px solid var(--slate-200); padding-bottom: 0.35rem;">Section 2: Technical Compliance & Operating Standards</h4>
+            <p style="margin-bottom: 1rem;">All regulated entities must comply strictly with grid interconnectivity protocols, voltage stability requirements, consumer service response benchmarks, and metering guidelines established by the Commission.</p>
+
+            <h4 style="font-family: var(--font-heading); font-size: 1rem; color: var(--primary-navy); margin-bottom: 0.5rem; border-bottom: 1px solid var(--slate-200); padding-bottom: 0.35rem;">Section 3: Enforcement & Penalties</h4>
+            <p>Non-compliance with the provisions herein shall attract administrative sanctions, operational suspensions, or monetary fines as prescribed under NASERC Enforcement Guidelines.</p>
+          </div>
+
+          <div style="margin-top: 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+            <span style="font-size: 0.8rem; color: var(--slate-500);"><i class="fas fa-eye" style="margin-right: 0.35rem;"></i> In-Browser Reader Mode Active</span>
+            <button type="button" onclick="document.getElementById('globalModalBackdrop').classList.remove('active')" class="btn btn-navy btn-sm">Close Reader</button>
+          </div>
+        </div>
+      `
+    });
+  });
+
+  // 6. Download PDF Listener
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.download-doc-btn');
+    if (!btn) return;
+    e.preventDefault();
+
+    const title = btn.dataset.docTitle || 'Regulatory Document';
+    if (typeof showToast === 'function') {
+      showToast(`Downloading PDF: ${title}...`, 'success');
+    }
+  });
+
 }
 
 function openCustomModal({ title, bodyHTML }) {
