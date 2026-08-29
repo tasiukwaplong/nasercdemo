@@ -1,0 +1,148 @@
+===============================================================================
+NASERC WEB PORTAL - WORDPRESS THEME IMPLEMENTATION PLAN (theme-plan.txt)
+===============================================================================
+
+1. EXECUTIVE OVERVIEW & ARCHITECTURE
+-------------------------------------------------------------------------------
+The NASERC WordPress Theme ("naserc-theme") will serve as the presentation layer
+for the Nasarawa State Electricity Regulatory Commission official civic portal.
+It translates the existing static HTML5/Vanilla CSS/JavaScript frontend into a
+highly performant, modern, accessible, and secure WordPress theme.
+
+Key Design Goals:
+- Preserve exact brand aesthetic: Primary Green (#006837), Bold Red (#ce1126),
+  Solar Yellow (#f59e0b), and Civic Navy (#0a192f).
+- Enforce strict page-speed metrics (target 95+ Google PageSpeed Insights score).
+- Provide easy, non-technical section management via WordPress Customizer, Block
+  Editor (Gutenberg), and Site Editor components.
+- Enforce strict XSS and CSRF output escaping on all templates.
+
+
+2. THEME FILE STRUCTURE & DIRECTORY ORGANIZER
+-------------------------------------------------------------------------------
+wp-content/themes/naserc-theme/
+├── style.css                      (Theme identity metadata & core CSS)
+├── functions.php                  (Theme initialization & hooks)
+├── index.php                      (Fallback main template)
+├── header.php                     (Top bar & main navbar with big NASERC brand)
+├── footer.php                     (Global civic footer & script includes)
+├── front-page.php                 (Custom homepage layout template)
+├── page-about.php                 (About Us / Mandate & Leadership template)
+├── page-regulations.php           (Regulatory Instruments repository template)
+├── page-activities.php            (News & Press Releases template)
+├── page-forms.php                 (File Complaint & Calculator template)
+├── page-contact.php               (Contact Secretariat & Map template)
+├── single.php                     (Single news/press release post template)
+├── single-naserc_document.php     (Single regulatory document details)
+├── assets/
+│   ├── css/
+│   │   └── styles.min.css         (Minified production design system)
+│   ├── js/
+│   │   ├── main.js                (Navigation drawer & general UI)
+│   │   ├── slider.js              (Hero & document carousel logic)
+│   │   └── counters.js            (Stat counter animation triggers)
+│   └── images/
+│       ├── logo.png               (Official seal logo)
+│       └── chairman.png           (Leadership portrait)
+├── inc/
+│   ├── setup.php                  (Theme supports, nav menus, asset enqueuing)
+│   ├── customizer.php             (Customizer controls for logo, hotline, header)
+│   ├── template-tags.php          (Helper functions for rendering badges, meta)
+│   └── speed-optimization.php     (Asset deferral, emoji cleanup, font preloads)
+└── template-parts/
+    ├── header/
+    │   ├── top-bar.php            (Hotline, search form, quick links)
+    │   └── navbar.php             (Big NASERC red logo link & main menu)
+    ├── components/
+    │   ├── hero-slider.php        (Dynamic hero carousel)
+    │   ├── stats-bar.php          (Compact green background stats grid)
+    │   ├── executive-quote.php    (Chairman statement section)
+    │   └── docs-showcase.php      (Auto-sliding regulatory documents)
+    └── footer/
+        └── social-links.php       (@nasercnas social media channels)
+
+
+3. SECTION MANAGEMENT & CONTENT UPDATING IN WORDPRESS
+-------------------------------------------------------------------------------
+Section                       Update Mechanism in WordPress
+----------------------------  --------------------------------------------------
+A. Header Logo & NASERC Name  - Logo image managed via Appearance > Customizer >
+                                Site Identity.
+                              - NASERC Big Acronym font size, color (#ce1126),
+                                and tagline managed via Customizer theme options.
+
+B. Top Bar Info & Hotline     - Managed via Customizer > NASERC Header Settings.
+                              - Editable fields: Hotline number, Secretariat Email,
+                                Zonal office operational hours.
+
+C. Compact Green Stats Bar    - Managed via Customizer > NASERC Statistics or
+                                dynamic plugin shortcode [naserc_stats].
+                              - Fields for Mini-Grids count, Resolved Complaints,
+                                Operator Licenses, and LGAs count.
+
+D. Hero Slider Banner         - Custom Post Type 'hero_slide' or Customizer
+                                Repeater control.
+                              - Each slide has Image, Tag, Headline, Excerpt, Link.
+
+E. Executive Chairman Quote   - Customizer options under "Executive Statement".
+                              - Editable: Photo upload, Chairman Name, Title,
+                                Quote content, and CTA button link.
+
+F. Regulatory Showcase        - Dynamic Query pulling top 4 published
+                                'naserc_document' posts sorted by date.
+
+G. Footer Social Links        - Managed via Customizer > Social Links.
+                              - Links to X (@nasercnas), Facebook, Instagram,
+                                LinkedIn.
+
+
+4. SPEED & PERFORMANCE OPTIMIZATION STRATEGY
+-------------------------------------------------------------------------------
+1. CSS & JS Enqueuing:
+   - Enqueue minified `styles.min.css` with versioning based on `filemtime()`.
+   - Remove unused WordPress core styles (wp-block-library cleanup if unneeded).
+   - Add `defer` attribute to non-critical JS scripts (`slider.js`, `counters.js`).
+   
+2. Resource Preloading & Google Fonts Optimization:
+   - Preload Google Fonts (Plus Jakarta Sans & Inter) via `<link rel="preload">`.
+   - Preload primary logo image `assets/images/logo.png`.
+   - Add `font-display: swap` for zero layout shift (CLS).
+
+3. Image Optimization & Modern Formats:
+   - Support native WebP images with `srcset` and `sizes` attributes.
+   - Enforce `loading="lazy"` on images below the fold (Chairman image, cards).
+   - Set explicit `width` and `height` attributes to prevent Cumulative Layout Shift.
+
+4. Micro-Transient Caching:
+   - Cache heavy DB queries (e.g. document list carousel) using WordPress Transients API:
+     `set_transient('naserc_home_docs_query', $docs_query, 12 * HOUR_IN_SECONDS);`
+   - Automatically purge transients when a document or setting is updated.
+
+5. Clean WordPress Footprint:
+   - Disable Emojis, Gutenberg block CSS on non-editor templates, embed scripts,
+     and REST API links in `<head>` for non-authenticated visitors.
+
+
+5. SECURITY FOR FORM SUBMISSION & THEME TEMPLATES
+-------------------------------------------------------------------------------
+1. Output Escaping Rules:
+   - Every dynamic text field MUST use appropriate escaping:
+     `esc_html()`, `esc_attr()`, `esc_url()`, `wp_kses_post()`.
+
+2. Form Security Integration:
+   - All forms rendered in theme templates MUST include WordPress Nonce security tokens:
+     `wp_nonce_field('naserc_submit_inquiry_action', 'naserc_inquiry_nonce');`
+
+3. Contact & Complaint Form Rendering:
+   - Forms will submit asynchronously to secure WP REST API endpoints or `admin-post.php`.
+   - Include hidden honeypot fields (`<input type="text" name="naserc_hp_check" style="display:none;">`)
+     to silently catch and reject automated spam bots.
+
+4. HTTP Security Headers:
+   - Theme `functions.php` will send security headers on production requests:
+     - `X-Frame-Options: SAMEORIGIN`
+     - `X-Content-Type-Options: nosniff`
+     - `Referrer-Policy: strict-origin-when-cross-origin`
+     - `Content-Security-Policy` header.
+
+===============================================================================
