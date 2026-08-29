@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Forms & Applications | Nasarawa State Electricity Regulatory Commission (NASERC)</title>
+  <title>Customer Complaint Desk & 3-Step Process | Nasarawa State Electricity Regulatory Commission (NASERC)</title>
   <meta name="description"
-    content="Submit electricity consumer complaints, estimate license fees (>100kW mandate), or track reference numbers online with NASERC.">
+    content="Submit electricity consumer disputes and regulatory appeals to NASERC. Learn the mandatory 3-step complaint procedure: DisCo CCU, Forum Office, and NASERC Adjudication.">
 
   <!-- Favicon -->
   <link rel="icon" href="assets/images/logo.png" type="image/png">
@@ -25,30 +25,208 @@
   <link rel="stylesheet" href="css/styles.css">
 
   <style>
-    /* License Calculator Specific Styling */
-    .calculator-widget-box {
-      background: linear-gradient(135deg, #ffffff 0%, var(--slate-50) 100%);
-      border: 2px solid var(--primary-green);
+    /* 3-Step Flowchart & Interactive Assessment Styles */
+    .flowchart-wrapper {
+      background: var(--white);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem 2rem;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 2.5rem;
+    }
+
+    .flowchart-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      position: relative;
+      margin-top: 2rem;
+    }
+
+    .flow-step-card {
+      background: var(--slate-50);
+      border: 2px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 1.5rem;
+      position: relative;
+      transition: var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .flow-step-card:hover {
+      border-color: var(--primary-green);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      background: var(--white);
+    }
+
+    .flow-step-card.active-step {
+      border-color: var(--primary-green);
+      background: rgba(0, 104, 55, 0.03);
+    }
+
+    .flow-step-card.final-step {
+      border-color: var(--primary-red);
+      background: rgba(206, 17, 38, 0.03);
+    }
+
+    .step-number-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--primary-navy);
+      color: var(--white);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .step-number-badge.green {
+      background: var(--primary-green);
+    }
+
+    .step-number-badge.red {
+      background: var(--primary-red);
+    }
+
+    .flow-step-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary-navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .flow-step-desc {
+      font-size: 0.875rem;
+      color: var(--slate-600);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+
+    .flow-step-tag {
+      display: inline-block;
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .tag-disco {
+      background: rgba(59, 130, 246, 0.12);
+      color: #2563eb;
+    }
+
+    .tag-forum {
+      background: rgba(245, 158, 11, 0.15);
+      color: #d97706;
+    }
+
+    .tag-naserc {
+      background: rgba(206, 17, 38, 0.12);
+      color: var(--primary-red);
+    }
+
+    /* Central Eligibility Assessment CTA Card */
+    .eligibility-cta-card {
+      background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-navy-dark) 100%);
+      color: var(--white);
       border-radius: var(--radius-xl);
       padding: 2.5rem;
       box-shadow: var(--shadow-xl);
       margin-bottom: 3rem;
-    }
-
-    .calc-result-panel {
-      background: var(--primary-navy);
-      color: var(--white);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      box-shadow: var(--shadow-lg);
-    }
-
-    .calc-fee-row {
+      position: relative;
+      overflow: hidden;
       display: flex;
       justify-content: space-between;
-      padding: 0.6rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 0.95rem;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .eligibility-cta-card::after {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .qualification-banner {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid var(--success);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* Modal Wizard Specifics */
+    .wizard-step-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .wizard-pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.5px;
+    }
+
+    .wizard-pill.active {
+      background: var(--primary-green);
+      color: var(--white);
+    }
+
+    .wizard-pill.pending {
+      background: var(--slate-200);
+      color: var(--slate-600);
+    }
+
+    .wizard-question {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--primary-navy);
+      line-height: 1.4;
+      margin-bottom: 0.75rem;
+    }
+
+    .wizard-hint {
+      font-size: 0.9rem;
+      color: var(--slate-600);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .wizard-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .flowchart-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -89,7 +267,7 @@
             </ul>
           </li>
           <li class="nav-item"><a href="activities.html" class="nav-link">Activities</a></li>
-          <li class="nav-item active"><a href="forms.html?tab=complaint" class="nav-link">File Complaint</a></li>
+          <li class="nav-item active"><a href="forms.html" class="nav-link">File Complaint</a></li>
         </ul>
       </nav>
 
@@ -103,34 +281,195 @@
 
   <!-- Page Banner -->
   <section
-    style="background: linear-gradient(135deg, var(--primary-navy-dark) 0%, var(--primary-navy) 100%); color: var(--white); padding: 4rem 0 3rem 0;">
+    style="background: linear-gradient(135deg, var(--primary-navy-dark) 0%, var(--primary-navy) 100%); color: var(--white); padding: 3.5rem 0 2.5rem 0;">
     <div class="container text-center">
-      <h1 style="font-family: var(--font-heading); font-size: 2.75rem; font-weight: 800; margin-top: 0.5rem;">Online
-        Customer Complaint Desk</h1>
-      <p style="color: var(--slate-300); max-width: 700px; margin: 0.75rem auto 0 auto;">File consumer disputes and
-        electricity service complaints online with the Commission.</p>
+      <h1 style="font-family: var(--font-heading); font-size: 2.5rem; font-weight: 800; margin-top: 0.25rem;">Customer
+        Complaint & Dispute Desk</h1>
+      <p style="color: var(--slate-300); max-width: 760px; margin: 0.75rem auto 0 auto; font-size: 1.05rem;">
+        Before lodging an appeal with NASERC, consumers must complete the statutory 3-step dispute resolution process.
+        Use our interactive screening below to check your eligibility.
+      </p>
     </div>
   </section>
 
-  <!-- Forms Section -->
+  <!-- Main Content -->
   <section class="section-padding" style="background: var(--slate-50);">
     <div class="container">
 
-      <!-- Customer Complaint Form -->
-      <div class="form-tab-content" id="complaintTab">
-        <div class="form-card">
-          <div style="margin-bottom: 2rem; border-bottom: 1px solid var(--slate-200); padding-bottom: 1rem;">
+      <!-- SECTION 1: Statutory 3-Step Process Flowchart Banner -->
+      <div class="flowchart-wrapper">
+        <div
+          style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; border-bottom: 1px solid var(--slate-200); padding-bottom: 1.25rem;">
+          <div>
+            <span
+              style="font-size: 0.8rem; font-weight: 800; color: var(--primary-green); text-transform: uppercase; letter-spacing: 1px;">Statutory
+              Dispute Handling Protocol</span>
             <h2
-              style="font-family: var(--font-heading); font-size: 1.75rem; color: var(--primary-navy); font-weight: 800;">
-              Customer Complaint Form</h2>
-            <!-- <p style="color: var(--slate-600); font-size: 0.95rem; margin-top: 0.25rem;">Pursuant to the Nasarawa State Electricity Law 2024 (Consumer Protection Regulations). Please provide accurate details below.</p> -->
+              style="font-family: var(--font-heading); font-size: 1.6rem; color: var(--primary-navy); font-weight: 800; margin-top: 0.25rem;">
+              The 3-Step Customer Complaint Process
+            </h2>
+          </div>
+          <div
+            style="background: rgba(245, 158, 11, 0.15); border: 1px dashed var(--accent-gold-hover); padding: 0.5rem 1rem; border-radius: var(--radius-md); font-size: 0.85rem; color: #92400e; font-weight: 600;">
+            <i class="fas fa-exclamation-triangle" style="margin-right: 0.4rem; color: var(--accent-gold-hover);"></i>
+            Important Rule: You cannot jump straight to NASERC. You must start at Step 1.
+          </div>
+        </div>
+
+        <div class="flowchart-grid">
+          <!-- Step 1 Card -->
+          <div class="flow-step-card active-step">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div class="step-number-badge green">1</div>
+              <span class="flow-step-tag tag-disco">Step 1: DISCO</span>
+            </div>
+            <h3 class="flow-step-title">DisCo Customer Care (CCU)</h3>
+            <p class="flow-step-desc">
+              Lodge your initial dispute with your electricity provider (AEDC or licensed Mini-Grid). The CCU
+              investigates and issues a resolution.
+            </p>
+            <div
+              style="background: var(--slate-100); padding: 0.75rem; border-radius: var(--radius-sm); font-size: 0.8rem; color: var(--slate-700); margin-bottom: 1rem;">
+              <strong>Decision:</strong> Satisfied with DisCo?<br>
+              • <em>YES</em> &rarr; DisCo notifies NASERC &rarr; <strong>END</strong><br>
+              • <em>NO</em> &rarr; Proceed to Step 2
+            </div>
+            <button class="btn btn-outline btn-sm" id="btnDiscoContacts" style="width: 100%;">
+              <!-- <i class="fas fa-phone-alt" style="margin-right: 0.4rem;"></i> View DisCo Contacts -->
+            </button>
+          </div>
+
+          <!-- Step 2 Card -->
+          <div class="flow-step-card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div class="step-number-badge">2</div>
+              <span class="flow-step-tag tag-forum">Step 2: FORUM</span>
+            </div>
+            <h3 class="flow-step-title">Forum Office Appeal</h3>
+            <p class="flow-step-desc">
+              If unsatisfied with the DisCo's ruling or if they exceed 15 days, appeal to the Electricity Consumer Forum
+              Office (Lafia / Zonal Forum).
+            </p>
+            <div
+              style="background: var(--slate-100); padding: 0.75rem; border-radius: var(--radius-sm); font-size: 0.8rem; color: var(--slate-700); margin-bottom: 1rem;">
+              <strong>Decision:</strong> Satisfied with Forum?<br>
+              • <em>YES</em> &rarr; <strong>END</strong><br>
+              • <em>NO</em> &rarr; Proceed to Step 3
+            </div>
+            <button class="btn btn-outline btn-sm" id="btnForumContacts" style="width: 100%;">
+              <i class="fas fa-building" style="margin-right: 0.4rem;"></i> Forum Office Guide
+            </button>
+          </div>
+
+          <!-- Step 3 Card -->
+          <div class="flow-step-card final-step">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div class="step-number-badge red">3</div>
+              <span class="flow-step-tag tag-naserc">Step 3: NASERC</span>
+            </div>
+            <h3 class="flow-step-title">NASERC Adjudication</h3>
+            <p class="flow-step-desc">
+              Appeal to the Commission for final regulatory determination. NASERC reviews the docket and issues a
+              binding decision.
+            </p>
+            <div
+              style="background: var(--slate-100); padding: 0.75rem; border-radius: var(--radius-sm); font-size: 0.8rem; color: var(--slate-700); margin-bottom: 1rem;">
+              <strong>Decision:</strong> Satisfied with NASERC?<br>
+              • <em>YES</em> &rarr; <strong>END (Final)</strong><br>
+              • <em>NO</em> &rarr; Seek Court Remedies
+            </div>
+            <button class="btn btn-primary btn-sm" id="btnStartScreeningCard" style="width: 100%;">
+              <i class="fas fa-check-circle" style="margin-right: 0.4rem;"></i> Check Eligibility
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- SECTION 2: Central Eligibility Assessment Card (Interactive JS Trigger) -->
+      <div class="eligibility-cta-card" id="eligibilityCtaCard">
+        <div style="max-width: 650px; z-index: 1;">
+          <span
+            style="color: var(--accent-gold); font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">
+            <i class="fas fa-clipboard-check" style="margin-right: 0.4rem;"></i> Interactive Screening
+          </span>
+          <h2
+            style="font-family: var(--font-heading); font-size: 1.85rem; color: var(--white); font-weight: 800; margin-top: 0.35rem; line-height: 1.3;">
+            Ready to File a Complaint or Appeal?
+          </h2>
+          <p style="color: var(--slate-300); font-size: 1rem; line-height: 1.6; margin-top: 0.5rem; margin-bottom: 0;">
+            Answer a few quick questions to verify whether your case has completed the preliminary DisCo (Step 1) and
+            Forum Office (Step 2) requirements before reaching the Commission.
+          </p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.75rem; z-index: 1;">
+          <button class="btn btn-accent btn-lg" id="btnStartWizard">
+            <i class="fas fa-play-circle" style="margin-right: 0.5rem;"></i> Start Eligibility Check
+          </button>
+          <button class="btn btn-outline-white btn-sm" id="btnDirectUnlock">
+            <i class="fas fa-key" style="margin-right: 0.4rem;"></i> I already have DisCo Ticket # & Forum Docket #
+          </button>
+        </div>
+      </div>
+
+
+      <!-- SECTION 3: Formal NASERC Adjudication Form (Revealed via JS) -->
+      <div class="form-tab-content" id="complaintFormWrapper" style="display: none;">
+
+        <!-- Qualification Success Badge -->
+        <div class="qualification-banner">
+          <i class="fas fa-check-circle" style="color: var(--success); font-size: 2rem;"></i>
+          <div>
+            <strong style="color: var(--primary-navy); font-size: 1.05rem;">Statutory Qualification Verified (Step 1 &
+              Step 2 Completed)</strong>
+            <div style="font-size: 0.875rem; color: var(--slate-600); margin-top: 0.2rem;">
+              You are qualified to file an appeal with NASERC under the Nasarawa State Electricity Law 2024. Please
+              provide your DisCo Ticket # and Forum Docket # below.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <div
+            style="margin-bottom: 2rem; border-bottom: 1px solid var(--slate-200); padding-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <span
+                style="font-size: 0.8rem; font-weight: 800; color: var(--primary-red); text-transform: uppercase; letter-spacing: 1px;">Step
+                3: Regulatory Adjudication</span>
+              <h2
+                style="font-family: var(--font-heading); font-size: 1.75rem; color: var(--primary-navy); font-weight: 800; margin-top: 0.25rem;">
+                NASERC Formal Appeal Docket
+              </h2>
+            </div>
+            <span
+              style="background: rgba(206, 17, 38, 0.1); color: var(--primary-red); font-weight: 700; padding: 0.35rem 0.85rem; border-radius: var(--radius-full); font-size: 0.8rem;">
+              Shortcode: [naserc_complaint_form]
+            </span>
           </div>
 
           <form id="customerComplaintForm" novalidate>
             <div class="form-grid">
 
+              <!-- Mandatory Step 1 Verification Field -->
               <div class="form-group">
-                <label class="form-label">Full Name <span class="required">*</span></label>
+                <label class="form-label">DisCo Complaint / Ticket Number <span class="required">*</span></label>
+                <input type="text" class="form-control" name="discoTicketNo" placeholder="e.g. AEDC-CCU-2026-8941"
+                  required>
+                <small style="color: var(--slate-500); font-size: 0.75rem; margin-top: 0.25rem; display: block;">Issued
+                  when you lodged your dispute with your DisCo.</small>
+              </div>
+
+              <!-- Mandatory Step 2 Verification Field -->
+              <div class="form-group">
+                <label class="form-label">Forum Office Case Reference Number <span class="required">*</span></label>
+                <input type="text" class="form-control" name="forumRefNo" placeholder="e.g. FO-LAF-2026-042" required>
+                <small style="color: var(--slate-500); font-size: 0.75rem; margin-top: 0.25rem; display: block;">Issued
+                  by the Lafia / Zonal Forum Office hearing docket.</small>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Complainant Full Name <span class="required">*</span></label>
                 <input type="text" class="form-control" name="fullName" placeholder="e.g. Alhaji Mustapha Bello"
                   required>
               </div>
@@ -166,41 +505,46 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label">Electricity Service Provider (Optional)</label>
-                <input type="text" class="form-control" name="provider" placeholder="e.g. AEDC or Mini-Grid Operator">
+                <label class="form-label">Electricity Service Provider <span class="required">*</span></label>
+                <input type="text" class="form-control" name="provider" placeholder="e.g. AEDC or Karu Solar Mini-Grid"
+                  required>
               </div>
 
               <div class="form-group">
-                <label class="form-label">Account or Smart Meter Number (Optional)</label>
-                <input type="text" class="form-control" name="accountNumber" placeholder="e.g. 45019827361 or Meter ID">
+                <label class="form-label">Account or Smart Meter Number <span class="required">*</span></label>
+                <input type="text" class="form-control" name="accountNumber" placeholder="e.g. 45019827361 or Meter ID"
+                  required>
               </div>
 
               <div class="form-group full-width">
-                <label class="form-label">Complaint Category <span class="required">*</span></label>
+                <label class="form-label">Dispute Category <span class="required">*</span></label>
                 <select class="form-control" name="complaintCategory" required>
-                  <option value="">Select Complaint Category...</option>
+                  <option value="">Select Dispute Category...</option>
                   <option value="Overbilling / Estimated Billing Dispute">Overbilling / Estimated Billing Dispute
                   </option>
-                  <option value="Unmetered">Unmetered</option>
-                  <option value="Transformer Failure">Transformer Failure</option>
-                  <option value="Power fluctuation">Power fluctuation</option>
-                  <option value="Disconnection">Disconnection</option>
-                  <!-- <option value="Staff Misconduct / Extortion Report">Staff Misconduct / Extortion Report</option> -->
+                  <option value="Unmetered / Meter Rollout Delay">Unmetered / Meter Rollout Delay</option>
+                  <option value="Transformer Failure & Network Outage">Transformer Failure & Network Outage</option>
+                  <option value="Power Fluctuation & Voltage Damage">Power Fluctuation & Voltage Damage</option>
+                  <option value="Illegal Disconnection">Illegal Disconnection</option>
+                  <option value="Appeal against Forum Decision">Appeal against Forum Decision</option>
                 </select>
               </div>
 
               <div class="form-group full-width">
-                <label class="form-label">Short Description <span class="required">*</span></label>
+                <label class="form-label">Statement of Appeal & Reasons for Disagreement <span
+                    class="required">*</span></label>
                 <textarea class="form-control" name="description" rows="5"
-                  placeholder="Please describe the issue briefly..." required></textarea>
+                  placeholder="Summarize the background, what the DisCo / Forum Office determined, and why you are seeking NASERC Adjudication..."
+                  required></textarea>
               </div>
 
               <div class="form-group full-width">
-                <label class="form-label">Upload Supporting Evidence (Electricity Bill, Payment Receipt, Photo)</label>
+                <label class="form-label">Upload Supporting Documents (DisCo Letter, Forum Ruling, Bills,
+                  Receipts)</label>
                 <div class="file-upload-zone">
                   <input type="file" style="display: none;" name="attachment" accept=".pdf,.png,.jpg,.jpeg">
                   <div class="upload-preview-text">
-                    <strong>Click or Drag & Drop File Here</strong>
+                    <strong>Click or Drag & Drop Prior Correspondence Here</strong>
                     <div style="font-size: 0.8rem; color: var(--slate-500); margin-top: 0.25rem;">Supported formats:
                       PDF, JPG, PNG (Max size: 5MB)</div>
                   </div>
@@ -209,18 +553,21 @@
 
             </div>
 
-            <div style="margin-top: 2.5rem; display: flex; justify-content: flex-end; gap: 1rem;">
-              <button type="reset" class="btn btn-outline">Reset Form</button>
-              <button type="submit" class="btn btn-primary btn-lg">Submit Formal Complaint</button>
+            <div
+              style="margin-top: 2.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+              <button type="button" class="btn btn-outline" id="btnRestartScreening">
+                <i class="fas fa-redo" style="margin-right: 0.4rem;"></i> Re-Check 3-Step Eligibility
+              </button>
+              <div style="display: flex; gap: 1rem;">
+                <button type="reset" class="btn btn-outline">Reset Form</button>
+                <button type="submit" class="btn btn-primary btn-lg">Submit Formal Appeal to NASERC</button>
+              </div>
             </div>
           </form>
         </div>
       </div>
 
     </div>
-  </section>
-
-  </div>
   </section>
 
   <!-- Global Footer -->
@@ -235,7 +582,8 @@
                 style="font-family: var(--font-heading); font-weight: 800; font-size: 1.35rem; color: var(--white);">NASERC</span>
             </div>
             <p class="footer-desc">
-              The Nasarawa State Electricity Regulatory Commission (NASERC) regulates power generation, distribution,
+              The Nasarawa State Electricity Regulatory Commission (NASERC) regulates power generation, transmission,
+              distribution,
               mini-grids, and consumer rights across Nasarawa State.
             </p>
           </div>
@@ -251,10 +599,18 @@
           <div>
             <h4 class="footer-heading">Social Media</h4>
             <ul class="footer-links">
-              <li><a href="https://x.com/nasercnas" target="_blank" rel="noopener" class="footer-link"><i class="fab fa-x-twitter" style="margin-right: 0.4rem; color: var(--accent-gold);"></i>@nasercnas</a></li>
-              <li><a href="https://facebook.com/nasercnas" target="_blank" rel="noopener" class="footer-link"><i class="fab fa-facebook" style="margin-right: 0.4rem; color: var(--accent-gold);"></i>@nasercnas</a></li>
-              <li><a href="https://instagram.com/nasercnas" target="_blank" rel="noopener" class="footer-link"><i class="fab fa-instagram" style="margin-right: 0.4rem; color: var(--accent-gold);"></i>@nasercnas</a></li>
-              <li><a href="https://linkedin.com/company/nasercnas" target="_blank" rel="noopener" class="footer-link"><i class="fab fa-linkedin" style="margin-right: 0.4rem; color: var(--accent-gold);"></i>@nasercnas</a></li>
+              <li><a href="https://x.com/nasercnas" target="_blank" rel="noopener" class="footer-link"><i
+                    class="fab fa-x-twitter" style="margin-right: 0.4rem; color: var(--accent-gold);"></i>@nasercnas</a>
+              </li>
+              <li><a href="https://facebook.com/nasercnas" target="_blank" rel="noopener" class="footer-link"><i
+                    class="fab fa-facebook" style="margin-right: 0.4rem; color: var(--accent-gold);"></i>@nasercnas</a>
+              </li>
+              <li><a href="https://instagram.com/nasercnas" target="_blank" rel="noopener" class="footer-link"><i
+                    class="fab fa-instagram" style="margin-right: 0.4rem; color: var(--accent-gold);"></i>@nasercnas</a>
+              </li>
+              <li><a href="https://linkedin.com/company/nasercnas" target="_blank" rel="noopener" class="footer-link"><i
+                    class="fab fa-linkedin" style="margin-right: 0.4rem; color: var(--accent-gold);"></i>@nasercnas</a>
+              </li>
             </ul>
           </div>
           <div>
@@ -275,6 +631,7 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/modals.js"></script>
   <script src="js/forms.js"></script>
 </body>
 

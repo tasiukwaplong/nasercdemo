@@ -31,7 +31,7 @@ function initMobileDrawer() {
       <div class="drawer-header">
         <div style="display: flex; align-items: center; gap: 0.5rem;">
           <img src="assets/images/logo.png" style="height: 32px;" alt="Logo">
-          <strong style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--white);">NASERC Portal</strong>
+          <strong style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--white);">NASERC</strong>
         </div>
         <button class="drawer-close" id="drawerCloseBtn">&times;</button>
       </div>
@@ -54,7 +54,7 @@ function initMobileDrawer() {
             </div>
           </li>
           <li class="mobile-nav-item"><a href="activities.html" class="mobile-nav-link">Activities</a></li>
-          <li class="mobile-nav-item"><a href="forms.html?tab=complaint" class="mobile-nav-link">File Complaint</a></li>
+          <li class="mobile-nav-item"><a href="forms.html" class="mobile-nav-link">File Complaint</a></li>
           <li class="mobile-nav-item"><a href="contact.html" class="mobile-nav-link">Contact Us</a></li>
         </ul>
         <div style="margin-top: 2rem;">

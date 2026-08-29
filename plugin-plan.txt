@@ -1,18 +1,20 @@
 ===============================================================================
-NASERC CORE PORTAL ENGINE - WORDPRESS PLUGIN PLAN (plugin-plan.txt)
+NASERC CORE ENGINE - WORDPRESS PLUGIN PLAN (plugin-plan.txt)
 ===============================================================================
 
 1. EXECUTIVE OVERVIEW & PLUGIN ARCHITECTURE
 -------------------------------------------------------------------------------
-The "NASERC Core Portal Engine" (`naserc-core`) is a dedicated WordPress plugin
-designed to house all custom business logic, regulatory document data, consumer
-complaint workflows, zonal office map data, and secure form processing routines.
+The "NASERC Core Engine" (`naserc-core`) is a dedicated WordPress plugin housing
+all custom data structures, post types, regulatory documents, consumer complaint
+escalation logic, email notification dispatches, and form shortcodes.
 
 Decoupling Philosophy:
-- Presentation (styling, layouts, header visual elements) remains in `naserc-theme`.
-- Data structure, post types, REST API endpoints, form handling, and security logic
-  are isolated in `naserc-core`.
-- Ensures zero data loss if the site owner switches or updates themes in the future.
+- Presentation (visual aesthetics, layout grids, header styling) remains in `naserc-theme`.
+- Data architecture, custom post types (`hero_slide`, `naserc_document`,
+  `naserc_complaint`, `naserc_inquiry`), REST APIs, and business logic are isolated in `naserc-core`.
+- Ensures zero data loss if themes are switched or updated in the future.
+- Companion Integration: Seamlessly integrates with the theme's TGM Plugin Activation
+  (TGMPA) and 1-Click Page & Menu Setup Wizard.
 
 
 2. PLUGIN DIRECTORY STRUCTURE
@@ -20,117 +22,137 @@ Decoupling Philosophy:
 wp-content/plugins/naserc-core/
 ├── naserc-core.php                (Main plugin entry file & initialization)
 ├── includes/
-│   ├── class-naserc-cpt.php       (Custom Post Types & Taxonomies registrar)
-│   ├── class-naserc-meta.php      (Meta box fields for PDFs & Complaints)
-│   ├── class-naserc-rest.php      (Secure REST API endpoints)
-│   ├── class-naserc-forms.php     (Form processing, sanitization & emails)
-│   ├── class-naserc-security.php  (Nonce, Rate limiting, Honeypot checks)
-│   └── class-naserc-blocks.php    (Shortcodes & Gutenberg Block registration)
+│   ├── class-naserc-cpt.php       (Custom Post Types: Hero Slides, Documents, Complaints, Inquiries)
+│   ├── class-naserc-meta.php      (Custom Meta Boxes for PDFs, DisCo Ticket #, Forum Ref #)
+│   ├── class-naserc-rest.php      (Secure REST API endpoints with transient rate limiting)
+│   ├── class-naserc-forms.php     (Form processing, input sanitization & dual email dispatches)
+│   ├── class-naserc-shortcodes.php(Shortcode Registry: Complaint Desk, Inquiries, Docs, Stats)
+│   ├── class-naserc-security.php  (Nonce verification, Honeypot spam trap, MIME validation)
+│   └── class-naserc-emails.php    (HTML email templates for Complainants & Legal Unit)
 ├── assets/
 │   ├── css/
-│   │   └── plugin-public.css      (Form validation styles & modal CSS)
+│   │   └── plugin-public.css      (Form validation styling, wizard modal & toast styles)
 │   └── js/
-│       ├── form-handler.js        (AJAX form submission with nonce & spinner)
-│       └── leaflet-map.js         (Interactive Lafia HQ Map script)
+│   │   ├── forms.js               (JS-driven 3-step screening questionnaire & form handler)
+│   │   └── leaflet-map.js         (Interactive Lafia HQ Map script)
 └── templates/
-    ├── complaint-form.php         (Complaint form markup)
-    ├── inquiry-form.php           (Contact inquiry form markup)
-    └── stats-grid.php             (Compact green stats grid template)
+    ├── shortcodes/
+    │   ├── complaint-desk.php     (3-Step Flowchart, Eligibility CTA & Step 3 Appeal Form)
+    │   ├── inquiry-form.php       (Secretariat contact inquiry form markup)
+    │   ├── stats-grid.php         (Compact green stats grid template)
+    │   ├── docs-carousel.php      (Regulatory instruments slider template with reader modal)
+    │   └── hq-map.php             (Leaflet Lafia map container markup)
+    └── emails/
+        ├── complaint-admin-alert.php (HTML alert email to NASERC Legal Unit)
+        └── complaint-receipt.php     (HTML acknowledgement docket sent to Complainant)
 
 
 3. CUSTOM POST TYPES (CPTs) & DATA SCHEMAS
 -------------------------------------------------------------------------------
-A. Regulatory Instruments (`naserc_document`)
-   - Taxonomies: `naserc_doc_category` (Grid Code, Customer Protection, Mini-Grid Rules, MAP Rules).
+A. Hero Slider (`hero_slide`)
+   - Purpose: Enables admins to easily manage homepage slider banners.
+   - Fields: Featured Image, Slide Tag (e.g. "Recent Activity"), Headline, Excerpt, CTA Link.
+
+B. Regulatory Instruments (`naserc_document`)
+   - Purpose: Public informational repository of statutory regulations and standards.
+   - Taxonomies: `naserc_doc_category` (Grid Code, Customer Protection, Mini-Grid Rules, Technical Standards).
    - Custom Meta Fields:
-     - `_naserc_pdf_url` (Media Library PDF Attachment URL or AWS S3 Link)
-     - `_naserc_file_size` (e.g., "2.8 MB")
-     - `_naserc_effective_date` (e.g., "January 2026")
+     - `_naserc_pdf_url` (Media Library Attachment URL or External Document Link)
+     - `_naserc_file_size` (e.g. "3.4 MB")
+     - `_naserc_effective_date` (e.g. "February 2026")
      - `_naserc_download_count` (Integer tracking total downloads)
 
-B. Consumer Complaints Desk (`naserc_complaint`)
-   - Access: Admin & Secretariat Role only (Hidden from public front-end).
+C. Consumer Complaints Desk (`naserc_complaint`)
+   - Purpose: Private administrative database for lodged consumer disputes and appeals.
+   - Access: Secretariat & Legal Division roles only (Hidden from public front-end).
    - Custom Meta Fields:
-     - Complainant Name, Phone Number, Email, Residential Address
-     - Meter Number, Electricity Distribution Company (DisCo) / Mini-Grid Operator
-     - Dispute Category (Billing, Metering, Disconnection, Tariff)
-     - Status: `pending`, `under_investigation`, `resolved`, `rejected`
-     - Resolution Notes & Secretariat Handler ID
+     - `_naserc_docket_no` (Generated Reference, e.g. "NAS-ADJ-2026-8941")
+     - `_naserc_disco_ticket_no` (DisCo Customer Care Unit Ticket Number - Step 1 Verification)
+     - `_naserc_forum_ref_no` (Forum Office Case / Docket Reference - Step 2 Verification)
+     - `_naserc_complainant_name`, `_naserc_phone`, `_naserc_email`, `_naserc_lga`
+     - `_naserc_disco_provider` (e.g. AEDC, Karu Solar Mini-Grid)
+     - `_naserc_meter_no` (Account or Smart Meter Number)
+     - `_naserc_dispute_category` (Overbilling, Unmetered, Transformer Failure, Disconnection, Appeal)
+     - `_naserc_status` (`pending_review`, `under_investigation`, `hearing_scheduled`, `resolved`, `rejected`)
+     - `_naserc_attachments` (Array of attachment URLs: DisCo correspondence, Forum ruling, bills)
+     - `_naserc_resolution_notes` & `_naserc_handler_id`
 
-C. Secretariat Inquiries (`naserc_inquiry`)
-   - Stores submissions from the Contact Us page inquiry form.
+D. Secretariat Inquiries (`naserc_inquiry`)
+   - Stores general inquiries from the Contact Us page.
    - Status: `unread`, `in_progress`, `closed`.
 
 
-4. SHORTCODES & GUTENBERG BLOCKS
+4. COMPREHENSIVE SHORTCODE REGISTRY
 -------------------------------------------------------------------------------
-Shortcode / Block               Output & Dynamic Function
-------------------------------  ------------------------------------------------
-[naserc_stats]                  - Renders the compact green background stats grid
-                                  (Mini-Grids, Complaints, Licenses, LGAs).
+Shortcode                       Parameters                           Dynamic Output & Function
+------------------------------  -----------------------------------  --------------------------------------------------
+[naserc_complaint_desk]         mode="wizard|form"                   Renders the 3-step complaint handling flowchart,
+                                show_flowchart="true|false"          interactive JS eligibility assessment trigger,
+                                                                     and the formal Step 3 NASERC appeal form.
 
-[naserc_docs_carousel]          - Renders the auto-sliding regulatory documents
-                                  showcase with "View Document" & "Download PDF".
+[naserc_inquiry_form]           recipient="secretariat"              Renders the Secretariat contact inquiry form with
+                                department=""                        honeypot anti-spam and nonce security.
 
-[naserc_complaint_form]         - Renders the official consumer dispute filing form
-                                  with client-side & server-side validation.
+[naserc_stats]                  style="compact"                      Renders the compact green background civic stats
+                                                                     grid (Mini-Grids, Complaints, Licenses, LGAs).
 
-[naserc_inquiry_form]           - Renders the Secretariat contact inquiry form.
+[naserc_docs_carousel]          count="6"                            Renders the dynamic auto-sliding regulatory
+                                category="all"                       instruments showcase with in-browser reader modal.
 
-[naserc_hq_map]                 - Renders the Leaflet.js interactive map centered
-                                  on Lafia Central Secretariat (Shendam Road).
+[naserc_hq_map]                 height="420px"                       Renders the Leaflet.js interactive map centered
+                                zoom="15"                            on Lafia Central Secretariat (Shendam Road).
 
 
-5. FORM SUBMISSION SECURITY & DATA SANITIZATION
+5. COMPLAINT SUBMISSION, DOCKETING & DUAL EMAIL NOTIFICATIONS
 -------------------------------------------------------------------------------
-A. Custom REST API Endpoints:
-   - `POST /wp-json/naserc/v1/submit-complaint`
-   - `POST /wp-json/naserc/v1/submit-inquiry`
+When a consumer submits the formal Step 3 appeal docket:
 
-B. Multi-Layer Security Workflow:
-   1. Nonce Token Verification:
-      - Form embeds `wp_nonce_field('naserc_form_action', 'naserc_nonce')`.
-      - REST API handler executes `wp_verify_nonce($nonce, 'naserc_form_action')`.
-      - Un-verified requests return HTTP 403 Forbidden.
+A. Backend Processing Routine (`class-naserc-forms.php`):
+   1. Validates Nonce token (`naserc_form_action`) and Honeypot anti-spam check.
+   2. Sanitizes all inputs (`sanitize_text_field`, `sanitize_email`, `sanitize_textarea_field`).
+   3. Validates uploaded files (PDF, PNG, JPG, Max 5MB, MIME type check).
+   4. Generates unique docket code: `NAS-ADJ-{YEAR}-{RANDOM_4_DIGITS}` (e.g. `NAS-ADJ-2026-7412`).
+   5. Creates `naserc_complaint` post in WordPress database with `post_status => 'publish'`.
+   6. Saves all metadata fields (DisCo Ticket #, Forum Docket #, Meter #, LGA, Attachments).
 
-   2. Honeypot Anti-Spam Trap:
-      - Form includes visually hidden field `<input type="text" name="naserc_hp_check" tabindex="-1" autocomplete="off">`.
-      - If `!empty($_POST['naserc_hp_check'])`, submission is rejected instantly.
-
-   3. Input Sanitization Stack:
-      - Names: `sanitize_text_field($raw_name)`
-      - Emails: `sanitize_email($raw_email)`
-      - Phone: `preg_replace('/[^0-9+]/', '', $raw_phone)`
-      - Text Messages: `sanitize_textarea_field($raw_message)`
-
-   4. Transient Rate Limiting (DoS & Spam Prevention):
-      - Track client IP address (`$_SERVER['REMOTE_ADDR']`).
-      - Store count in transient: `get_transient('naserc_rate_' . $ip_md5)`.
-      - Maximum allowed: 5 submissions per 15 minutes per IP address.
-      - Exceeding limit triggers HTTP 429 Too Many Requests response.
-
-   5. Database Prepared Statements:
-      - Uses `$wpdb->insert()` or `$wpdb->prepare()` for custom DB queries.
-      - Prevents SQL Injection vulnerabilities.
-
-   6. Email Notification Safety:
-      - Form submissions trigger `wp_mail()` to Secretariat (info@naserc.na.gov.ng).
-      - Email body passed through `wp_kses_post()` to strip unwanted script tags.
+B. Dual Automated Email Dispatches (`class-naserc-emails.php`):
+   1. Complainant Acknowledgement Receipt:
+      - Subject: "NASERC Appeal Docket Created - [NAS-ADJ-2026-XXXX]"
+      - Recipient: Complainant's email address.
+      - Content: Formatted HTML email containing Docket Number, filing metadata, DisCo & Forum references, and next steps regarding Secretariat docket review.
+   2. Secretariat & Legal Unit Administrative Alert:
+      - Subject: "New Formal Regulatory Appeal Docket Lodged: [NAS-ADJ-2026-XXXX]"
+      - Recipient: Configured Secretariat email (e.g., `info@naserc.na.gov.ng`).
+      - Content: Full details of the appeal, appellant contact information, DisCo & Forum reference numbers, attached documents, and direct link to the WP Admin complaint docket editor.
 
 
-6. PERFORMANCE & SPEED STRATEGY
+6. FORM SUBMISSION SECURITY & RATE LIMITING
 -------------------------------------------------------------------------------
-1. Conditional Asset Enqueuing:
-   - Leaflet Map CSS/JS is ONLY loaded when `[naserc_hq_map]` or `page-contact.php` is active.
-   - Form JS is only loaded on pages containing forms.
+1. Nonce Token Security:
+   - All forms embed `wp_nonce_field('naserc_form_action', 'naserc_nonce')`.
+   - REST API handler validates nonces with `wp_verify_nonce()`. Rejects invalid requests with HTTP 403.
+2. Honeypot Anti-Spam Trap:
+   - Form includes visually hidden field `<input type="text" name="naserc_hp_check" tabindex="-1" autocomplete="off">`.
+   - Rejects submissions instantly if filled by automated bots.
+3. Transient IP Rate Limiting:
+   - Maximum 5 submissions per 15 minutes per IP address.
+   - Prevents DoS attacks and spam flooding by returning HTTP 429 Too Many Requests.
+4. Database Prepared Statements:
+   - All DB operations utilize `$wpdb->prepare()` or native WordPress post insert functions.
 
-2. Query Caching & Transients:
-   - Regulatory documents query is cached for 12 hours:
-     `set_transient('naserc_cached_docs_carousel', $html, 12 * HOUR_IN_SECONDS);`
-   - Automatic cache invalidation when a `naserc_document` post is published/updated (`save_post` hook).
 
-3. Database Optimization:
-   - Custom index on `naserc_complaint` meta fields for fast status queries.
-   - Transients stored cleanly with expiration timestamps.
+7. 1-CLICK PAGE GENERATION & NAVIGATION HELPER HOOKS
+-------------------------------------------------------------------------------
+1. TGMPA Compatibility:
+   - Declares standard plugin headers enabling `naserc-theme` to automatically prompt for installation.
+2. Setup Wizard Helper (`naserc_core_setup_default_content()`):
+   - Hooked by `Appearance > NASERC Setup` to generate standard pages pre-populated with active shortcodes:
+     - `Home` -> front-page.php
+     - `About Us` -> page-about.php
+     - `Regulations` -> page-regulations.php with `[naserc_docs_carousel count="8"]`
+     - `Activities & News` -> page-activities.php
+     - `Customer Complaints` -> page-forms.php with `[naserc_complaint_desk]`
+     - `Contact Secretariat` -> page-contact.php with `[naserc_inquiry_form]` [naserc_hq_map]
+   - Automatically builds the Primary Navigation Menu with full dropdown hierarchy and assigns it to the theme location.
 
 ===============================================================================

@@ -1,148 +1,212 @@
 ===============================================================================
-NASERC WEB PORTAL - WORDPRESS THEME IMPLEMENTATION PLAN (theme-plan.txt)
+NASERC OFFICIAL WEBSITE - WORDPRESS THEME IMPLEMENTATION PLAN (theme-plan.txt)
 ===============================================================================
 
 1. EXECUTIVE OVERVIEW & ARCHITECTURE
 -------------------------------------------------------------------------------
 The NASERC WordPress Theme ("naserc-theme") will serve as the presentation layer
-for the Nasarawa State Electricity Regulatory Commission official civic portal.
-It translates the existing static HTML5/Vanilla CSS/JavaScript frontend into a
-highly performant, modern, accessible, and secure WordPress theme.
+for the Nasarawa State Electricity Regulatory Commission official website.
+It translates the static HTML5/Vanilla CSS/JavaScript frontend into a highly
+performant, modern, accessible, and secure WordPress theme.
 
-Key Design Goals:
-- Preserve exact brand aesthetic: Primary Green (#006837), Bold Red (#ce1126),
-  Solar Yellow (#f59e0b), and Civic Navy (#0a192f).
-- Enforce strict page-speed metrics (target 95+ Google PageSpeed Insights score).
-- Provide easy, non-technical section management via WordPress Customizer, Block
-  Editor (Gutenberg), and Site Editor components.
-- Enforce strict XSS and CSRF output escaping on all templates.
+Core Functional Scope:
+- Civic & Regulatory Presentation: Clean, authoritative presentation of the
+  Commission's statutory mandate, leadership, news, and regulatory framework.
+- Informational Repository: Public access and in-browser viewing / download of
+  statutory regulations, grid codes, customer protection rules, and mini-grid standards.
+- Consumer Complaint & Dispute Desk: Exclusive interactive civic service handling
+  the mandatory 3-step complaint workflow (DisCo CCU -> Forum Office -> NASERC).
+- Decoupled Plugin Engine: All data models, custom post types (`hero_slide`,
+  `naserc_document`, `naserc_complaint`, `naserc_inquiry`), email dispatchers, and
+  form shortcodes are encapsulated in the companion plugin `naserc-core`.
+- Automated Onboarding: One-Click setup wizard creating all core pages and building
+  the Primary Navigation Menu automatically.
 
 
 2. THEME FILE STRUCTURE & DIRECTORY ORGANIZER
 -------------------------------------------------------------------------------
 wp-content/themes/naserc-theme/
-├── style.css                      (Theme identity metadata & core CSS)
-├── functions.php                  (Theme initialization & hooks)
+├── style.css                      (Theme identity metadata & core design system CSS)
+├── functions.php                  (Theme setup, asset enqueuing, TGMPA inclusion)
 ├── index.php                      (Fallback main template)
-├── header.php                     (Top bar & main navbar with big NASERC brand)
+├── header.php                     (Top bar, brand logo, and responsive navigation)
 ├── footer.php                     (Global civic footer & script includes)
 ├── front-page.php                 (Custom homepage layout template)
-├── page-about.php                 (About Us / Mandate & Leadership template)
-├── page-regulations.php           (Regulatory Instruments repository template)
-├── page-activities.php            (News & Press Releases template)
-├── page-forms.php                 (File Complaint & Calculator template)
+├── page.php                       (Default general page template)
+├── page-about.php                 (About Us / Statutory Mandate & Leadership template)
+├── page-regulations.php           (Regulatory Instruments repository & filter template)
+├── page-activities.php            (News & Press Releases archive template)
+├── page-forms.php                 (Customer Complaint Desk & 3-Step Wizard template)
 ├── page-contact.php               (Contact Secretariat & Map template)
-├── single.php                     (Single news/press release post template)
-├── single-naserc_document.php     (Single regulatory document details)
+├── single.php                     (Single news/press release story template)
+├── single-naserc_document.php     (Single regulatory instrument details template)
 ├── assets/
 │   ├── css/
-│   │   └── styles.min.css         (Minified production design system)
+│   │   └── styles.min.css         (Minified production CSS with zero unused styles)
 │   ├── js/
-│   │   ├── main.js                (Navigation drawer & general UI)
-│   │   ├── slider.js              (Hero & document carousel logic)
-│   │   └── counters.js            (Stat counter animation triggers)
+│   │   ├── main.js                (Mobile drawer, accessibility controls, toast alerts)
+│   │   ├── slider.js              (Hero slider & document carousel logic)
+│   │   ├── counters.js            (Stat counter animation triggers)
+│   │   ├── modals.js              (Interactive popups & in-browser document reader modal)
+│   │   └── forms.js               (JS-driven 3-step complaint screening & docket submission)
 │   └── images/
 │       ├── logo.png               (Official seal logo)
 │       └── chairman.png           (Leadership portrait)
 ├── inc/
-│   ├── setup.php                  (Theme supports, nav menus, asset enqueuing)
-│   ├── customizer.php             (Customizer controls for logo, hotline, header)
-│   ├── template-tags.php          (Helper functions for rendering badges, meta)
-│   └── speed-optimization.php     (Asset deferral, emoji cleanup, font preloads)
+│   ├── setup.php                  (Theme supports, nav menu registration, scripts enqueue)
+│   ├── customizer.php             (Customizer controls for Chairman quote, hotline, stats)
+│   ├── template-tags.php          (Helper functions for badges, metadata, social share)
+│   ├── speed-optimization.php     (Asset deferral, emoji cleanup, font preloads)
+│   ├── tgmpa-config.php           (TGM Plugin Activation configuration for naserc-core)
+│   ├── admin-onboarding.php       (First-Time Setup Onboarding Wizard dashboard)
+│   └── page-generator.php         (1-Click Page & Primary Menu generation routine)
 └── template-parts/
     ├── header/
     │   ├── top-bar.php            (Hotline, search form, quick links)
     │   └── navbar.php             (Big NASERC red logo link & main menu)
     ├── components/
-    │   ├── hero-slider.php        (Dynamic hero carousel)
-    │   ├── stats-bar.php          (Compact green background stats grid)
-    │   ├── executive-quote.php    (Chairman statement section)
-    │   └── docs-showcase.php      (Auto-sliding regulatory documents)
+    │   ├── hero-slider.php        (Dynamic hero carousel powered by 'hero_slide' CPT)
+    │   ├── stats-bar.php          (Compact green background civic stats grid)
+    │   ├── executive-quote.php    (Chairman statement section with read speech modal)
+    │   ├── docs-showcase.php      (Auto-sliding regulatory documents carousel)
+    │   ├── complaint-flowchart.php (Visual 3-Step Statutory Process banner)
+    │   └── social-share.php       (Bottom share bar with X, FB, LinkedIn, WhatsApp & Copy Link)
     └── footer/
         └── social-links.php       (@nasercnas social media channels)
 
 
-3. SECTION MANAGEMENT & CONTENT UPDATING IN WORDPRESS
+3. COMPANION PLUGIN PROMPT & 1-CLICK ONBOARDING SETUP WIZARD
+-------------------------------------------------------------------------------
+A. Automatic Plugin Installation Prompt (TGMPA Integration):
+   - Integrated via `inc/tgmpa-config.php` using the TGM Plugin Activation library.
+   - Upon theme activation, if `naserc-core` is not active, an admin notification displays:
+     > "This theme requires the following plugin: NASERC Core Engine. [Begin installing plugin] | [Dismiss this notice]"
+   - Facilitates 1-click installation and activation directly from the WP Admin dashboard.
+
+B. First-Time Setup & Onboarding Wizard (`Appearance > NASERC Setup`):
+   - Step 1: Plugin Check & Activation
+     * Verifies active status of `naserc-core`.
+   - Step 2: 1-Click Page Creation & Shortcode Ingestion
+     * Generates all required standard pages with their templates and shortcodes:
+       -----------------------------------------------------------------------------------------
+       Page Title           Target Slug   Template Assigned      Pre-Populated Content / Shortcode
+       -------------------  ------------  ---------------------  -----------------------------------
+       Home                 home          front-page.php         (Dynamic CPTs & Customizer)
+       About Us             about         page-about.php         (Statutory Mandate & Leadership)
+       Regulations          regulations   page-regulations.php   [naserc_docs_carousel count="8"]
+       Activities & News    activities    page-activities.php    (Dynamic news query)
+       File Complaint       forms         page-forms.php         [naserc_complaint_desk]
+       Contact Secretariat  contact       page-contact.php       [naserc_inquiry_form] [naserc_hq_map]
+       -----------------------------------------------------------------------------------------
+   - Step 3: Site Automation & Navigation Menu Assignment
+     * Automatically sets `show_on_front = 'page'` and `page_on_front = Home_Page_ID`.
+     * Automatically creates the "Primary Navigation Menu" in WordPress with proper hierarchy
+       (Home, About Us [Mandate, Vision, Governance], Regulations [Grid Code, Customer Protection,
+       Mini-Grid], Activities, File Complaint) and assigns it to the theme's `primary-menu` location.
+
+
+4. STATUTORY 3-STEP CUSTOMER COMPLAINT HANDLING PROCESS
+-------------------------------------------------------------------------------
+Consumers must follow the Commission's statutory 3-step hierarchical resolution process:
+
+A. The 3-Step Complaint Flowchart:
+   ┌─────────────────────────────────────────────────────────────────────────────┐
+   │ STEP 1: DISCO (CCU) - Customer Care Unit                                    │
+   │ 1. Customer lodges formal complaint with DisCo (AEDC or licensed Mini-Grid).│
+   │ 2. DisCo CCU investigates and provides resolution within statutory 15 days. │
+   │ 3. Decision Point: Do you agree with resolution?                            │
+   │    • YES ──> DisCo notifies NASERC ──> [END / RESOLVED]                     │
+   │    • NO  ──> Move to Step 2                                                 │
+   └──────────────────────────────────────┬──────────────────────────────────────┘
+                                          │ (If Unsatisfied / Timeline Exceeded)
+                                          ▼
+   ┌─────────────────────────────────────────────────────────────────────────────┐
+   │ STEP 2: FORUM OFFICE (Electricity Consumer Complaints Forum)                │
+   │ 4. Customer appeals to the Lafia / Zonal Consumer Forum Office.             │
+   │ 5. Forum panel holds hearing with DisCo and issues formal ruling.           │
+   │ 6. Decision Point: Are you satisfied with Forum's decision?                 │
+   │    • YES ──> [END / RESOLVED]                                               │
+   │    • NO  ──> Move to Step 3                                                 │
+   └──────────────────────────────────────┬──────────────────────────────────────┘
+                                          │ (If Unsatisfied with Forum Decision)
+                                          ▼
+   ┌─────────────────────────────────────────────────────────────────────────────┐
+   │ STEP 3: NASERC ADJUDICATION & REGULATORY APPEAL                             │
+   │ 7. Customer appeals to NASERC Secretariat for regulatory adjudication.      │
+   │ 8. NASERC Legal & Technical Directorate reviews docket and issues ruling.   │
+   │ 9. Decision Point: Do you agree with NASERC's final regulatory decision?    │
+   │    • YES ──> [END / FINAL BINDING DETERMINATION]                            │
+   │    • NO  ──> Seek judicial review / Court remedies.                         │
+   └─────────────────────────────────────────────────────────────────────────────┘
+
+B. Frontend Template & JS Screening Modal (`page-forms.php` / `[naserc_complaint_desk]`):
+   1. Visual Flowchart Banner (`template-parts/components/complaint-flowchart.php`):
+      - Informs citizens of the statutory 3-step sequence.
+      - Action buttons launch the DisCo Directory modal or Forum Office Guide modal.
+   2. Interactive JS Screening Modal Questionnaire:
+      - Triggered by clicking "Start Eligibility Check".
+      - Step 1 Check: "Have you lodged with DisCo CCU?" (If NO -> DisCo advice modal with AEDC lines 08039004030; If YES -> Was it resolved?).
+      - Step 2 Check: "Have you appealed to the Forum Office?" (If NO -> Forum advice modal with Lafia hearing chambers info; If YES -> Was it resolved?).
+      - Step 3 Qualification Screen: Unlocks and smoothly scrolls to the Step 3 Formal Appeal Form.
+   3. Formal Appeal Docket Form:
+      - Mandatory Fields: DisCo Ticket Number, Forum Docket Reference Number, Complainant Name, Phone, Email, LGA, Provider, Meter ID, Category, Description, and Attachment.
+      - Submission triggers:
+        * Unique Docket Number generation (`NAS-ADJ-2026-XXXX`).
+        * Automatic Email Acknowledgement to Complainant with official hearing guidance.
+        * Automatic Email Alert to NASERC Legal & Technical Unit (`info@naserc.na.gov.ng`).
+
+
+5. SECTION MANAGEMENT & CONTENT UPDATING IN WORDPRESS
 -------------------------------------------------------------------------------
 Section                       Update Mechanism in WordPress
 ----------------------------  --------------------------------------------------
-A. Header Logo & NASERC Name  - Logo image managed via Appearance > Customizer >
-                                Site Identity.
-                              - NASERC Big Acronym font size, color (#ce1126),
-                                and tagline managed via Customizer theme options.
+A. Header Logo & NASERC Name  - Managed via Appearance > Customizer > Site Identity.
+                                Acronym color (#ce1126), font size, and tagline.
 
 B. Top Bar Info & Hotline     - Managed via Customizer > NASERC Header Settings.
-                              - Editable fields: Hotline number, Secretariat Email,
-                                Zonal office operational hours.
+                                Editable: Hotline (0800-NASERC-HOT), Email, Hours.
 
-C. Compact Green Stats Bar    - Managed via Customizer > NASERC Statistics or
-                                dynamic plugin shortcode [naserc_stats].
-                              - Fields for Mini-Grids count, Resolved Complaints,
-                                Operator Licenses, and LGAs count.
+C. Compact Green Stats Bar    - Managed via Customizer > Civic Statistics.
+                                Editable counts: Mini-Grids, Resolved Complaints,
+                                Operator Licenses, LGAs.
 
-D. Hero Slider Banner         - Custom Post Type 'hero_slide' or Customizer
-                                Repeater control.
-                              - Each slide has Image, Tag, Headline, Excerpt, Link.
+D. Hero Slider Banner         - Custom Post Type `hero_slide`.
+                                Admin creates slides with Title, Image, Tag,
+                                Excerpt, and CTA Link.
 
-E. Executive Chairman Quote   - Customizer options under "Executive Statement".
-                              - Editable: Photo upload, Chairman Name, Title,
-                                Quote content, and CTA button link.
+E. Executive Chairman Quote   - Managed via Customizer > Executive Statement.
+                                Photo upload, Chairman Name, Title, Excerpt Quote,
+                                and Full Address Speech Text (for modal reader).
 
-F. Regulatory Showcase        - Dynamic Query pulling top 4 published
-                                'naserc_document' posts sorted by date.
+F. Regulatory Repository      - Managed via Custom Post Type `naserc_document`.
+                                Taxonomies: Grid Code, Consumer Protection,
+                                Mini-Grid Rules, Technical Standards.
+                                Custom fields: PDF upload/link, file size, date.
 
-G. Footer Social Links        - Managed via Customizer > Social Links.
-                              - Links to X (@nasercnas), Facebook, Instagram,
-                                LinkedIn.
+G. Header Nav & Mobile Drawer - Desktop: Full horizontal navbar with dropdowns.
+                                Mobile (<=1024px): "Contact Us" button in sticky header
+                                is cleanly hidden; accessible inside the slide-out drawer.
+
+H. Footer Social Links        - Managed via Customizer > Social Links.
+                                Links to X (@nasercnas), Facebook, Instagram, LinkedIn.
 
 
-4. SPEED & PERFORMANCE OPTIMIZATION STRATEGY
+6. SPEED & PERFORMANCE OPTIMIZATION STRATEGY
 -------------------------------------------------------------------------------
 1. CSS & JS Enqueuing:
    - Enqueue minified `styles.min.css` with versioning based on `filemtime()`.
-   - Remove unused WordPress core styles (wp-block-library cleanup if unneeded).
    - Add `defer` attribute to non-critical JS scripts (`slider.js`, `counters.js`).
-   
-2. Resource Preloading & Google Fonts Optimization:
+2. Resource Preloading & Google Fonts:
    - Preload Google Fonts (Plus Jakarta Sans & Inter) via `<link rel="preload">`.
-   - Preload primary logo image `assets/images/logo.png`.
-   - Add `font-display: swap` for zero layout shift (CLS).
-
-3. Image Optimization & Modern Formats:
+   - Add `font-display: swap` for zero Cumulative Layout Shift (CLS).
+3. Image Optimization:
    - Support native WebP images with `srcset` and `sizes` attributes.
-   - Enforce `loading="lazy"` on images below the fold (Chairman image, cards).
-   - Set explicit `width` and `height` attributes to prevent Cumulative Layout Shift.
-
+   - Enforce `loading="lazy"` on images below the fold.
 4. Micro-Transient Caching:
-   - Cache heavy DB queries (e.g. document list carousel) using WordPress Transients API:
+   - Cache regulatory documents and hero queries using WordPress Transients API:
      `set_transient('naserc_home_docs_query', $docs_query, 12 * HOUR_IN_SECONDS);`
-   - Automatically purge transients when a document or setting is updated.
-
-5. Clean WordPress Footprint:
-   - Disable Emojis, Gutenberg block CSS on non-editor templates, embed scripts,
-     and REST API links in `<head>` for non-authenticated visitors.
-
-
-5. SECURITY FOR FORM SUBMISSION & THEME TEMPLATES
--------------------------------------------------------------------------------
-1. Output Escaping Rules:
-   - Every dynamic text field MUST use appropriate escaping:
-     `esc_html()`, `esc_attr()`, `esc_url()`, `wp_kses_post()`.
-
-2. Form Security Integration:
-   - All forms rendered in theme templates MUST include WordPress Nonce security tokens:
-     `wp_nonce_field('naserc_submit_inquiry_action', 'naserc_inquiry_nonce');`
-
-3. Contact & Complaint Form Rendering:
-   - Forms will submit asynchronously to secure WP REST API endpoints or `admin-post.php`.
-   - Include hidden honeypot fields (`<input type="text" name="naserc_hp_check" style="display:none;">`)
-     to silently catch and reject automated spam bots.
-
-4. HTTP Security Headers:
-   - Theme `functions.php` will send security headers on production requests:
-     - `X-Frame-Options: SAMEORIGIN`
-     - `X-Content-Type-Options: nosniff`
-     - `Referrer-Policy: strict-origin-when-cross-origin`
-     - `Content-Security-Policy` header.
+   - Automatically purge transients when a document or slide is updated (`save_post`).
+5. Clean Footprint:
+   - Disable Emojis and unnecessary WordPress block CSS on non-editor templates.
 
 ===============================================================================

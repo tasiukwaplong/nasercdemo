@@ -25,7 +25,7 @@ function initModalListeners() {
             </div>
 
             <p style="margin-bottom: 1rem;">
-              "It is with immense privilege that I welcome citizens, electricity customers, and mini-grid developers to the official e-governance portal of the Nasarawa State Electricity Regulatory Commission (NASERC).
+              "It is with immense privilege that I welcome citizens, electricity customers, and mini-grid developers to the official website of the Nasarawa State Electricity Regulatory Commission (NASERC).
             </p>
             <p style="margin-bottom: 1rem;">
               Enacted under the landmark Nasarawa State Electricity Law 2024, NASERC has assumed full regulatory jurisdiction over intrastate power generation, distribution networks, and off-grid renewable energy projects.
@@ -42,9 +42,13 @@ function initModalListeners() {
     });
   }
 
-  // 2. News Article Reader Modals
+  // 2. News Article Reader Modals (Fallback for modal triggers, skipped when opening single page)
   document.querySelectorAll('.read-news-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
+      const href = btn.getAttribute('href');
+      if (href && href !== '#') {
+        return; // Allow standard link opening in new page/tab
+      }
       e.preventDefault();
       const card = btn.closest('.news-card');
       if (!card) return;
